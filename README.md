@@ -12,7 +12,7 @@ This repository contains a **Dockerfile** of [Bro-IDS](http://www.bro.org/index.
 
 1. Install [Docker](https://www.docker.io/).
 
-2. Download [trusted build](https://index.docker.io/u/blacktop/bro/) from public [Docker Registry](https://index.docker.io/): `docker pull blacktop/avast`
+2. Download [trusted build](https://index.docker.io/u/blacktop/bro/) from public [Docker Registry](https://index.docker.io/): `docker pull blacktop/bro`
 
 #### Alternatively, build an image from Dockerfile
 ```bash
