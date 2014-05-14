@@ -22,6 +22,10 @@ $ docker build -t blacktop/bro .
 ```bash
 $ docker run -i -t blacktop/bro -r MY.pcap local
 ```
+#### Or
+```bash
+$ docker run -it -v /pcap:/pcap:rw blacktop/bro -r -C /pcap/test.pcap
+```
 #### Output:
 ```bash
 
