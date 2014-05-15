@@ -33,7 +33,7 @@ RUN cd bro && make install
 ENV PATH /nsm/bro/bin:$PATH
 
 # Add PCAP Test Folder
-ADD /pcap/test.pcap /pcap/
+ADD /pcap/heartbleed.pcap /pcap/
 WORKDIR /pcap
 
 ENTRYPOINT ["bro"]
