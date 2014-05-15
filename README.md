@@ -40,6 +40,5 @@ $ docker run -it -v /pcap:/pcap:rw blacktop/bro -r my.pcap local
 ### Todo
 - [x] Install/Run Bro-IDS
 - [ ] Start Daemon and watch folder with supervisord
-- [ ] Have container take a URL as input and download/scan file
-- [ ] Output Scan Results as formated JSON
-- [ ] Attach a Volume that will hold malware for a host's tmp folder
+- [ ] Have container take a URL as input and download/scan pcap
+- [ ] Add ELK Stack
