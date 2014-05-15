@@ -20,11 +20,7 @@ $ docker build -t blacktop/bro .
 ```
 ### Usage
 ```bash
-$ docker run -i -t blacktop/bro -r heartbleed.pcap local protocols/ssl/heartbleed.bro
-```
-#### Or Use Your Own PCAPs
-```bash
-$ docker run -it -v /pcap:/pcap:rw blacktop/bro -r -C /pcap/test.pcap local
+$ docker run -i -t -v /pcap:/pcap:rw blacktop/bro -r heartbleed.pcap local protocols/ssl/heartbleed.bro
 ```
 #### Output:
 ```bash
@@ -35,7 +31,11 @@ conn.log  files.log  heartbleed.pcap  loaded_scripts.log  'notice.log'  packet_f
 $ cat notice.log | bro-cut note msg
 
 SSL::Invalid_Server_Cert	SSL certificate validation failed with (self signed certificate)
-Heartbleed::SSL_Heartbeat_Attack_Success	An Encrypted TLS heartbleed attack was probably detected! First packet client record length 32, first packet server record length 16416
+'Heartbleed::SSL_Heartbeat_Attack_Success'	An Encrypted TLS heartbleed attack was probably detected! First packet client record length 32, first packet server record length 16416
+```
+#### Or use your own pcap
+```bash
+$ docker run -it -v /pcap:/pcap:rw blacktop/bro -r my.pcap local
 ```
 ### Todo
 - [x] Install/Run Bro-IDS
