@@ -28,6 +28,10 @@ $ docker run -it -v /pcap:/pcap:rw blacktop/bro -r -C /pcap/test.pcap local
 ```
 #### Output:
 ```bash
+$ ls
+
+conn.log  files.log  heartbleed.pcap  loaded_scripts.log  'notice.log'  packet_filter.log  ssl.log  x509.log
+
 $ cat notice.log | bro-cut note msg
 
 SSL::Invalid_Server_Cert	SSL certificate validation failed with (self signed certificate)
