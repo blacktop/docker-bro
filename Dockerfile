@@ -12,7 +12,7 @@ RUN apt-get -qq update
 RUN apt-get install -yq cmake make gcc g++ flex bison libpcap-dev libssl-dev python-dev swig zlib1g-dev
 
 # Install Bro Optional Dependencies
-RUN apt-get install -yq libgeoip-dev libmagic-dev curl git-core wget gawk
+RUN apt-get install -yq libgeoip-dev libmagic-dev curl libcurl3 libcurl3-dev php5-curl git-core wget gawk
 
 # Clean Install Files
 RUN apt-get autoclean -yq
