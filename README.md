@@ -25,14 +25,12 @@ $ docker run -i -t -v /path/to/pcap:/pcap:rw blacktop/bro -r heartbleed.pcap loc
 #### Output:
 ```bash
 $ ls
-```
-```bash
+
 conn.log  files.log  heartbleed.pcap  loaded_scripts.log  'notice.log'  packet_filter.log  ssl.log  x509.log
 ```
 ```bash
 $ cat notice.log | bro-cut note msg
-```
-```bash
+
 SSL::Invalid_Server_Cert	SSL certificate validation failed with (self signed certificate)
 'Heartbleed::SSL_Heartbeat_Attack_Success'	An Encrypted TLS heartbleed attack was probably detected! First packet client record length 32, first packet server record length 16416
 ```
