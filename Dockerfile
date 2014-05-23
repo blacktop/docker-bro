@@ -7,16 +7,16 @@ ADD policy-rc.d /usr/sbin/policy-rc.d
 RUN /bin/chmod 755 /usr/sbin/policy-rc.d
 
 # Install Bro Required Dependencies
-RUN apt-get -qq update && apt-get install -yq cmake /
-                                              make /
-                                              gcc /
-                                              g++ /
-                                              flex /
-                                              bison /
-                                              libpcap-dev /
-                                              libssl-dev /
-                                              python-dev /
-                                              swig /
+RUN apt-get -qq update && apt-get install -yq cmake \
+                                              make \
+                                              gcc \
+                                              g++ \
+                                              flex \
+                                              bison \
+                                              libpcap-dev \
+                                              libssl-dev \
+                                              python-dev \
+                                              swig \
                                               zlib1g-dev
 # Install Bro Optional Dependencies
 RUN apt-get install -yq libgeoip-dev curl git-core wget gawk
