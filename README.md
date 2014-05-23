@@ -1,5 +1,5 @@
 Bro IDS Dockerfile
-=============
+==================
 
 This repository contains a **Dockerfile** of [Bro-IDS](http://www.bro.org/index.html) for [Docker](https://www.docker.io/)'s [trusted build](https://index.docker.io/u/blacktop/bro/) published to the public [Docker Registry](https://index.docker.io/).
 
@@ -20,7 +20,7 @@ $ docker build -t blacktop/bro .
 ```
 ### Usage
 ```bash
-$ docker run -i -t -v /pcap:/pcap:rw blacktop/bro -r heartbleed.pcap local protocols/ssl/heartbleed.bro
+$ docker run -i -t -v /path/to/pcap:/pcap:rw blacktop/bro -r heartbleed.pcap local protocols/ssl/heartbleed.bro
 ```
 #### Output:
 ```bash
