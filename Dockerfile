@@ -19,7 +19,12 @@ RUN apt-get -qq update && apt-get install -yq cmake \
                                               swig \
                                               zlib1g-dev
 # Install Bro Optional Dependencies
-RUN apt-get install -yq libgeoip-dev curl git-core wget gawk
+RUN apt-get install -yq libgeoip-dev curl libcurl3 \
+                                              libcurl3-dev \
+                                              php5-curl \
+                                              git-core \
+                                              wget \
+                                              gawk
 
 # Install the GeoIPLite Database
 ADD http://geolite.maxmind.com/download/geoip/database/GeoLiteCity.dat.gz /usr/share/GeoIP/
@@ -40,7 +45,7 @@ ENV PATH /nsm/bro/bin:$PATH
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Add PCAP Test Folder
-ADD /pcap/test.pcap /pcap/
+ADD /pcap/heartbleed.pcap /pcap/
 WORKDIR /pcap
 
 ENTRYPOINT ["bro"]
