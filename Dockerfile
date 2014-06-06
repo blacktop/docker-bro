@@ -1,43 +1,45 @@
 FROM ubuntu:latest
 MAINTAINER blacktop, https://github.com/blacktop
 
-# Make sure that Upstart won't try to start avgd after dpkg installs it
-# https://github.com/dotcloud/docker/issues/446
-ADD policy-rc.d /usr/sbin/policy-rc.d
-RUN /bin/chmod 755 /usr/sbin/policy-rc.d
+#Prevent daemon start during install
+RUN echo '#!/bin/sh\nexit 101' > /usr/sbin/policy-rc.d && \
+    chmod +x /usr/sbin/policy-rc.d
 
 # Install Bro Required Dependencies
-RUN apt-get -qq update && apt-get install -yq cmake \
-                                              make \
-                                              gcc \
-                                              g++ \
-                                              flex \
-                                              bison \
-                                              libpcap-dev \
-                                              libssl-dev \
-                                              python-dev \
-                                              swig \
-                                              zlib1g-dev
-# Install Bro Optional Dependencies
-RUN apt-get install -yq libgeoip-dev curl libcurl3 \
-                                              libcurl3-dev \
-                                              php5-curl \
-                                              git-core \
-                                              wget \
-                                              gawk
+RUN apt-get -qq update && apt-get install -yq libcurl3-dev \
+  libpcap-dev \
+  libssl-dev \
+  python-dev \
+  zlib1g-dev \
+  php5-curl \
+  git-core \
+  bison \
+  cmake \
+  flex \
+  gawk \
+  make \
+  swig \
+  wget \
+  g++ \
+  gcc
 
 # Install the GeoIPLite Database
 ADD http://geolite.maxmind.com/download/geoip/database/GeoLiteCity.dat.gz /usr/share/GeoIP/
 ADD http://geolite.maxmind.com/download/geoip/database/GeoLiteCityv6-beta/GeoLiteCityv6.dat.gz /usr/share/GeoIP/
-RUN gunzip /usr/share/GeoIP/GeoLiteCity.dat.gz && gunzip /usr/share/GeoIP/GeoLiteCityv6.dat.gz
-RUN ln -s /usr/share/GeoIP/GeoLiteCity.dat /usr/share/GeoIP/GeoIPCity.dat
-RUN ln -s /usr/share/GeoIP/GeoLiteCityv6.dat /usr/share/GeoIP/GeoIPCityv6.dat
+RUN gunzip /usr/share/GeoIP/GeoLiteCity.dat.gz && \
+  rm -f /usr/share/GeoIP/GeoLiteCity.dat.gz && \
+  gunzip /usr/share/GeoIP/GeoLiteCityv6.dat.gz && \
+  rm -f /usr/share/GeoIP/GeoLiteCityv6.dat.gz
+RUN ln -s /usr/share/GeoIP/GeoLiteCity.dat /usr/share/GeoIP/GeoIPCity.dat && \
+  ln -s /usr/share/GeoIP/GeoLiteCityv6.dat /usr/share/GeoIP/GeoIPCityv6.dat
 
-# Install Bro
-RUN git clone --recursive git://git.bro.org/bro
-RUN cd bro && ./configure --prefix=/nsm/bro && \
-                                              make && \
-                                              make install
+# Install Bro and remove install dir after to conserve space
+RUN git clone --recursive git://git.bro.org/bro && \
+  cd bro && ./configure --prefix=/nsm/bro && \
+  make && \
+  make install && \
+  rm -rf /bro
+
 ENV PATH /nsm/bro/bin:$PATH
 
 # Try to reduce size of container.
