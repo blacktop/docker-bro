@@ -16,7 +16,7 @@ This repository contains a **Dockerfile** of [Bro-IDS](http://www.bro.org/index.
 
 #### Alternatively, build an image from Dockerfile
 ```bash
-$ docker build -t blacktop/bro .
+$ docker build -t blacktop/bro github.com/blacktop/docker-bro
 ```
 ### Usage
 ```bash
