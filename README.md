@@ -1,5 +1,4 @@
-<!-- ![bro-logo](http://bro.org/images/bro-eyes.png) -->
-<img src="http://bro.org/images/bro-eyes.png" width="150px" height="150px" />
+![bro-logo](http://bro.org/images/bro-eyes.png)
 Bro IDS Dockerfile
 ==================
 
