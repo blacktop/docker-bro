@@ -1,4 +1,4 @@
-![bro-logo](http://bro.org/images/bro-eyes.png)
+![bro-logo](https://raw.githubusercontent.com/blacktop/docker-bro/master/logo.png)
 Bro IDS Dockerfile
 ==================
 
