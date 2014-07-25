@@ -1,4 +1,5 @@
-FROM ubuntu:latest
+FROM debian:jessie
+# FROM ubuntu:latest
 MAINTAINER blacktop, https://github.com/blacktop
 
 #Prevent daemon start during install
@@ -7,6 +8,9 @@ RUN echo '#!/bin/sh\nexit 101' > /usr/sbin/policy-rc.d && \
 
 # Install Bro Required Dependencies
 RUN apt-get -qq update && apt-get install -yq libcurl3-dev \
+  build-essential \
+  automake \
+  autoconf \
   libpcap-dev \
   libssl-dev \
   python-dev \
@@ -38,12 +42,11 @@ RUN git clone --recursive git://git.bro.org/bro && \
   cd bro && ./configure --prefix=/nsm/bro && \
   make && \
   make install && \
-  rm -rf /bro
+  rm -rf /bro && \
+  apt-get clean && \
+  rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 ENV PATH /nsm/bro/bin:$PATH
-
-# Try to reduce size of container.
-RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Add PCAP Test Folder
 ADD /pcap/heartbleed.pcap /pcap/
