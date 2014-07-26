@@ -11,6 +11,7 @@ RUN apt-get -qq update && apt-get install -yq libcurl3-dev \
   build-essential \
   # automake \
   # autoconf \
+  git-core \
   libgeoip-dev \
   libpcap-dev \
   libssl-dev \
@@ -27,7 +28,7 @@ RUN apt-get -qq update && apt-get install -yq libcurl3-dev \
   wget \
   g++ \
   gcc
-  
+
 # Install the GeoIPLite Database
 ADD http://geolite.maxmind.com/download/geoip/database/GeoLiteCity.dat.gz /usr/share/GeoIP/
 ADD http://geolite.maxmind.com/download/geoip/database/GeoLiteCityv6-beta/GeoLiteCityv6.dat.gz /usr/share/GeoIP/
