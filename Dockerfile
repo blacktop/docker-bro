@@ -30,14 +30,14 @@ RUN apt-get -qq update && apt-get install -yq libcurl3-dev \
   gcc
 
 # Install the GeoIPLite Database
-ADD http://geolite.maxmind.com/download/geoip/database/GeoLiteCity.dat.gz /usr/share/GeoIP/
-ADD http://geolite.maxmind.com/download/geoip/database/GeoLiteCityv6-beta/GeoLiteCityv6.dat.gz /usr/share/GeoIP/
-RUN gunzip /usr/share/GeoIP/GeoLiteCity.dat.gz && \
-  rm -f /usr/share/GeoIP/GeoLiteCity.dat.gz && \
+ADD /geoip /usr/share/GeoIP/
+RUN \
   gunzip /usr/share/GeoIP/GeoLiteCityv6.dat.gz && \
-  rm -f /usr/share/GeoIP/GeoLiteCityv6.dat.gz
-RUN ln -s /usr/share/GeoIP/GeoLiteCity.dat /usr/share/GeoIP/GeoIPCity.dat && \
-  ln -s /usr/share/GeoIP/GeoLiteCityv6.dat /usr/share/GeoIP/GeoIPCityv6.dat
+  gunzip /usr/share/GeoIP/GeoLiteCity.dat.gz && \
+  rm -f /usr/share/GeoIP/GeoLiteCityv6.dat.gz && \
+  rm -f /usr/share/GeoIP/GeoLiteCity.dat.gz && \
+  ln -s /usr/share/GeoIP/GeoLiteCityv6.dat /usr/share/GeoIP/GeoIPCityv6.dat && \
+  ln -s /usr/share/GeoIP/GeoLiteCity.dat /usr/share/GeoIP/GeoIPCity.dat
 
 # Install Bro and remove install dir after to conserve space
 RUN git clone --recursive git://git.bro.org/bro && \
