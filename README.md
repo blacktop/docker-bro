@@ -6,8 +6,19 @@ This repository contains a **Dockerfile** of [Bro-IDS](http://www.bro.org/index.
 
 ### Dependencies
 
-* [ubuntu:latest](https://index.docker.io/_/ubuntu/)
+* [debian:jessie](https://index.docker.io/_/debian/)
 
+### Image Sizes
+| Image | Virtual Size | Bro       | TOTAL     |
+|:-----:|:------------:|:---------:|:---------:|
+| debian | 89.59 MB    | 582.3 MB  | 582.3 MB  |
+| ubuntu | 192.7 MB    | 625.4 MB  | 625.4 MB  |
+
+<!-- * **base image(**debian**)** *virtual size* - **89.59 MB**
+* **total** *virtual size* - **582.3 MB**
+___
+* **base image(**ubuntu:latest**)** *virtual size* - **192.7 MB**
+* **total** *virtual size* - **631 MB** -->
 
 ### Installation
 
@@ -41,6 +52,7 @@ $ docker run -it -v /pcap:/pcap:rw blacktop/bro -r my.pcap local
 ```
 ### Todo
 - [x] Install/Run Bro-IDS
+- [ ] Fix Geolocation feature
 - [ ] Start Daemon and watch folder with supervisord
 - [ ] Have container take a URL as input and download/scan pcap
 - [ ] Add ELK Stack
