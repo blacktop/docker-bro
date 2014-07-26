@@ -8,7 +8,7 @@ RUN echo '#!/bin/sh\nexit 101' > /usr/sbin/policy-rc.d && \
 
 # Install Bro Required Dependencies
 RUN apt-get -qq update && apt-get install -yq libcurl3-dev \
-  # build-essential \
+  build-essential \
   # automake \
   # autoconf \
   libgeoip-dev \
@@ -26,9 +26,8 @@ RUN apt-get -qq update && apt-get install -yq libcurl3-dev \
   swig \
   wget \
   g++ \
-  gcc \
-  git
-
+  gcc
+  
 # Install the GeoIPLite Database
 ADD http://geolite.maxmind.com/download/geoip/database/GeoLiteCity.dat.gz /usr/share/GeoIP/
 ADD http://geolite.maxmind.com/download/geoip/database/GeoLiteCityv6-beta/GeoLiteCityv6.dat.gz /usr/share/GeoIP/

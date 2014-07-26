@@ -11,8 +11,8 @@ This repository contains a **Dockerfile** of [Bro-IDS](http://www.bro.org/index.
 ### Image Sizes
 | Image | Virtual Size | Bro       | TOTAL     |
 |:-----:|:------------:|:---------:|:---------:|
-| debian | 89.59 MB    | 582.3 MB  | 582.3 MB  |
-| ubuntu | 192.7 MB    | 625.4 MB  | 625.4 MB  |
+| debian | 89.59 MB    | 492.71 MB | 582.3 MB  |
+| ubuntu | 192.7 MB    | 432.7 MB  | 625.4 MB  |
 
 <!-- * **base image(**debian**)** *virtual size* - **89.59 MB**
 * **total** *virtual size* - **582.3 MB**
