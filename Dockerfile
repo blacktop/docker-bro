@@ -8,9 +8,10 @@ RUN echo '#!/bin/sh\nexit 101' > /usr/sbin/policy-rc.d && \
 
 # Install Bro Required Dependencies
 RUN apt-get -qq update && apt-get install -yq libcurl3-dev \
-  build-essential \
-  automake \
-  autoconf \
+  # build-essential \
+  # automake \
+  # autoconf \
+  libgeoip-dev \
   libpcap-dev \
   libssl-dev \
   python-dev \
