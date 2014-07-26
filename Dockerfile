@@ -26,7 +26,8 @@ RUN apt-get -qq update && apt-get install -yq libcurl3-dev \
   swig \
   wget \
   g++ \
-  gcc
+  gcc \
+  git
 
 # Install the GeoIPLite Database
 ADD http://geolite.maxmind.com/download/geoip/database/GeoLiteCity.dat.gz /usr/share/GeoIP/
