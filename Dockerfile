@@ -9,9 +9,8 @@ RUN echo '#!/bin/sh\nexit 101' > /usr/sbin/policy-rc.d && \
 # Install Bro Required Dependencies
 RUN apt-get -qq update && apt-get install -yq libcurl3-dev \
   build-essential \
-  # automake \
-  # autoconf \
-  git-core \
+  automake \
+  autoconf \
   libgeoip-dev \
   libpcap-dev \
   libssl-dev \
@@ -40,7 +39,8 @@ RUN \
   ln -s /usr/share/GeoIP/GeoLiteCity.dat /usr/share/GeoIP/GeoIPCity.dat
 
 # Install Bro and remove install dir after to conserve space
-RUN git clone --recursive git://git.bro.org/bro && \
+RUN  \
+  git clone --recursive git://git.bro.org/bro && \
   cd bro && ./configure --prefix=/nsm/bro && \
   make && \
   make install && \
