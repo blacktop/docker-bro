@@ -32,27 +32,34 @@ $ docker build -t blacktop/bro github.com/blacktop/docker-bro
 ```
 ### Usage
 ```bash
-$ docker run -i -t -v /path/to/pcap:/pcap:rw blacktop/bro -r heartbleed.pcap local protocols/ssl/heartbleed.bro
+$ docker run -i -t -v /path/to/folder/pcap:/pcap:rw blacktop/bro -r heartbleed.pcap local protocols/ssl/heartbleed.bro
 ```
 #### Output:
 ```bash
-$ ls
+$ ls -l
 
-conn.log  files.log  heartbleed.pcap  loaded_scripts.log  'notice.log'  packet_filter.log  ssl.log  x509.log
+-rw-r--r-- 1 root root   617 Jul 27 02:00 conn.log
+-rw-r--r-- 1 root root   734 Jul 27 02:00 files.log
+-rw-r--r-- 1 root root 15551 Jul 27 02:00 loaded_scripts.log
+-rw-r--r-- 1 root root  1938 Jul 27 02:00 'notice.log'
+-rw-r--r-- 1 root root   253 Jul 27 02:00 packet_filter.log
+-rw-r--r-- 1 root root   781 Jul 27 02:00 ssl.log
+-rw-r--r-- 1 root root   901 Jul 27 02:00 x509.log
 ```
 ```bash
-$ cat notice.log | bro-cut note msg
+$ cat notice.log | awk '{ print $11 }' | tail -n4
 
-SSL::Invalid_Server_Cert	SSL certificate validation failed with (self signed certificate)
-'Heartbleed::SSL_Heartbeat_Attack_Success'	An Encrypted TLS heartbleed attack was probably detected! First packet client record length 32, first packet server record length 16416
+Heartbleed::SSL_Heartbeat_Attack
+Heartbleed::SSL_Heartbeat_Odd_Length
+Heartbleed::SSL_Heartbeat_Attack_Success
 ```
 #### Or use your own pcap
 ```bash
-$ docker run -it -v /pcap:/pcap:rw blacktop/bro -r my.pcap local
+$ docker run -it -v /path/to/pcap:/pcap:rw blacktop/bro -r my.pcap local
 ```
 ### Todo
 - [x] Install/Run Bro-IDS
-- [ ] Fix Geolocation feature
+- [x] Fix Geolocation feature
 - [ ] Start Daemon and watch folder with supervisord
 - [ ] Have container take a URL as input and download/scan pcap
 - [ ] Add ELK Stack
