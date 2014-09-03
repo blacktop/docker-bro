@@ -40,7 +40,7 @@ RUN \
 
 # Install Bro and remove install dir after to conserve space
 RUN  \
-  git clone --recursive git://git.bro.org/bro && \
+  git clone --recursive --branch release git://git.bro.org/bro && \
   cd bro && ./configure --prefix=/nsm/bro && \
   make && \
   make install && \
@@ -52,6 +52,7 @@ ENV PATH /nsm/bro/bin:$PATH
 
 # Add PCAP Test Folder
 ADD /pcap/heartbleed.pcap /pcap/
+VOLUME ["/pcap"]
 WORKDIR /pcap
 
 ENTRYPOINT ["bro"]
