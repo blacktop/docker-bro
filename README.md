@@ -10,15 +10,17 @@ This repository contains a **Dockerfile** of [Bro-IDS](http://www.bro.org/index.
 
 ### Image Sizes
 | Image | Virtual Size | Bro       | TOTAL     |
-|:-----:|:------------:|:---------:|:---------:|
-| debian | 89.59 MB    | 492.71 MB | 582.3 MB  |
-| ubuntu | 192.7 MB    | 432.7 MB  | 625.4 MB  |
+|:------:|:-----------:|:---------:|:---------:|
+| debian | 114 MB      | 500.5 MB  | 614.5 MB  |
 
-<!-- * **base image(**debian**)** *virtual size* - **89.59 MB**
-* **total** *virtual size* - **582.3 MB**
-___
-* **base image(**ubuntu:latest**)** *virtual size* - **192.7 MB**
-* **total** *virtual size* - **631 MB** -->
+### Image Tags
+```bash
+$ docker images
+
+REPOSITORY          TAG                 IMAGE I            VIRTUAL SIZE
+blacktop/bro        latest              5f928b232826       624.6 MB
+blacktop/bro        2.3                 3ebf486e0a59       614.5 MB
+```
 
 ### Installation
 
