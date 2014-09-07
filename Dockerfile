@@ -11,6 +11,7 @@ RUN apt-get -qq update && apt-get install -yq libcurl3-dev \
   build-essential \
   automake \
   autoconf \
+  libmagic-dev \
   libgeoip-dev \
   libpcap-dev \
   libssl-dev \
