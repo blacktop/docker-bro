@@ -1,18 +1,18 @@
 [submodule "scripts/bro-shellshock"]
 	path = scripts/bro-shellshock
-	url = git://github.com/broala/bro-shellshock
+	url = git://github.com/broala/bro-shellshock.git
 [submodule "scripts/bro-drwatson"]
   path = scripts/bro-drwatson
-  url = git://github.com/broala/bro-drwatson
+  url = git://github.com/broala/bro-drwatson.git
 [submodule "scripts/bro-tor"]
   path = scripts/bro-tor
-  url = git://github.com/sethhall/bro-tor
+  url = git://github.com/sethhall/bro-tor.git
 [submodule "scripts/bro-apt1"]
   path = scripts/bro-apt1
-  url = git://github.com/sethhall/bro-apt1
+  url = git://github.com/sethhall/bro-apt1.git
 [submodule "scripts/bro-scripts"]
   path = scripts/bro-scripts
-  url = git://github.com/reservoirlabs/bro-scripts
+  url = git://github.com/reservoirlabs/bro-scripts.git
 [submodule "scripts/BotFlex"]
   path = scripts/BotFlex
-  url = git://github.com/sheharbano/BotFlex
+  url = git://github.com/sheharbano/BotFlex.git
