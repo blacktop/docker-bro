@@ -56,6 +56,9 @@ ADD /pcap/heartbleed.pcap /pcap/
 VOLUME ["/pcap"]
 WORKDIR /pcap
 
+# Add Scripts Folder
+ADD /scripts /scripts
+
 ENTRYPOINT ["bro"]
 
 CMD ["-h"]
