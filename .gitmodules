@@ -1,6 +1,6 @@
 [submodule "scripts/bro-shellshock"]
-	path = scripts/bro-shellshock
-	url = git://github.com/broala/bro-shellshock.git
+  path = scripts/bro-shellshock
+  url = git://github.com/broala/bro-shellshock.git
 [submodule "scripts/bro-drwatson"]
   path = scripts/bro-drwatson
   url = git://github.com/broala/bro-drwatson.git
