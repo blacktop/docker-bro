@@ -1,5 +1,5 @@
-FROM debian:jessie
-# FROM ubuntu:latest
+FROM debian:wheezy
+
 MAINTAINER blacktop, https://github.com/blacktop
 
 #Prevent daemon start during install
@@ -7,27 +7,29 @@ RUN echo '#!/bin/sh\nexit 101' > /usr/sbin/policy-rc.d && \
     chmod +x /usr/sbin/policy-rc.d
 
 # Install Bro Required Dependencies
-RUN apt-get -qq update && apt-get install -yq libcurl3-dev \
-  build-essential \
-  automake \
-  autoconf \
-  libmagic-dev \
-  libgeoip-dev \
-  libpcap-dev \
-  libssl-dev \
-  python-dev \
-  zlib1g-dev \
-  php5-curl \
-  git-core \
-  bison \
-  cmake \
-  flex \
-  gawk \
-  make \
-  swig \
-  wget \
-  g++ \
-  gcc
+RUN \
+  apt-get -qq update && \
+  apt-get install -yq build-essential \
+                      libcurl3-dev \
+                      libmagic-dev \
+                      libgeoip-dev \
+                      libpcap-dev \
+                      libssl-dev \
+                      python-dev \
+                      zlib1g-dev \
+                      php5-curl \
+                      git-core \
+                      bison \
+                      cmake \
+                      flex \
+                      gawk \
+                      make \
+                      swig \
+                      wget \
+                      g++ \
+                      gcc --no-install-recommends && \
+  apt-get clean && \
+  rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Install the GeoIPLite Database
 ADD /geoip /usr/share/GeoIP/
@@ -46,7 +48,6 @@ RUN  \
   make && \
   make install && \
   rm -rf /bro && \
-  apt-get clean && \
   rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 ENV PATH /nsm/bro/bin:$PATH
