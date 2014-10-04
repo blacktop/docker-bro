@@ -20,7 +20,7 @@ $ docker images
 REPOSITORY          TAG                 IMAGE ID           VIRTUAL SIZE
 blacktop/bro        latest              dc3d2ae6f8b4       528.2 MB
 blacktop/bro        2.3.1               5da3974e6531       517.8 MB
-blacktop/bro        2.2                 fd161df89829       586.5 MB
+blacktop/bro        2.2                 fd161df89829       527.8 MB
 ```
 
 ### Installation
@@ -63,6 +63,7 @@ $ docker run -it -v /path/to/pcap:/pcap:rw blacktop/bro -r my.pcap local
 ### Todo
 - [x] Install/Run Bro-IDS
 - [x] Fix Geolocation feature
+- [ ] Refine my extract-all.bro script
 - [ ] Start Daemon and watch folder with supervisord
 - [ ] Have container take a URL as input and download/scan pcap
 - [ ] Add ELK Stack
