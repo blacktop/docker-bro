@@ -6,19 +6,19 @@ This repository contains a **Dockerfile** of [Bro-IDS](http://www.bro.org/index.
 
 ### Dependencies
 
-* [debian:jessie](https://index.docker.io/_/debian/)
+* [debian:wheezy](https://index.docker.io/_/debian/)
 
 ### Image Sizes
 | Image | Virtual Size | Bro v2.3.1| TOTAL     |
 |:------:|:-----------:|:---------:|:---------:|
-| debian | 114 MB      | 502.8 MB  | 616.8 MB  |
+| debian | 85.19 MB    | 443 MB    | 528.2 MB  |
 
 ### Image Tags
 ```bash
 $ docker images
 
 REPOSITORY          TAG                 IMAGE ID           VIRTUAL SIZE
-blacktop/bro        latest              dc3d2ae6f8b4       625.5 MB
+blacktop/bro        latest              dc3d2ae6f8b4       528.2 MB
 blacktop/bro        2.3.1               5da3974e6531       616.8 MB
 blacktop/bro        2.3                 071459a3c2f5       616.8 MB
 blacktop/bro        2.2                 fd161df89829       586.5 MB
