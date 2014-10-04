@@ -19,8 +19,7 @@ $ docker images
 
 REPOSITORY          TAG                 IMAGE ID           VIRTUAL SIZE
 blacktop/bro        latest              dc3d2ae6f8b4       528.2 MB
-blacktop/bro        2.3.1               5da3974e6531       616.8 MB
-blacktop/bro        2.3                 071459a3c2f5       616.8 MB
+blacktop/bro        2.3.1               5da3974e6531       517.8 MB
 blacktop/bro        2.2                 fd161df89829       586.5 MB
 ```
 
