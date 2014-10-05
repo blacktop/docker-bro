@@ -58,9 +58,7 @@ WORKDIR /pcap
 
 # Add Scripts Folder
 ADD /scripts /scripts
-RUN \
-  echo "@load protocols/ssl/notary" >> /nsm/bro/share/bro/site/local.bro
-  echo "@load policy/protocols/ssl/heartbleed" >> /nsm/bro/share/bro/site/local.bro
+ADD /scripts/local.bro /nsm/bro/share/bro/site/local.bro
 
 ENTRYPOINT ["bro"]
 
