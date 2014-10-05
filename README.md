@@ -18,9 +18,9 @@ This repository contains a **Dockerfile** of [Bro-IDS](http://www.bro.org/index.
 $ docker images
 
 REPOSITORY          TAG                 IMAGE ID           VIRTUAL SIZE
-blacktop/bro        latest              dc3d2ae6f8b4       528.2 MB
-blacktop/bro        2.3.1               5da3974e6531       517.8 MB
-blacktop/bro        2.2                 fd161df89829       527.8 MB
+blacktop/bro        latest              3c2c99892865       531.7 MB
+blacktop/bro        2.3.1               818430bd5aba       517.8 MB
+blacktop/bro        2.2                 ade81f9fc043       527.8 MB
 ```
 
 ### Installation
