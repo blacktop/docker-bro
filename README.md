@@ -35,7 +35,7 @@ $ docker build -t blacktop/bro github.com/blacktop/docker-bro
 ```
 ### Usage
 ```bash
-$ docker run -i -t -v /path/to/folder/pcap:/pcap:rw blacktop/bro -r heartbleed.pcap local protocols/ssl/heartbleed.bro
+$ docker run -i -t -v /path/to/folder/pcap:/pcap:rw blacktop/bro -r heartbleed.pcap local
 ```
 #### Output:
 ```bash
