@@ -60,6 +60,31 @@ Heartbleed::SSL_Heartbeat_Attack_Success
 ```bash
 $ docker run -it -v /path/to/pcap:/pcap:rw blacktop/bro -r my.pcap local
 ```
+
+### To Run on OSX
+ - Install [Homebrew](http://brew.sh)
+
+```bash
+$ brew install cask
+$ brew cask install virtualbox
+$ brew install docker
+$ brew install boot2docker
+$ curl http://static.dockerfiles.io/boot2docker-v1.2.0-virtualbox-guest-additions-v4.3.14.iso > ~/.boot2docker/boot2docker.iso
+$ VBoxManage sharedfolder add boot2docker-vm -name home -hostpath /Users
+$ boot2docker up
+```
+Add the following to your bash or zsh profile
+```bash
+bro(){
+  args=$@
+  docker run -it --rm -v `pwd`:/pcap:rw blacktop/bro -r "${args[@]}" local
+}
+```
+Usage
+```bash
+$ bro my.pcap
+```
+
 ### Todo
 - [x] Install/Run Bro-IDS
 - [x] Fix Geolocation feature
