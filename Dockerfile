@@ -24,7 +24,7 @@ RUN \
                       gawk \
                       make \
                       swig \
-                      wget \
+                      curl \
                       g++ \
                       gcc --no-install-recommends && \
   apt-get clean && \
