@@ -74,6 +74,7 @@ $ VBoxManage sharedfolder add boot2docker-vm -name home -hostpath /Users
 $ boot2docker up
 ```
 Add the following to your bash or zsh profile
+
 ```bash
 alias bro='docker run -it --rm -v `pwd`:/pcap:rw blacktop/bro $@'
 ```
