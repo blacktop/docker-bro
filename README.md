@@ -75,14 +75,15 @@ $ boot2docker up
 ```
 Add the following to your bash or zsh profile
 ```bash
-bro(){
-  args=$@
-  docker run -it --rm -v `pwd`:/pcap:rw blacktop/bro -r "${args[@]}" local
-}
+alias bro='docker run -it --rm -v `pwd`:/pcap:rw blacktop/bro $@'
 ```
 Usage
 ```bash
-$ bro my.pcap
+$ bro -r my.pcap local
+```
+To get rid of the `WARNING: No Site::local_nets have been defined.` message.
+```bash
+bro -r my.pcap local "Site::local_nets += { 1.2.3.0/24, 5.6.7.0/24 }"
 ```
 
 ### Todo
