@@ -9,7 +9,8 @@ RUN echo '#!/bin/sh\nexit 101' > /usr/sbin/policy-rc.d && \
 # Install Bro Required Dependencies
 RUN \
   apt-get -qq update && \
-  apt-get install -yq build-essential \
+  apt-get install -yq libgoogle-perftools-dev \
+                      build-essential \
                       libcurl3-dev \
                       libgeoip-dev \
                       libpcap-dev \
@@ -18,6 +19,7 @@ RUN \
                       zlib1g-dev \
                       php5-curl \
                       git-core \
+                      sendmail \
                       bison \
                       cmake \
                       flex \
