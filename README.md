@@ -69,8 +69,6 @@ $ brew install cask
 $ brew cask install virtualbox
 $ brew install docker
 $ brew install boot2docker
-$ curl http://static.dockerfiles.io/boot2docker-v1.2.0-virtualbox-guest-additions-v4.3.14.iso > ~/.boot2docker/boot2docker.iso
-$ VBoxManage sharedfolder add boot2docker-vm -name home -hostpath /Users
 $ boot2docker up
 ```
 Add the following to your bash or zsh profile
