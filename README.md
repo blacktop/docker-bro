@@ -69,6 +69,7 @@ $ brew install cask
 $ brew cask install virtualbox
 $ brew install docker
 $ brew install boot2docker
+$ boot2docker init
 $ boot2docker up
 ```
 Add the following to your bash or zsh profile
