@@ -44,7 +44,7 @@ RUN \
 
 # Install Bro and remove install dir after to conserve space
 RUN  \
-  git clone --recursive git://git.bro.org/bro && \
+  git clone --recursive --branch v2.3.2 git://git.bro.org/bro && \
   cd bro && ./configure --prefix=/nsm/bro && \
   make && \
   make install && \
