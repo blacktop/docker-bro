@@ -2,10 +2,6 @@ FROM debian:wheezy
 
 MAINTAINER blacktop, https://github.com/blacktop
 
-#Prevent daemon start during install
-RUN echo '#!/bin/sh\nexit 101' > /usr/sbin/policy-rc.d && \
-    chmod +x /usr/sbin/policy-rc.d
-
 # Install Bro Required Dependencies
 RUN \
   apt-get -qq update && \
@@ -20,6 +16,7 @@ RUN \
                       php5-curl \
                       git-core \
                       sendmail \
+                      openssl \
                       bison \
                       cmake \
                       flex \
