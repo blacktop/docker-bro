@@ -18,7 +18,7 @@ RUN buildDeps='libgoogle-perftools-dev \
               gcc \
               python-dev' \
   && set -x \
-  && echo "[INFO] Installing Dependancies..."\
+  && echo "[INFO] Installing Dependancies..." \
   && apt-get -qq update \
   && apt-get install -yq $buildDeps \
                       php5-curl \
@@ -28,14 +28,14 @@ RUN buildDeps='libgoogle-perftools-dev \
                       flex \
                       gawk \
                       swig \
-                      curl --no-install-recommends && \
-  && echo "[INFO] Installing Bro..."\
+                      curl --no-install-recommends \
+  && echo "[INFO] Installing Bro..." \
   && git clone --recursive git://git.bro.org/bro \
   && cd bro && ./configure --prefix=/nsm/bro \
   && make \
   && make install \
   && rm -rf /bro \
-  && echo "[INFO] Cleaning image to reduce size..."\
+  && echo "[INFO] Cleaning image to reduce size..." \
   && apt-get purge -y --auto-remove $buildDeps \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
