@@ -36,7 +36,7 @@ RUN buildDeps='libgoogle-perftools-dev \
   && make install \
   && rm -rf /bro \
   && echo "[INFO] Cleaning image to reduce size..." \
-  && apt-get purge -y $buildDeps \
+  && apt-get remove -y $buildDeps \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
