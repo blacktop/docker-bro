@@ -68,9 +68,9 @@ $ docker run -it -v /path/to/pcap:/pcap:rw blacktop/bro -r my.pcap local
 $ brew install cask
 $ brew cask install virtualbox
 $ brew install docker
-$ brew install boot2docker
-$ boot2docker init
-$ boot2docker up
+$ brew install docker-machine
+$ docker-machine create --driver virtualbox dev
+$ eval $(docker-machine env dev)
 ```
 Add the following to your bash or zsh profile
 
