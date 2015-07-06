@@ -65,7 +65,7 @@ $ docker run -it -v /path/to/pcap:/pcap:rw blacktop/bro -r my.pcap local
  - Install [Homebrew](http://brew.sh)
 
 ```bash
-$ brew install cask
+$ brew install caskroom/cask/brew-cask
 $ brew cask install virtualbox
 $ brew install docker
 $ brew install docker-machine
