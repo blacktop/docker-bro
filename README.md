@@ -9,7 +9,7 @@ This repository contains a **Dockerfile** of [Bro-IDS](http://www.bro.org/index.
 * [debian:wheezy (*85.1  MB*)](https://index.docker.io/_/debian/)
 
 ### Image Size
-[![Latest](https://badge.imagelayers.io/blacktop/bro.svg)](https://imagelayers.io/?images=blacktop/bro:latest 'latest')
+[![Latest](https://badge.imagelayers.io/blacktop/bro.svg)](https://imagelayers.io/?images=blacktop/bro:2.4.1 '2.4.1')
 
 
 ### Image Tags

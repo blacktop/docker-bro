@@ -30,7 +30,7 @@ RUN buildDeps='libgoogle-perftools-dev \
                       swig \
                       curl --no-install-recommends \
   && echo "[INFO] Installing Bro..." \
-  && git clone --recursive --branch v2.4 git://git.bro.org/bro \
+  && git clone --recursive --branch v2.4.1 git://git.bro.org/bro \
   && cd bro && ./configure --prefix=/nsm/bro \
   && make \
   && make install \
