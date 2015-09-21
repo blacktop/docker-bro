@@ -14,11 +14,29 @@ RUN buildDeps='autoconf \
               bind-dev \
               libpcap-dev \
               openssl-dev \
-              python-dev' \
+              python-dev \
+              qt5-qtbase-dev \
+              protobuf-dev \
+              doxygen \
+              boost-dev \
+              libedit-dev' \
   && set -x \
   && apk --update add python openssl file flex gawk swig curl bison $buildDeps \
+  && echo "Installing Google Performance Tools (gperftools) ..." \    
   && cd /tmp \
-  && git clone --recursive --branch v2.4 git://git.bro.org/bro \
+  && git clone --recursive --branch gperftools-2.4 https://github.com/gperftools/gperftools.git \
+  && cd gperftools \
+  &&
+  && echo "Installing LibCAF (actor-framework) ..." \
+  && cd /tmp \
+  && git clone --recursive --branch 0.14.1 https://github.com/actor-framework/actor-framework.git \
+  && cd actor-framework && ./configure --no-examples --no-opencl --no-benchmarks \
+  && make \
+  && make test \
+  && make install \
+  && echo "Installing Bro..." \
+  && cd /tmp \
+  && git clone --recursive git://git.bro.org/bro \
   && cd bro && ./configure --prefix=/nsm/bro \
   && make \
   && make install \
