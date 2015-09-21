@@ -1,10 +1,11 @@
-FROM debian:wheezy
+FROM debian:jessie
 
 MAINTAINER blacktop, https://github.com/blacktop
 
 # Install Bro Required Dependencies
 RUN buildDeps='libgoogle-perftools-dev \
               build-essential \
+              ca-certificates \
               libcurl3-dev \
               libgeoip-dev \
               libpcap-dev \
@@ -29,7 +30,15 @@ RUN buildDeps='libgoogle-perftools-dev \
                       gawk \
                       swig \
                       curl --no-install-recommends \
+  && echo "Installing LibCAF (actor-framework) ..." \
+  && cd /tmp \
+  && git clone --recursive --branch 0.14.1 https://github.com/actor-framework/actor-framework.git \
+  && cd actor-framework && ./configure --no-examples --no-benchmarks --no-opencl \
+  && make \
+  && make test \
+  && make install \
   && echo "[INFO] Installing Bro..." \
+  && cd /tmp \
   && git clone --recursive git://git.bro.org/bro \
   && cd bro && ./configure --prefix=/nsm/bro \
   && make \
