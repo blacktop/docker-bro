@@ -1,6 +1,6 @@
 
 elasticsearch:
-  image: "elasticsearch:latest"
+  image: "elasticsearch:1.7.3"
   ports:
     - "9200:9200"
   # volumes_from:
@@ -25,7 +25,7 @@ bro:
 #   command: logstash -f /config-dir/logstash.conf
 
 kibana:
-  image: "kibana:latest"
+  image: "kibana:4.1.2"
   ports:
     - "80:5601"
   links:
