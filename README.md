@@ -96,7 +96,7 @@ sudo /Applications/VMware\ Fusion.app/Contents/Library/vmnet-sniffer -e -w my_ca
 ```bash
 $ bro -r my_capture.pcap local
 ```
-To get rid of the `WARNING: No Site::local_nets have been defined.` message.
+> To get rid of the `WARNING: No Site::local_nets have been defined.` message.
 
 ```bash
 bro -r my_capture.pcap local "Site::local_nets += { 1.2.3.0/24, 5.6.7.0/24 }"
