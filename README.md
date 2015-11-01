@@ -18,6 +18,7 @@ $ docker images
 
 REPOSITORY          TAG                 VIRTUAL SIZE
 blacktop/bro        latest              676.3 MB
+blacktop/bro        elastic             691 MB
 blacktop/bro        2.4.1               488.4 MB
 blacktop/bro        2.4                 488.4 MB
 blacktop/bro        2.3.2               531 MB
@@ -98,7 +99,7 @@ bro -r mypackets.trace local "Site::local_nets += { 1.2.3.0/24, 5.6.7.0/24 }"
 ### Todo
 - [x] Install/Run Bro-IDS
 - [x] Fix Geolocation feature
-- [ ] Refine my extract-all.bro script
+- [x] Refine my extract-all.bro script
 - [ ] Start Daemon and watch folder with supervisord
 - [ ] Have container take a URL as input and download/scan pcap
 - [ ] Add ELK Stack

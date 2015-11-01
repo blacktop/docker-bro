@@ -1,0 +1,5 @@
+extract_files
+.state
+*.log
+README.md
+logo.png
