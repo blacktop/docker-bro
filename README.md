@@ -84,16 +84,22 @@ alias bro='docker run -it --rm -v `pwd`:/pcap:rw blacktop/bro $@'
 Capturing packets from an interface and writing them to a file can be done like this:
 
 ```bash
-$ sudo tcpdump -i en0 -s 0 -w mypackets.trace
+$ sudo tcpdump -i en0 -s 0 -w my_capture.pcap
+```
+
+To capture packets from a VMWare Fusion VM using **vmnet-sniffer** you can do this:
+
+```bash
+sudo /Applications/VMware\ Fusion.app/Contents/Library/vmnet-sniffer -e -w my_capture.pcap vmnet8
 ```
 
 ```bash
-$ bro -r mypackets.trace local
+$ bro -r my_capture.pcap local
 ```
 To get rid of the `WARNING: No Site::local_nets have been defined.` message.
 
 ```bash
-bro -r mypackets.trace local "Site::local_nets += { 1.2.3.0/24, 5.6.7.0/24 }"
+bro -r my_capture.pcap local "Site::local_nets += { 1.2.3.0/24, 5.6.7.0/24 }"
 ```
 
 ### Todo
