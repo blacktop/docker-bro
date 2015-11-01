@@ -1,0 +1,52 @@
+
+elasticsearch:
+  image: "elasticsearch:latest"
+  ports:
+    - "9200:9200"
+  # volumes_from:
+  #   - data
+  # volumes:
+  #   - "$PWD/es_data:/usr/share/elasticsearch/data"
+  #   - "$PWD/config:/usr/share/elasticsearch/config"
+  command: "-Des.network.host=0.0.0.0"
+  restart: always
+
+bro:
+  image: "bro:elastic"
+  command: "-r /pcap/heartbleed.pcap local"
+  links:
+    - "elasticsearch:elasticsearch"
+# logstash:
+#   image: "logstash:latest"
+#   ports:
+#     - "5000:5000"
+#   volumes:
+#     - "$PWD:/config-dir"
+#   command: logstash -f /config-dir/logstash.conf
+
+kibana:
+  image: "kibana:latest"
+  ports:
+    - "80:5601"
+  links:
+    - "elasticsearch:elasticsearch"
+  restart: always
+
+# nginx:
+#     build: .
+#     ports:
+#         - "443:443"
+#     volumes:
+#         - ./nginx.key:/etc/nginx/ssl/nginx.key
+#         - ./nginx.crt:/etc/nginx/ssl/nginx.crt
+#         - ./config/nginx/kibana.conf:/etc/nginx/conf.d/kibana.conf
+#     env_file:
+#         - ./secrets.env
+#     links:
+#       - kibana:kibana
+#     restart: always
+
+# data:
+#   image: "busybox"
+#   volumes:
+#     - "/usr/share/elasticsearch/data"
