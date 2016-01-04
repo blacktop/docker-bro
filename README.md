@@ -2,15 +2,17 @@
 Bro IDS Dockerfile
 ==================
 
+[![License](http://img.shields.io/:license-mit-blue.svg)](http://doge.mit-license.org)
+[![Docker Stars](https://img.shields.io/docker/stars/blacktop/bro.svg)][hub]
+[![Docker Pulls](https://img.shields.io/docker/pulls/blacktop/bro.svg)][hub]
+[![Image Size](https://img.shields.io/imagelayers/image-size/blacktop/bro/latest.svg)](https://imagelayers.io/?images=blacktop/bro:latest)
+[![Image Layers](https://img.shields.io/imagelayers/layers/blacktop/bro/latest.svg)](https://imagelayers.io/?images=blacktop/bro:latest)
+
 This repository contains a **Dockerfile** of [Bro-IDS](http://www.bro.org/index.html) for [Docker](https://www.docker.io/)'s [trusted build](https://index.docker.io/u/blacktop/bro/) published to the public [Docker Registry](https://index.docker.io/).
 
 ### Dependencies
 
 * [debian:jessie (*125.2  MB*)](https://index.docker.io/_/debian/)
-
-### Image Size
-[![Latest](https://badge.imagelayers.io/blacktop/bro.svg)](https://imagelayers.io/?images=blacktop/bro:latest 'latest')
-
 
 ### Image Tags
 ```bash
@@ -18,6 +20,7 @@ $ docker images
 
 REPOSITORY          TAG                 VIRTUAL SIZE
 blacktop/bro        latest              676.3 MB
+blacktop/bro        elastic             691 MB
 blacktop/bro        2.4.1               488.4 MB
 blacktop/bro        2.4                 488.4 MB
 blacktop/bro        2.3.2               531 MB
@@ -83,22 +86,30 @@ alias bro='docker run -it --rm -v `pwd`:/pcap:rw blacktop/bro $@'
 Capturing packets from an interface and writing them to a file can be done like this:
 
 ```bash
-$ sudo tcpdump -i en0 -s 0 -w mypackets.trace
+$ sudo tcpdump -i en0 -s 0 -w my_capture.pcap
+```
+
+To capture packets from a VMWare Fusion VM using **vmnet-sniffer** you can do this:
+
+```bash
+sudo /Applications/VMware\ Fusion.app/Contents/Library/vmnet-sniffer -e -w my_capture.pcap vmnet8
 ```
 
 ```bash
-$ bro -r mypackets.trace local
+$ bro -r my_capture.pcap local
 ```
-To get rid of the `WARNING: No Site::local_nets have been defined.` message.
+> To get rid of the `WARNING: No Site::local_nets have been defined.` message.
 
 ```bash
-bro -r mypackets.trace local "Site::local_nets += { 1.2.3.0/24, 5.6.7.0/24 }"
+bro -r my_capture.pcap local "Site::local_nets += { 1.2.3.0/24, 5.6.7.0/24 }"
 ```
 
 ### Todo
 - [x] Install/Run Bro-IDS
 - [x] Fix Geolocation feature
-- [ ] Refine my extract-all.bro script
+- [x] Refine my extract-all.bro script
 - [ ] Start Daemon and watch folder with supervisord
 - [ ] Have container take a URL as input and download/scan pcap
 - [ ] Add ELK Stack
+
+[hub]: https://hub.docker.com/r/blacktop/bro/
