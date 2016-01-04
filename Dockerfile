@@ -59,7 +59,7 @@ RUN buildDeps='libgoogle-perftools-dev \
   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Install the GeoIPLite Database
-ADD /geoip /usr/share/GeoIP/
+COPY /geoip /usr/share/GeoIP/
 RUN \
   gunzip /usr/share/GeoIP/GeoLiteCityv6.dat.gz && \
   gunzip /usr/share/GeoIP/GeoLiteCity.dat.gz && \
@@ -71,13 +71,13 @@ RUN \
 ENV PATH /nsm/bro/bin:$PATH
 
 # Add PCAP Test Folder
-ADD /pcap/heartbleed.pcap /pcap/
+COPY /pcap/heartbleed.pcap /pcap/
 VOLUME ["/pcap"]
 WORKDIR /pcap
 
 # Add Scripts Folder
-ADD /scripts /scripts
-ADD /scripts/local.bro /nsm/bro/share/bro/site/local.bro
+COPY /scripts /scripts
+COPY /scripts/local.bro /nsm/bro/share/bro/site/local.bro
 
 ENTRYPOINT ["bro"]
 
