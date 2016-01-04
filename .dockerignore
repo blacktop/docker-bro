@@ -1,5 +1,10 @@
+# Ignore .git folder
+.git*
+
+.gitignore
 extract_files
 .state
 *.log
 README.md
+LICENSE
 logo.png

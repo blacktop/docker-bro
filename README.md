@@ -2,15 +2,17 @@
 Bro IDS Dockerfile
 ==================
 
+[![License](http://img.shields.io/:license-mit-blue.svg)](http://doge.mit-license.org)
+[![Docker Stars](https://img.shields.io/docker/stars/blacktop/bro.svg)][hub]
+[![Docker Pulls](https://img.shields.io/docker/pulls/blacktop/bro.svg)][hub]
+[![Image Size](https://img.shields.io/imagelayers/image-size/blacktop/bro/latest.svg)](https://imagelayers.io/?images=blacktop/bro:latest)
+[![Image Layers](https://img.shields.io/imagelayers/layers/blacktop/bro/latest.svg)](https://imagelayers.io/?images=blacktop/bro:latest)
+
 This repository contains a **Dockerfile** of [Bro-IDS](http://www.bro.org/index.html) for [Docker](https://www.docker.io/)'s [trusted build](https://index.docker.io/u/blacktop/bro/) published to the public [Docker Registry](https://index.docker.io/).
 
 ### Dependencies
 
 * [debian:jessie (*125.2  MB*)](https://index.docker.io/_/debian/)
-
-### Image Size
-[![Latest](https://badge.imagelayers.io/blacktop/bro.svg)](https://imagelayers.io/?images=blacktop/bro:latest 'latest')
-
 
 ### Image Tags
 ```bash
@@ -109,3 +111,5 @@ bro -r my_capture.pcap local "Site::local_nets += { 1.2.3.0/24, 5.6.7.0/24 }"
 - [ ] Start Daemon and watch folder with supervisord
 - [ ] Have container take a URL as input and download/scan pcap
 - [ ] Add ELK Stack
+
+[hub]: https://hub.docker.com/r/blacktop/bro/
