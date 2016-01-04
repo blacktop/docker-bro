@@ -1,0 +1,53 @@
+bro:
+  image: "blacktop/bro:elastic"
+  command: -r /pcap/my_capture.pcap /scripts/extract-files.bro /scripts/conn-add-geodata.bro local #"Site::local_nets += { 192.168.99.0/24 }"
+  links:
+    - "elasticsearch:elasticsearch"
+  volumes:
+    - "./my_capture.pcap:/pcap/my_capture.pcap:rw"
+
+kibana:
+  image: "kibana:4.1.2"
+  ports:
+    - "80:5601"
+  links:
+    - "elasticsearch:elasticsearch"
+  restart: always
+
+elasticsearch:
+  image: "elasticsearch:1.7.3"
+  ports:
+    - "9200:9200"
+  # volumes_from:
+  #   - data
+  # volumes:
+  #   - "$PWD/es_data:/usr/share/elasticsearch/data"
+  #   - "$PWD/config:/usr/share/elasticsearch/config"
+  command: "-Des.network.host=0.0.0.0"
+  restart: always
+# logstash:
+#   image: "logstash:latest"
+#   ports:
+#     - "5000:5000"
+#   volumes:
+#     - "$PWD:/config-dir"
+#   command: logstash -f /config-dir/logstash.conf
+
+# nginx:
+#     build: .
+#     ports:
+#         - "443:443"
+#     volumes:
+#         - ./nginx.key:/etc/nginx/ssl/nginx.key
+#         - ./nginx.crt:/etc/nginx/ssl/nginx.crt
+#         - ./config/nginx/kibana.conf:/etc/nginx/conf.d/kibana.conf
+#     env_file:
+#         - ./secrets.env
+#     links:
+#       - kibana:kibana
+#     restart: always
+
+# data:
+#   image: "busybox"
+#   volumes:
+#     - "/usr/share/elasticsearch/data"

@@ -84,3 +84,6 @@
 # Uncomment the following line to enable detection of the heartbleed attack. Enabling
 # this might impact performance a bit.
 @load policy/protocols/ssl/heartbleed
+
+# ElasticSearch Plugin
+@load Bro/ElasticSearch/logs-to-elasticsearch.bro
