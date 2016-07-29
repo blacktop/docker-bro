@@ -1,10 +1,12 @@
 # Ignore .git folder
 .git*
 
-.gitignore
 extract_files
-.state
-*.log
-README.md
+CHANGELOG.md
 LICENSE
+Makefile
+README.md
+VERSION
+circle.yml
+docker-compose.yml
 logo.png

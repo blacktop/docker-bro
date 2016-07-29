@@ -1,14 +1,15 @@
 ![bro-logo](https://raw.githubusercontent.com/blacktop/docker-bro/master/logo.png)
+
 Bro IDS Dockerfile
 ==================
 
+[![Circle CI](https://circleci.com/gh/blacktop/bro.png?style=shield)](https://circleci.com/gh/blacktop/bro)
 [![License](http://img.shields.io/:license-mit-blue.svg)](http://doge.mit-license.org)
 [![Docker Stars](https://img.shields.io/docker/stars/blacktop/bro.svg)][hub]
 [![Docker Pulls](https://img.shields.io/docker/pulls/blacktop/bro.svg)][hub]
-[![Image Size](https://img.shields.io/imagelayers/image-size/blacktop/bro/latest.svg)](https://imagelayers.io/?images=blacktop/bro:latest)
-[![Image Layers](https://img.shields.io/imagelayers/layers/blacktop/bro/latest.svg)](https://imagelayers.io/?images=blacktop/bro:latest)
+[![Docker Image](https://img.shields.io/badge/docker image-19.63 MB-blue.svg)](https://hub.docker.com/r/blacktop/bro/)
 
-This repository contains a **Dockerfile** of [Bro-IDS](http://www.bro.org/index.html) for [Docker](https://www.docker.io/)'s [trusted build](https://index.docker.io/u/blacktop/bro/) published to the public [Docker Registry](https://index.docker.io/).
+This repository contains a **Dockerfile** of [Bro-IDS](http://www.bro.org/index.html) **blacktop/bro**.
 
 ### Dependencies
 
@@ -30,13 +31,8 @@ blacktop/bro        2.2                 527.9 MB
 ### Installation
 
 1. Install [Docker](https://www.docker.io/).
-
 2. Download [trusted build](https://index.docker.io/u/blacktop/bro/) from public [Docker Registry](https://index.docker.io/): `docker pull blacktop/bro`
 
-#### Alternatively, build an image from Dockerfile
-```bash
-$ docker build -t blacktop/bro github.com/blacktop/docker-bro
-```
 ### Usage
 ```bash
 $ docker run -i -t -v /path/to/folder/pcap:/pcap:rw blacktop/bro -r heartbleed.pcap local
@@ -65,22 +61,14 @@ Heartbleed::SSL_Heartbeat_Attack_Success
 $ docker run -it -v /path/to/pcap:/pcap:rw blacktop/bro -r my.pcap local
 ```
 
-### To Run on OSX
- - Install [Homebrew](http://brew.sh)
-
-```bash
-$ brew install caskroom/cask/brew-cask
-$ brew cask install virtualbox
-$ brew install docker
-$ brew install docker-machine
-$ docker-machine create --driver virtualbox dev
-$ eval $(docker-machine env dev)
-```
 Add the following to your bash or zsh profile
 
 ```bash
 alias bro='docker run -it --rm -v `pwd`:/pcap:rw blacktop/bro $@'
 ```
+
+### Documentation
+
 #### Usage
 
 Capturing packets from an interface and writing them to a file can be done like this:
@@ -104,6 +92,12 @@ $ bro -r my_capture.pcap local
 bro -r my_capture.pcap local "Site::local_nets += { 1.2.3.0/24, 5.6.7.0/24 }"
 ```
 
+### Issues
+
+Find a bug? Want more features? Find something missing in the documentation? Let me know! Please don't hesitate to [file an issue](https://github.com/blacktop/bro/issues/new) and I'll get right on it.
+
+### Credits
+
 ### Todo
 - [x] Install/Run Bro-IDS
 - [x] Fix Geolocation feature
@@ -111,5 +105,9 @@ bro -r my_capture.pcap local "Site::local_nets += { 1.2.3.0/24, 5.6.7.0/24 }"
 - [ ] Start Daemon and watch folder with supervisord
 - [ ] Have container take a URL as input and download/scan pcap
 - [ ] Add ELK Stack
+
+### License
+
+MIT Copyright (c) 2015-2016 **blacktop**
 
 [hub]: https://hub.docker.com/r/blacktop/bro/

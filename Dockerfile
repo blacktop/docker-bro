@@ -2,6 +2,8 @@ FROM debian:jessie
 
 MAINTAINER blacktop, https://github.com/blacktop
 
+ENV TINI_VERSION v0.9.0
+
 # Install Bro Required Dependencies
 RUN buildDeps='libgoogle-perftools-dev \
               build-essential \
@@ -22,6 +24,7 @@ RUN buildDeps='libgoogle-perftools-dev \
   && echo "[INFO] Installing Dependancies..." \
   && apt-get -qq update \
   && apt-get install -yq $buildDeps \
+                      ca-certificates \
                       php5-curl \
                       sendmail \
                       openssl \
@@ -29,7 +32,17 @@ RUN buildDeps='libgoogle-perftools-dev \
                       flex \
                       gawk \
                       swig \
+                      wget \
                       curl --no-install-recommends \
+  && echo "Grab tini for signal processing and zombie killing..." \
+  && wget -O /usr/local/bin/tini "https://github.com/krallin/tini/releases/download/$TINI_VERSION/tini" \
+  && wget -O /usr/local/bin/tini.asc "https://github.com/krallin/tini/releases/download/$TINI_VERSION/tini.asc" \
+  && export GNUPGHOME="$(mktemp -d)" \
+  && gpg --keyserver ha.pool.sks-keyservers.net --recv-keys 6380DC428747F6C393FEACA59A84159D7001A4E5 \
+  && gpg --batch --verify /usr/local/bin/tini.asc /usr/local/bin/tini \
+  && rm -r "$GNUPGHOME" /usr/local/bin/tini.asc \
+  && chmod +x /usr/local/bin/tini \
+  && tini -h \
   && echo "Installing LibCAF (actor-framework) ..." \
   && cd /tmp \
   && git clone --recursive --branch 0.14.2 https://github.com/actor-framework/actor-framework.git \
@@ -54,18 +67,15 @@ RUN buildDeps='libgoogle-perftools-dev \
   && make install \
   && echo "[INFO] Cleaning image to reduce size..." \
   && rm -rf /bro \
-  && apt-get remove -y $buildDeps \
+  && apt-get purge -y $buildDeps \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Install the GeoIPLite Database
 COPY /geoip /usr/share/GeoIP/
 RUN \
-  gunzip /usr/share/GeoIP/GeoLiteCityv6.dat.gz && \
   gunzip /usr/share/GeoIP/GeoLiteCity.dat.gz && \
-  rm -f /usr/share/GeoIP/GeoLiteCityv6.dat.gz && \
   rm -f /usr/share/GeoIP/GeoLiteCity.dat.gz && \
-  ln -s /usr/share/GeoIP/GeoLiteCityv6.dat /usr/share/GeoIP/GeoIPCityv6.dat && \
   ln -s /usr/share/GeoIP/GeoLiteCity.dat /usr/share/GeoIP/GeoIPCity.dat
 
 ENV PATH /nsm/bro/bin:$PATH
@@ -79,6 +89,6 @@ WORKDIR /pcap
 COPY /scripts /scripts
 COPY /scripts/local.bro /nsm/bro/share/bro/site/local.bro
 
-ENTRYPOINT ["bro"]
+ENTRYPOINT ["tini","--","bro"]
 
 CMD ["-h"]
