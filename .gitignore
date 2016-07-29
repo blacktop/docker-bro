@@ -1,5 +1,7 @@
 extract_files
 .state
+build
 *.log
 my_capture.pcap
 mypackets.trace
+README.md.bu

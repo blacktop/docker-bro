@@ -1,6 +1,6 @@
 NAME=bro
 VERSION=$(shell cat VERSION)
-DEV_RUN_OPTS ?= TEST
+DEV_RUN_OPTS ?= --version
 
 dev:
 	docker build -f Dockerfile.dev -t $(NAME):dev .

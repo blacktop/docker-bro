@@ -7,7 +7,7 @@ Bro IDS Dockerfile
 [![License](http://img.shields.io/:license-mit-blue.svg)](http://doge.mit-license.org)
 [![Docker Stars](https://img.shields.io/docker/stars/blacktop/bro.svg)][hub]
 [![Docker Pulls](https://img.shields.io/docker/pulls/blacktop/bro.svg)][hub]
-[![Docker Image](https://img.shields.io/badge/docker image-19.63 MB-blue.svg)](https://hub.docker.com/r/blacktop/bro/)
+[![Docker Image](https://img.shields.io/badge/docker image-243.4 MB-blue.svg)][hub]
 
 This repository contains a **Dockerfile** of [Bro-IDS](http://www.bro.org/index.html) **blacktop/bro**.
 
@@ -31,7 +31,7 @@ blacktop/bro        2.2                 527.9 MB
 ### Installation
 
 1. Install [Docker](https://www.docker.io/).
-2. Download [trusted build](https://index.docker.io/u/blacktop/bro/) from public [Docker Registry](https://index.docker.io/): `docker pull blacktop/bro`
+2. Download [trusted build](https://hub.docker.com/r/blacktop/bro/) from public [Docker Registry](https://index.docker.io/): `docker pull blacktop/bro`
 
 ### Usage
 ```bash
