@@ -7,13 +7,13 @@ Bro IDS Dockerfile
 [![License](http://img.shields.io/:license-mit-blue.svg)](http://doge.mit-license.org)
 [![Docker Stars](https://img.shields.io/docker/stars/blacktop/bro.svg)][hub]
 [![Docker Pulls](https://img.shields.io/docker/pulls/blacktop/bro.svg)][hub]
-[![Docker Image](https://img.shields.io/badge/docker image-243.4 MB-blue.svg)][hub]
+[![Docker Image](https://img.shields.io/badge/docker image-580.4 MB-blue.svg)][hub]
 
 This repository contains a **Dockerfile** of [Bro-IDS](http://www.bro.org/index.html) **blacktop/bro**.
 
 ### Dependencies
 
-* [debian:jessie (*125.2  MB*)](https://index.docker.io/_/debian/)
+* [debian:jessie (*125.1  MB*)](https://hub.docker.com/_/debian/)
 
 ### Image Tags
 ```bash
@@ -35,7 +35,7 @@ blacktop/bro        2.2                 527.9 MB
 
 ### Usage
 ```bash
-$ docker run -i -t -v /path/to/folder/pcap:/pcap:rw blacktop/bro -r heartbleed.pcap local
+$ docker run --rm -v /path/to/folder/pcap:/pcap:rw blacktop/bro -r heartbleed.pcap local
 ```
 #### Output:
 ```bash
@@ -58,13 +58,13 @@ Heartbleed::SSL_Heartbeat_Attack_Success
 ```
 #### Or use your own pcap
 ```bash
-$ docker run -it -v /path/to/pcap:/pcap:rw blacktop/bro -r my.pcap local
+$ docker run --rm -v /path/to/pcap:/pcap:rw blacktop/bro -r my.pcap local
 ```
 
 Add the following to your bash or zsh profile
 
 ```bash
-alias bro='docker run -it --rm -v `pwd`:/pcap:rw blacktop/bro $@'
+alias bro='docker run --rm -v `pwd`:/pcap:rw blacktop/bro $@'
 ```
 
 ### Documentation
