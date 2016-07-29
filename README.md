@@ -3,7 +3,7 @@
 Bro IDS Dockerfile
 ==================
 
-[![Circle CI](https://circleci.com/gh/blacktop/bro.png?style=shield)](https://circleci.com/gh/blacktop/bro)
+[![CircleCI](https://circleci.com/gh/blacktop/docker-bro.png?style=shield)](https://circleci.com/gh/blacktop/docker-bro)
 [![License](http://img.shields.io/:license-mit-blue.svg)](http://doge.mit-license.org)
 [![Docker Stars](https://img.shields.io/docker/stars/blacktop/bro.svg)][hub]
 [![Docker Pulls](https://img.shields.io/docker/pulls/blacktop/bro.svg)][hub]
