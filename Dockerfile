@@ -41,13 +41,13 @@ RUN buildDeps='libgoogle-perftools-dev \
   && rm -r "$GNUPGHOME" /usr/local/bin/tini.asc \
   && chmod +x /usr/local/bin/tini \
   && tini -h \
-  && echo "[INFO] Installing Bro-IDS ==============================================================" \
+  && echo "[INFO] C++ Actor Framework to enable Broker ============================================" \
   && curl -sL http://download.opensuse.org/repositories/devel:libraries:caf/Debian_8.0/Release.key \
     | apt-key add - \
   && echo 'deb http://download.opensuse.org/repositories/devel:/libraries:/caf/Debian_8.0/ /' \
     >> /etc/apt/sources.list.d/caf.list \
   && apt-get update \
-  && apt-get install caf \
+  && apt-get install -y caf \
   && echo "[INFO] Installing Bro-IDS ==============================================================" \
   && cd /tmp \
   && git clone --recursive git://git.bro.org/bro \
@@ -97,7 +97,7 @@ CMD ["-h"]
   # && echo 'deb http://download.opensuse.org/repositories/network:/bro/Debian_8.0/ /' >> /etc/apt/sources.list.d/bro.list \
   # && apt-get update \
   # && apt-get install -y bro \
-  
+
   # && echo "[INFO] Installing Elasticsearch Bro Plugin =============================================" \
   # && sed -i "s/JSON::TS_MILLIS/JSON::TS_ISO8601/g" /tmp/bro/aux/plugins/elasticsearch-deprecated/src/ElasticSearch.cc \
   # && sed -i "s/127.0.0.1/elasticsearch/g" /tmp/bro/aux/plugins/elasticsearch-deprecated/scripts/init.bro \
