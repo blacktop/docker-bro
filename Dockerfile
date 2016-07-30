@@ -97,13 +97,3 @@ CMD ["-h"]
   # && echo 'deb http://download.opensuse.org/repositories/network:/bro/Debian_8.0/ /' >> /etc/apt/sources.list.d/bro.list \
   # && apt-get update \
   # && apt-get install -y bro \
-
-  # && echo "[INFO] Installing Elasticsearch Bro Plugin =============================================" \
-  # && sed -i "s/JSON::TS_MILLIS/JSON::TS_ISO8601/g" /tmp/bro/aux/plugins/elasticsearch-deprecated/src/ElasticSearch.cc \
-  # && sed -i "s/127.0.0.1/elasticsearch/g" /tmp/bro/aux/plugins/elasticsearch-deprecated/scripts/init.bro \
-  # && sed -i "s/2secs/60secs/g" /tmp/bro/aux/plugins/elasticsearch-deprecated/scripts/init.bro \
-  # && cd /tmp/bro/aux/plugins/elasticsearch-deprecated \
-  # && ./configure \
-  # && make \
-  # && make install \
-  # && bro -N Bro::ElasticSearch \
