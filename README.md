@@ -56,23 +56,26 @@ blacktop/bro        2.2                 527.9 MB
 #### Using the included heartbleed test pcap
 
 ```bash
-$ docker run --rm -v `pwd`:/pcap blacktop/bro -r heartbleed.pcap local
+$ docker run --rm -v `pwd`/pcap:/pcap blacktop/bro -r heartbleed.pcap local "Site::local_nets += { 192.168.11.0/24 }"
 ```
 
 ```bash
 $ ls -l
 
--rw-r--r-- 1 root root   617 Jul 27 02:00 conn.log
--rw-r--r-- 1 root root   734 Jul 27 02:00 files.log
--rw-r--r-- 1 root root 15551 Jul 27 02:00 loaded_scripts.log
--rw-r--r-- 1 root root  1938 Jul 27 02:00 'notice.log'
--rw-r--r-- 1 root root   253 Jul 27 02:00 packet_filter.log
--rw-r--r-- 1 root root   781 Jul 27 02:00 ssl.log
--rw-r--r-- 1 root root   901 Jul 27 02:00 x509.log
+-rw-r--r--  1 blactop  staff   635B Jul 30 12:11 pcap/conn.log
+-rw-r--r--  1 blactop  staff   754B Jul 30 12:11 pcap/files.log
+-rw-r--r--  1 blactop  staff   384B Jul 30 12:11 pcap/known_certs.log
+-rw-r--r--  1 blactop  staff   239B Jul 30 12:11 pcap/known_hosts.log
+-rw-r--r--  1 blactop  staff   271B Jul 30 12:11 pcap/known_services.log
+-rw-r--r--  1 blactop  staff    17K Jul 30 12:11 pcap/loaded_scripts.log
+-rw-r--r--  1 blactop  staff   1.9K Jul 30 12:11 'pcap/notice.log'
+-rw-r--r--  1 blactop  staff   253B Jul 30 12:11 pcap/packet_filter.log
+-rw-r--r--  1 blactop  staff   1.2K Jul 30 12:11 pcap/ssl.log
+-rw-r--r--  1 blactop  staff   901B Jul 30 12:11 pcap/x509.log
 ```
 
 ```bash
-$ cat notice.log | awk '{ print $11 }' | tail -n4
+$ cat pcap/notice.log | awk '{ print $11 }' | tail -n4
 
 Heartbleed::SSL_Heartbeat_Attack
 Heartbleed::SSL_Heartbeat_Odd_Length
