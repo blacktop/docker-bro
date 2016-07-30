@@ -1,6 +1,6 @@
 NAME=bro
 VERSION=$(shell cat VERSION)
-DEV_RUN_OPTS ?= --version
+DEV_RUN_OPTS ?= -r heartbleed.pcap local "Site::local_nets += { 192.168.11.0/24 }"
 
 dev:
 	docker build -f Dockerfile.dev -t $(NAME):dev .
