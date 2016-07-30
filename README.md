@@ -95,7 +95,7 @@ bro -r my_capture.pcap local "Site::local_nets += { 1.2.3.0/24, 5.6.7.0/24 }"
 #### Capture Live Traffic  
 
 ```bash
-docker run --rm --cap-add=NET_RAW --cap-add=NET_ADMIN -v `pwd`:/pcap:rw --net=host blacktop/bro -i eth0
+docker run --rm --cap-add=NET_RAW --net=host -v `pwd`:/pcap:rw blacktop/bro -i eth0
 ```
 
 ### Issues
