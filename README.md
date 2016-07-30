@@ -136,7 +136,7 @@ alias bro='docker run --rm -v `pwd`:/pcap:rw blacktop/bro $@'
 
 Find a bug? Want more features? Find something missing in the documentation? Let me know! Please don't hesitate to [file an issue](https://github.com/blacktop/docker-bro/issues/new) and I'll get right on it.
 
-> NOTE: I am now using the precompiled bro package to decrease the docker image size, if that cause a loss in functionality please let me know.
+> NOTE: I am now using the precompiled bro package to decrease the docker image size, if that caused a loss in functionality you depend on please let me know.
 
 ### Credits
 
