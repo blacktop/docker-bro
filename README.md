@@ -7,7 +7,7 @@ Bro IDS Dockerfile
 [![License](http://img.shields.io/:license-mit-blue.svg)](http://doge.mit-license.org)
 [![Docker Stars](https://img.shields.io/docker/stars/blacktop/bro.svg)][hub]
 [![Docker Pulls](https://img.shields.io/docker/pulls/blacktop/bro.svg)][hub]
-[![Docker Image](https://img.shields.io/badge/docker image-273.3 MB-blue.svg)][hub]
+[![Docker Image](https://img.shields.io/badge/docker image-237.6 MB-blue.svg)][hub]
 
 This repository contains a **Dockerfile** of [Bro-IDS](http://www.bro.org/index.html) **blacktop/bro**.
 
@@ -90,6 +90,12 @@ $ bro -r my_capture.pcap local
 
 ```bash
 bro -r my_capture.pcap local "Site::local_nets += { 1.2.3.0/24, 5.6.7.0/24 }"
+```
+
+#### Capture Live Traffic  
+
+```bash
+docker run --rm --cap-add=NET_RAW --cap-add=NET_ADMIN -v `pwd`:/pcap:rw --net=host blacktop/bro -i eth0
 ```
 
 ### Issues

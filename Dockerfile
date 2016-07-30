@@ -38,10 +38,10 @@ RUN set -x \
   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Install the GeoIPLite Database
-COPY /geoip /usr/share/GeoIP/
-RUN gunzip /usr/share/GeoIP/GeoLiteCity.dat.gz \
-  && rm -f /usr/share/GeoIP/GeoLiteCity.dat.gz \
-  && ln -s /usr/share/GeoIP/GeoLiteCity.dat /usr/share/GeoIP/GeoIPCity.dat
+# COPY /geoip /usr/share/GeoIP/
+# RUN gunzip /usr/share/GeoIP/GeoLiteCity.dat.gz \
+#   && rm -f /usr/share/GeoIP/GeoLiteCity.dat.gz \
+#   && ln -s /usr/share/GeoIP/GeoLiteCity.dat /usr/share/GeoIP/GeoIPCity.dat
 
 ENV PATH /opt/bro/bin:$PATH
 
@@ -57,8 +57,3 @@ COPY /scripts/local.bro /opt/bro/share/bro/site/local.bro
 ENTRYPOINT ["tini","--","bro"]
 
 CMD ["-h"]
-
-  # && curl -sL http://download.opensuse.org/repositories/network:bro/Debian_8.0/Release.key | apt-key add - \
-  # && echo 'deb http://download.opensuse.org/repositories/network:/bro/Debian_8.0/ /' >> /etc/apt/sources.list.d/bro.list \
-  # && apt-get update \
-  # && apt-get install -y bro \
