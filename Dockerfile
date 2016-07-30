@@ -42,8 +42,15 @@ RUN buildDeps='libgoogle-perftools-dev \
   && chmod +x /usr/local/bin/tini \
   && tini -h \
   && echo "[INFO] Installing Bro-IDS ==============================================================" \
+  && curl -sL http://download.opensuse.org/repositories/devel:libraries:caf/Debian_8.0/Release.key \
+    | apt-key add - \
+  && echo 'deb http://download.opensuse.org/repositories/devel:/libraries:/caf/Debian_8.0/ /' \
+    >> /etc/apt/sources.list.d/caf.list \
+  && apt-get update \
+  && apt-get install caf \
+  && echo "[INFO] Installing Bro-IDS ==============================================================" \
   && cd /tmp \
-  && git clone --recursive -b v2.4.1 git://git.bro.org/bro \
+  && git clone --recursive git://git.bro.org/bro \
   && cd /tmp/bro && ./configure --prefix=/opt/bro \
   && make \
   && make install \
@@ -55,7 +62,7 @@ RUN buildDeps='libgoogle-perftools-dev \
   && make \
   && make install \
   && cd /tmp/bro/aux/plugins/kafka \
-  && ./configure --bro-dist=/opt/bro \
+  && ./configure \
   && make \
   && make install \
   && bro -N Bro::Kafka
@@ -90,12 +97,13 @@ CMD ["-h"]
   # && echo 'deb http://download.opensuse.org/repositories/network:/bro/Debian_8.0/ /' >> /etc/apt/sources.list.d/bro.list \
   # && apt-get update \
   # && apt-get install -y bro \
+  
   # && echo "[INFO] Installing Elasticsearch Bro Plugin =============================================" \
   # && sed -i "s/JSON::TS_MILLIS/JSON::TS_ISO8601/g" /tmp/bro/aux/plugins/elasticsearch-deprecated/src/ElasticSearch.cc \
   # && sed -i "s/127.0.0.1/elasticsearch/g" /tmp/bro/aux/plugins/elasticsearch-deprecated/scripts/init.bro \
   # && sed -i "s/2secs/60secs/g" /tmp/bro/aux/plugins/elasticsearch-deprecated/scripts/init.bro \
   # && cd /tmp/bro/aux/plugins/elasticsearch-deprecated \
-  # && ./configure --bro-dist=/opt/bro \
+  # && ./configure \
   # && make \
   # && make install \
   # && bro -N Bro::ElasticSearch \
