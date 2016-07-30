@@ -32,14 +32,14 @@ RUN buildDeps='libgoogle-perftools-dev \
                       curl --no-install-recommends \
   && echo "Installing LibCAF (actor-framework) ..." \
   && cd /tmp \
-  && git clone --recursive --branch 0.14.2 https://github.com/actor-framework/actor-framework.git \
+  && git clone --recursive --branch 0.14.5 https://github.com/actor-framework/actor-framework.git \
   && cd actor-framework && ./configure --no-examples --no-benchmarks --no-opencl \
   && make \
   && make test \
   && make install \
   && echo "[INFO] Cloning Bro Source..." \
   && cd /tmp \
-  && git clone --recursive git://git.bro.org/bro \
+  && git clone --recursive --branch v2.4.1 git://git.bro.org/bro \
   && echo "[INFO] Installing Bro..." \
   && cd /tmp/bro && ./configure --prefix=/nsm/bro \
   && make \

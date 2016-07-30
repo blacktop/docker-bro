@@ -3,3 +3,5 @@ extract_files
 *.log
 my_capture.pcap
 mypackets.trace
+build
+*.bu
