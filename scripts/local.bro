@@ -83,19 +83,19 @@
 
 # Uncomment the following line to enable logging of connection VLANs. Enabling
 # this adds two VLAN fields to the conn.log file.
-@load policy/protocols/conn/vlan-logging
+# @load policy/protocols/conn/vlan-logging
 
 # Uncomment the following line to enable logging of link-layer addresses. Enabling
 # this adds the link-layer address for each connection endpoint to the conn.log file.
-@load policy/protocols/conn/mac-logging
+# @load policy/protocols/conn/mac-logging
 
 # ElasticSearch Plugin
 # @load Bro/ElasticSearch/logs-to-elasticsearch.bro
 
 # Kafka Plugin
-@load Bro/Kafka/logs-to-kafka.bro
-redef Kafka::logs_to_send = set(Conn::LOG, HTTP::LOG);
-redef Kafka::kafka_conf = table(
-    ["metadata.broker.list"] = "kafka:9092"
-);
-redef Kafka::topic_name = "bro";
+# @load Bro/Kafka/logs-to-kafka.bro
+# redef Kafka::logs_to_send = set(Conn::LOG, HTTP::LOG);
+# redef Kafka::kafka_conf = table(
+#     ["metadata.broker.list"] = "kafka:9092"
+# );
+# redef Kafka::topic_name = "bro";

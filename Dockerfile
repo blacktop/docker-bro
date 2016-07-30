@@ -38,10 +38,10 @@ RUN set -x \
   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Install the GeoIPLite Database
-# COPY /geoip /usr/share/GeoIP/
-# RUN gunzip /usr/share/GeoIP/GeoLiteCity.dat.gz \
-#   && rm -f /usr/share/GeoIP/GeoLiteCity.dat.gz \
-#   && ln -s /usr/share/GeoIP/GeoLiteCity.dat /usr/share/GeoIP/GeoIPCity.dat
+COPY /geoip /usr/share/GeoIP/
+RUN gunzip /usr/share/GeoIP/GeoLiteCity.dat.gz \
+  && rm -f /usr/share/GeoIP/GeoLiteCity.dat.gz \
+  && ln -s /usr/share/GeoIP/GeoLiteCity.dat /usr/share/GeoIP/GeoIPCity.dat
 
 ENV PATH /opt/bro/bin:$PATH
 
