@@ -112,10 +112,6 @@ To capture packets from a VMWare Fusion VM using **vmnet-sniffer** you can do th
 sudo /Applications/VMware\ Fusion.app/Contents/Library/vmnet-sniffer -e -w my_capture.pcap vmnet8
 ```
 
-```bash
-$ bro -r my_capture.pcap local
-```
-
 #### Tips and Tricks
 
 > To get rid of the `WARNING: No Site::local_nets have been defined.` message.
