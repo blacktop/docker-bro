@@ -46,7 +46,7 @@ RUN buildDeps='libgoogle-perftools-dev \
   && cd /tmp \
   && git clone --recursive --branch 0.14.5 https://github.com/actor-framework/actor-framework.git \
   && cd actor-framework \
-  && ./configure --no-examples --no-benchmarks --no-opencl \
+  && ./configure --no-examples --no-benchmarks --no-opencl --no-unit-tests \
   && make \
   && make test \
   && make install \
@@ -54,8 +54,10 @@ RUN buildDeps='libgoogle-perftools-dev \
   && cd /tmp \
   && git clone --recursive git://git.bro.org/bro \
   && cd /tmp/bro && ./configure --prefix=/opt/bro \
+                                --enable-broker \
   && make \
   && make install \
+  && make install-aux \
   && echo "[INFO] Installing Kafka Bro Plugin =====================================================" \
   && cd /tmp \
   && curl -L https://github.com/edenhill/librdkafka/archive/0.9.1.tar.gz | tar xvz \
