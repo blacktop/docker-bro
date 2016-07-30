@@ -25,6 +25,7 @@ RUN buildDeps='libgoogle-perftools-dev \
   && apt-get -qq update \
   && apt-get install -yq $buildDeps \
                          ca-certificates \
+                         php5-curl \
                          sendmail \
                          openssl \
                          bison \
@@ -42,12 +43,13 @@ RUN buildDeps='libgoogle-perftools-dev \
   && chmod +x /usr/local/bin/tini \
   && tini -h \
   && echo "[INFO] C++ Actor Framework to enable Broker ============================================" \
-  && curl -sL http://download.opensuse.org/repositories/devel:libraries:caf/Debian_8.0/Release.key \
-    | apt-key add - \
-  && echo 'deb http://download.opensuse.org/repositories/devel:/libraries:/caf/Debian_8.0/ /' \
-    >> /etc/apt/sources.list.d/caf.list \
-  && apt-get update \
-  && apt-get install -y caf \
+  && cd /tmp \
+  && git clone --recursive --branch 0.14.5 https://github.com/actor-framework/actor-framework.git \
+  && cd actor-framework \
+  && ./configure --no-examples --no-benchmarks --no-opencl \
+  && make \
+  && make test \
+  && make install \
   && echo "[INFO] Installing Bro-IDS ==============================================================" \
   && cd /tmp \
   && git clone --recursive git://git.bro.org/bro \
