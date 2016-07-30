@@ -6,26 +6,10 @@ ENV TINI_VERSION v0.9.0
 ENV TINI_URL github.com/krallin/tini/releases/download
 
 # Install Bro Required Dependencies
-RUN buildDeps='libgoogle-perftools-dev \
-               build-essential \
-               libgeoip-dev \
-               libcurl3-dev \
-               libpcap-dev \
-               zlib1g-dev \
-               python-dev \
-               libssl-dev \
-               python-dev \
-               git-core \
-               cmake \
-               make \
-               gcc \
-               g++' \
-  && set -x \
+RUN set -x \
   && echo "[INFO] Installing Dependancies =========================================================" \
   && apt-get -qq update \
-  && apt-get install -yq $buildDeps \
-                         ca-certificates \
-                         php5-curl \
+  && apt-get install -yq ca-certificates \
                          sendmail \
                          openssl \
                          bison \
@@ -42,37 +26,14 @@ RUN buildDeps='libgoogle-perftools-dev \
   && rm -r "$GNUPGHOME" /usr/local/bin/tini.asc \
   && chmod +x /usr/local/bin/tini \
   && tini -h \
-  && echo "[INFO] C++ Actor Framework to enable Broker ============================================" \
-  && cd /tmp \
-  && git clone --recursive --branch 0.14.5 https://github.com/actor-framework/actor-framework.git \
-  && cd actor-framework \
-  && ./configure --no-examples --no-benchmarks --no-opencl --no-unit-tests \
-  && make \
-  && make test \
-  && make install \
   && echo "[INFO] Installing Bro-IDS ==============================================================" \
-  && cd /tmp \
-  && git clone --recursive git://git.bro.org/bro \
-  && cd /tmp/bro && ./configure --prefix=/opt/bro \
-                                --enable-broker \
-  && make \
-  && make install \
-  && make install-aux \
-  && echo "[INFO] Installing Kafka Bro Plugin =====================================================" \
-  && cd /tmp \
-  && curl -L https://github.com/edenhill/librdkafka/archive/0.9.1.tar.gz | tar xvz \
-  && cd librdkafka-0.9.1 \
-  && ./configure \
-  && make \
-  && make install \
-  && cd /tmp/bro/aux/plugins/kafka \
-  && ./configure \
-  && make \
-  && make install \
-  && bro -N Bro::Kafka
+  && curl -sL http://download.opensuse.org/repositories/network:bro/Debian_8.0/Release.key \
+    | apt-key add - \
+  && echo 'deb http://download.opensuse.org/repositories/network:/bro/Debian_8.0/ /' \
+    >> /etc/apt/sources.list.d/bro.list \
+  && apt-get update \
+  && apt-get install -y bro \
   && echo "[INFO] Cleaning image to reduce size ===================================================" \
-  && rm -rf /bro \
-  && apt-get purge -y $buildDeps \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
