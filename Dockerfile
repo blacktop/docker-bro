@@ -1,4 +1,4 @@
-FROM debian:jessie
+FROM debian:wheezy
 
 MAINTAINER blacktop, https://github.com/blacktop
 
@@ -22,12 +22,12 @@ RUN set -x \
   && echo "[INFO] Installing Bro-IDS ==============================================================" \
   && curl -sL http://download.opensuse.org/repositories/network:bro/Debian_8.0/Release.key \
     | apt-key add - \
-  && echo 'deb http://download.opensuse.org/repositories/network:/bro/Debian_8.0/ /' \
+  && echo 'deb http://download.opensuse.org/repositories/network:/bro/Debian_7.0/ /' \
     >> /etc/apt/sources.list.d/bro.list \
   && apt-get update \
   && apt-get install -y bro \
   && echo "[INFO] Cleaning image to reduce size ===================================================" \
-  && apt-get purge -y ca-certificates curl \  
+  && apt-get purge -y ca-certificates curl \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 

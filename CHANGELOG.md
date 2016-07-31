@@ -24,7 +24,7 @@ All notable changes to this project will be documented in this file.
 
 -	Updated geoIP DB
 -	Update scripts  
--	Shrunk image by 457.7 MB !!!!  
+-	Shrunk image by 465.2 MB !!!!  
 
 ### Added
 
