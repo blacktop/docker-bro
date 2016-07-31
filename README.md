@@ -52,7 +52,7 @@ blacktop/bro        2.2                 527.7 MB
 ### Installation
 
 1.	Install [Docker](https://docs.docker.com).
-2.	Download [trusted build](https://hub.docker.com/r/blacktop/bro/) from public [Docker Registry](https://index.docker.io/): `docker pull blacktop/bro`
+2.	Download [trusted build](https://hub.docker.com/r/blacktop/bro/) from public [Docker Registry](https://hub.docker.com): `docker pull blacktop/bro`
 
 ### Getting Started
 
