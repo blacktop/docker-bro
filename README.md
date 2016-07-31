@@ -30,7 +30,7 @@ This repository contains a **Dockerfile** of [Bro-IDS](http://www.bro.org/index.
 
 ### Dependencies
 
--	[debian:jessie (*125.1 MB*\)](https://hub.docker.com/_/debian/)
+-	[debian:wheezy (*84.93 MB*\)](https://hub.docker.com/_/debian/)
 
 ### Image Tags
 
