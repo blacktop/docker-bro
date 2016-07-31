@@ -6,6 +6,9 @@ dev:
 	docker build -f Dockerfile.dev -t $(NAME):dev .
 	docker run --rm $(NAME):dev $(DEV_RUN_OPTS)
 
+tags:
+	docker images --format "table {{.Repository}}\t{{.Tag}}\t{{.Size}}" blacktop/$(NAME)
+
 build:
 	rm -rf build && mkdir build
 	docker build -t $(NAME):$(VERSION) .

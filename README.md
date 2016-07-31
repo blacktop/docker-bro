@@ -37,13 +37,17 @@ This repository contains a **Dockerfile** of [Bro-IDS](http://www.bro.org/index.
 ```bash
 $ docker images
 
-REPOSITORY          TAG                 VIRTUAL SIZE
+REPOSITORY          TAG                 SIZE
 blacktop/bro        latest              174.8 MB
-blacktop/bro        elastic             691 MB
-blacktop/bro        2.4.1               488.4 MB
-blacktop/bro        2.4                 488.4 MB
-blacktop/bro        2.3.2               531 MB
-blacktop/bro        2.2                 527.9 MB
+blacktop/bro        elastic             640 MB
+blacktop/bro        2.4.1               482.8 MB
+blacktop/bro        2.3.2               530.9 MB
+blacktop/bro        2.2                 527.7 MB
+blacktop/bro        2.4                 488.2 MB
+blacktop/bro        2.4-beta            552.4 MB
+blacktop/bro        2.3.1               518 MB
+blacktop/bro        v2.3.2              531.2 MB
+blacktop/bro        2.3                 616.8 MB
 ```
 
 ### Installation
