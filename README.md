@@ -15,18 +15,18 @@ This repository contains a **Dockerfile** of [Bro-IDS](http://www.bro.org/index.
 	-	[Installation](#installation)
 	-	[Getting Started](#getting-started)
 		-	[Using the included heartbleed test pcap](#using-the-included-heartbleed-test-pcap)
-		-	[Use your own pcap](#use-your-own-pcap)
 	-	[Documentation](#documentation)
-      -	[Usage](#usage)
-        -	[Capture Live Traffic](#capture-live-traffic)
-        -	[Create a pcap](#create-a-pcap)
-      -	[Tips and Tricks](#tips-and-tricks)
-        -	[Use **blacktop/bro** like a host binary](#use-blacktopbro-like-a-host-binary)
-  - [CHANGELOG](https://github.com/blacktop/docker-bro/blob/master/CHANGELOG.md)
-  -	[Issues](#issues)
-  -	[Credits](#credits)
-  -	[Todo](#todo)
-  -	[License](#license)
+		-	[Usage](#usage)
+			-	[Capture Live Traffic](#capture-live-traffic)
+			-	[Use your own pcap](#use-your-own-pcap)
+		-	[Tips and Tricks](#tips-and-tricks)
+			-	[Create a pcap](#create-a-pcap)
+	        - [Get rid of the `WARNING: No Site::local_nets have been defined.` message.](#get-rid-of-the-warning-no-sitelocal_nets-have-been-defined-message)
+			-	[Use **blacktop/bro** like a host binary](#use-blacktopbro-like-a-host-binary)
+	-	[Issues](#issues)
+	-	[Credits](#credits)
+	-	[Todo](#todo)
+	-	[License](#license)
 
 ### Dependencies
 
@@ -85,12 +85,6 @@ Heartbleed::SSL_Heartbeat_Odd_Length
 Heartbleed::SSL_Heartbeat_Attack_Success
 ```
 
-#### Use your own pcap
-
-```bash
-$ docker run --rm -v /path/to/pcap:/pcap:rw blacktop/bro -r my.pcap local
-```
-
 ### Documentation
 
 #### Usage
@@ -100,6 +94,14 @@ $ docker run --rm -v /path/to/pcap:/pcap:rw blacktop/bro -r my.pcap local
 ```bash
 docker run --rm --cap-add=NET_RAW --net=host -v `pwd`:/pcap:rw blacktop/bro -i eth0
 ```
+
+#### Use your own pcap
+
+```bash
+$ docker run --rm -v /path/to/pcap:/pcap:rw blacktop/bro -r my.pcap local
+```
+
+#### Tips and Tricks
 
 ##### Create a pcap
 
@@ -115,9 +117,7 @@ To capture packets from a VMWare Fusion VM using **vmnet-sniffer** you can do th
 sudo /Applications/VMware\ Fusion.app/Contents/Library/vmnet-sniffer -e -w my_capture.pcap vmnet8
 ```
 
-#### Tips and Tricks
-
-> To get rid of the `WARNING: No Site::local_nets have been defined.` message.
+##### Get rid of the `WARNING: No Site::local_nets have been defined.` message.
 
 ```bash
 bro -r my_capture.pcap local "Site::local_nets += { 1.2.3.0/24, 5.6.7.0/24 }"
