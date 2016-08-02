@@ -9,24 +9,25 @@ This repository contains a **Dockerfile** of [Bro-IDS](http://www.bro.org/index.
 
 **Table of Contents**
 
--	[Bro IDS Dockerfile](#bro-ids-dockerfile)
-	-	[Dependencies](#dependencies)
-	-	[Image Tags](#image-tags)
-	-	[Installation](#installation)
-	-	[Getting Started](#getting-started)
-		-	[Using the included heartbleed test pcap](#using-the-included-heartbleed-test-pcap)
-	-	[Documentation](#documentation)
-		-	[Usage](#usage)
-			-	[Capture Live Traffic](#capture-live-traffic)
-			-	[Use your own pcap](#use-your-own-pcap)
-		-	[Tips and Tricks](#tips-and-tricks)
-			-	[Create a pcap](#create-a-pcap)
-	        - [Get rid of the `WARNING: No Site::local_nets have been defined.` message.](#get-rid-of-the-warning-no-sitelocal_nets-have-been-defined-message)
-			-	[Use **blacktop/bro** like a host binary](#use-blacktopbro-like-a-host-binary)
-	-	[Issues](#issues)
-	-	[Credits](#credits)
-	-	[Todo](#todo)
-	-	[License](#license)
+- [Bro IDS Dockerfile](#bro-ids-dockerfile)
+    - [Dependencies](#dependencies)
+    - [Image Tags](#image-tags)
+    - [Installation](#installation)
+    - [Getting Started](#getting-started)
+      - [Using the included heartbleed test pcap](#using-the-included-heartbleed-test-pcap)
+    - [Documentation](#documentation)
+      - [Usage](#usage)
+        - [Capture Live Traffic](#capture-live-traffic)
+        - [Use your own pcap](#use-your-own-pcap)
+      - [Tips and Tricks](#tips-and-tricks)
+        - [Create a pcap](#create-a-pcap)
+        - [Get rid of the `WARNING: No Site::local_nets have been defined.` message.](#get-rid-of-the-warning-no-sitelocal_nets-have-been-defined-message)
+        - [Use **blacktop/bro** like a host binary](#use-blacktopbro-like-a-host-binary)
+    - [Issues](#issues)
+    - [Todo](#todo)
+    - [CHANGELOG](#changelog)
+    - [Contributing](#contributing)
+    - [License](#license)
 
 ### Dependencies
 
@@ -95,7 +96,7 @@ Heartbleed::SSL_Heartbeat_Attack_Success
 docker run --rm --cap-add=NET_RAW --net=host -v `pwd`:/pcap:rw blacktop/bro -i eth0
 ```
 
-#### Use your own pcap
+##### Use your own pcap
 
 ```bash
 $ docker run --rm -v /path/to/pcap:/pcap:rw blacktop/bro -r my.pcap local
@@ -137,8 +138,6 @@ Find a bug? Want more features? Find something missing in the documentation? Let
 
 > NOTE: I am now using the precompiled bro package to decrease the docker image size, if that caused a loss in functionality you depend on please let me know.
 
-### Credits
-
 ### Todo
 
 -	[x] Install/Run Bro-IDS
@@ -147,6 +146,16 @@ Find a bug? Want more features? Find something missing in the documentation? Let
 -	[ ] Start Daemon and watch folder with supervisord
 -	[ ] Have container take a URL as input and download/scan pcap
 -	[ ] Add ELK Stack
+
+### CHANGELOG
+
+See [`CHANGELOG.md`](https://github.com/blacktop/docker-bro/blob/master/CHANGELOG.md)
+
+### Contributing
+
+[See all contributors on GitHub](https://github.com/blacktop/docker-bro/graphs/contributors).
+
+Please update the [CHANGELOG.md](https://github.com/blacktop/docker-bro/blob/master/CHANGELOG.md) and submit a [Pull Request on GitHub](https://help.github.com/articles/using-pull-requests/).
 
 ### License
 
