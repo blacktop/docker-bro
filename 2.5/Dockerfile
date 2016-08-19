@@ -47,7 +47,7 @@ RUN set -x \
 ENV PATH /opt/bro/bin:$PATH
 
 # Add PCAP Test Folder
-ADD https://github.com/blacktop/docker-bro/blob/master/pcap/heartbleed.pcap /pcap/
+ADD https://github.com/blacktop/docker-bro/raw/master/pcap/heartbleed.pcap /pcap/
 VOLUME ["/pcap"]
 WORKDIR /pcap
 
