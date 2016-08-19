@@ -9,7 +9,7 @@ ENV TINI_URL github.com/krallin/tini/releases/download
 RUN set -x \
   && echo "[INFO] Installing Dependancies =========================================================" \
   && apt-get -qq update \
-  && apt-get install -yq ca-certificates curl --no-install-recommends \
+  && apt-get install -yq ca-certificates curl unzip --no-install-recommends \
   && echo "Grab tini for signal processing and zombie killing =====================================" \
   && curl -sL "https://$TINI_URL/$TINI_VERSION/tini" > /usr/local/bin/tini \
   && curl -sL "https://$TINI_URL/$TINI_VERSION/tini.asc" > /usr/local/bin/tini.asc \
@@ -42,7 +42,7 @@ RUN set -x \
   && echo "[INFO] Add Test PCAP..." \
   && mv pcap/heartbleed.pcap /pcap/ \
   && echo "[INFO] Cleaning image to reduce size ===================================================" \
-  && apt-get purge -y ca-certificates curl \
+  && apt-get purge -y ca-certificates curl unzip \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
