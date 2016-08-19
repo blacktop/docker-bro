@@ -11,6 +11,10 @@
 # Load the scan detection script.
 @load misc/scan
 
+# Log some information about web applications being used by users
+# on your network.
+@load misc/app-stats
+
 # Detect traceroute being run on the network.
 @load misc/detect-traceroute
 
@@ -33,7 +37,7 @@
 @load protocols/http/software
 # The detect-webapps script could possibly cause performance trouble when
 # running on live traffic.  Enable it cautiously.
-#@load protocols/http/detect-webapps
+@load protocols/http/detect-webapps
 
 # This script detects DNS results pointing toward your Site::local_nets
 # where the name is not part of your local DNS zone and is being hosted
@@ -80,22 +84,3 @@
 # Uncomment the following line to enable detection of the heartbleed attack. Enabling
 # this might impact performance a bit.
 @load policy/protocols/ssl/heartbleed
-
-# Uncomment the following line to enable logging of connection VLANs. Enabling
-# this adds two VLAN fields to the conn.log file.
-# @load policy/protocols/conn/vlan-logging
-
-# Uncomment the following line to enable logging of link-layer addresses. Enabling
-# this adds the link-layer address for each connection endpoint to the conn.log file.
-# @load policy/protocols/conn/mac-logging
-
-# ElasticSearch Plugin
-# @load Bro/ElasticSearch/logs-to-elasticsearch.bro
-
-# Kafka Plugin
-# @load Bro/Kafka/logs-to-kafka.bro
-# redef Kafka::logs_to_send = set(Conn::LOG, HTTP::LOG);
-# redef Kafka::kafka_conf = table(
-#     ["metadata.broker.list"] = "kafka:9092"
-# );
-# redef Kafka::topic_name = "bro";

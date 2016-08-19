@@ -8,10 +8,18 @@
 # Apply the default tuning scripts for common tuning settings.
 @load tuning/defaults
 
+# Estimate and log capture loss.
+@load misc/capture-loss
+
+# Enable logging of memory, packet and lag statistics.
+@load misc/stats
+
 # Load the scan detection script.
 @load misc/scan
 
-# Detect traceroute being run on the network.
+# Detect traceroute being run on the network. This could possibly cause
+# performance trouble when there are a lot of traceroutes on your network.
+# Enable cautiously.
 @load misc/detect-traceroute
 
 # Generate notices when vulnerable versions of software are discovered.
@@ -33,7 +41,7 @@
 @load protocols/http/software
 # The detect-webapps script could possibly cause performance trouble when
 # running on live traffic.  Enable it cautiously.
-#@load protocols/http/detect-webapps
+@load protocols/http/detect-webapps
 
 # This script detects DNS results pointing toward your Site::local_nets
 # where the name is not part of your local DNS zone and is being hosted
@@ -83,11 +91,15 @@
 
 # Uncomment the following line to enable logging of connection VLANs. Enabling
 # this adds two VLAN fields to the conn.log file.
-# @load policy/protocols/conn/vlan-logging
+@load policy/protocols/conn/vlan-logging
 
 # Uncomment the following line to enable logging of link-layer addresses. Enabling
 # this adds the link-layer address for each connection endpoint to the conn.log file.
-# @load policy/protocols/conn/mac-logging
+@load policy/protocols/conn/mac-logging
+
+# Uncomment the following line to enable the SMB analyzer.  The analyzer
+# is currently considered a preview and therefore not loaded by default.
+@load policy/protocols/smb
 
 # ElasticSearch Plugin
 # @load Bro/ElasticSearch/logs-to-elasticsearch.bro

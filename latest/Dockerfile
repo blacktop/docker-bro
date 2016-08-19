@@ -32,7 +32,6 @@ RUN set -x \
   && unzip bro.zip \
   && cd docker-bro-master \
   && echo "[INFO] Add Scripts..." \
-  && mv scripts/local.bro /opt/bro/share/bro/site/local.bro \
   && mv scripts /scripts \
   && echo "[INFO] Add GeoIPLite Database..." \
   && mv geoip /usr/share/GeoIP/ \
@@ -50,6 +49,9 @@ ENV PATH /opt/bro/bin:$PATH
 ADD https://github.com/blacktop/docker-bro/raw/master/pcap/heartbleed.pcap /pcap/
 VOLUME ["/pcap"]
 WORKDIR /pcap
+
+# Add local.bro
+COPY local.bro /opt/bro/share/bro/site/local.bro
 
 ENTRYPOINT ["tini","--","bro"]
 
