@@ -2,6 +2,9 @@ machine:
   services:
     - docker
 
+general:
+  build_dir: "2.4"
+
 dependencies:
   pre:
     - make circleci
