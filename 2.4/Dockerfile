@@ -1,4 +1,4 @@
-FROM debian:jessie
+FROM debian:wheezy
 
 MAINTAINER blacktop, https://github.com/blacktop
 
@@ -9,7 +9,7 @@ ENV TINI_URL github.com/krallin/tini/releases/download
 RUN set -x \
   && echo "[INFO] Installing Dependancies =========================================================" \
   && apt-get -qq update \
-  && apt-get install -yq ca-certificates curl unzip --no-install-recommends \
+  && apt-get install -yq ca-certificates curl --no-install-recommends \
   && echo "Grab tini for signal processing and zombie killing =====================================" \
   && curl -sL "https://$TINI_URL/$TINI_VERSION/tini" > /usr/local/bin/tini \
   && curl -sL "https://$TINI_URL/$TINI_VERSION/tini.asc" > /usr/local/bin/tini.asc \
@@ -22,10 +22,10 @@ RUN set -x \
   && echo "[INFO] Installing Bro-IDS ==============================================================" \
   && curl -sL http://download.opensuse.org/repositories/network:bro/Debian_8.0/Release.key \
     | apt-key add - \
-  && echo 'deb http://download.opensuse.org/repositories/network:/bro/Debian_8.0/ /' \
+  && echo 'deb http://download.opensuse.org/repositories/network:/bro/Debian_7.0/ /' \
     >> /etc/apt/sources.list.d/bro.list \
   && apt-get update \
-  && apt-get install -y bro-beta \
+  && apt-get install -y bro \
   && echo "[INFO] Add Extras ======================================================================" \
   && curl -sL https://github.com/blacktop/docker-bro/archive/master.zip > /tmp/bro.zip \
   && cd /tmp \
@@ -42,7 +42,7 @@ RUN set -x \
   && echo "[INFO] Add Test PCAP..." \
   && mv pcap/heartbleed.pcap /pcap/ \
   && echo "[INFO] Cleaning image to reduce size ===================================================" \
-  && apt-get purge -y ca-certificates curl unzip \
+  && apt-get purge -y ca-certificates curl \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 

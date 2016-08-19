@@ -1,0 +1,14 @@
+# Ignore .git folder
+.git*
+
+build
+extract_files
+CHANGELOG.md
+LICENSE
+Makefile
+README.md
+README.md.bu
+VERSION
+circle.yml
+docker-compose.yml
+logo.png
