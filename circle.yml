@@ -11,8 +11,8 @@ dependencies:
   override:
     - docker info
     - if [[ -e ~/docker/image.tar ]]; then docker load --input ~/docker/image.tar; fi
-    - docker build -t blacktop_bro .
-    - mkdir -p ~/docker; docker save blacktop_bro > ~/docker/image.tar
+    - docker build -t bro:$(cat VERSION) .
+    - mkdir -p ~/docker; docker save bro:$(cat VERSION) > ~/docker/image.tar
 
 test:
   override:
