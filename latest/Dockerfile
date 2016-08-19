@@ -26,27 +26,31 @@ RUN set -x \
     >> /etc/apt/sources.list.d/bro.list \
   && apt-get update \
   && apt-get install -y bro \
+  && echo "[INFO] Add Extras ======================================================================" \
+  && curl -sL https://github.com/blacktop/docker-bro/archive/master.zip > /tmp/bro.zip \
+  && cd /tmp \
+  && unzip bro.zip \
+  && cd docker-bro-master \
+  && echo "[INFO] Add Scripts..." \
+  && mv scripts/local.bro /opt/bro/share/bro/site/local.bro \
+  && mv scripts /scripts \
+  && echo "[INFO] Add GeoIPLite Database..." \
+  && mv geoip /usr/share/GeoIP/ \
+  && gunzip /usr/share/GeoIP/GeoLiteCity.dat.gz \
+  && rm -f /usr/share/GeoIP/GeoLiteCity.dat.gz \
+  && ln -s /usr/share/GeoIP/GeoLiteCity.dat /usr/share/GeoIP/GeoIPCity.dat \
+  && echo "[INFO] Add Test PCAP..." \
+  && mv pcap/heartbleed.pcap /pcap/ \
   && echo "[INFO] Cleaning image to reduce size ===================================================" \
   && apt-get purge -y ca-certificates curl \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-# Install the GeoIPLite Database
-COPY /geoip /usr/share/GeoIP/
-RUN gunzip /usr/share/GeoIP/GeoLiteCity.dat.gz \
-  && rm -f /usr/share/GeoIP/GeoLiteCity.dat.gz \
-  && ln -s /usr/share/GeoIP/GeoLiteCity.dat /usr/share/GeoIP/GeoIPCity.dat
-
 ENV PATH /opt/bro/bin:$PATH
 
 # Add PCAP Test Folder
-COPY /pcap/heartbleed.pcap /pcap/
 VOLUME ["/pcap"]
 WORKDIR /pcap
-
-# Add Scripts Folder
-COPY /scripts /scripts
-COPY /scripts/local.bro /opt/bro/share/bro/site/local.bro
 
 ENTRYPOINT ["tini","--","bro"]
 
