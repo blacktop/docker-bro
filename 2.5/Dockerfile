@@ -39,8 +39,6 @@ RUN set -x \
   && gunzip /usr/share/GeoIP/GeoLiteCity.dat.gz \
   && rm -f /usr/share/GeoIP/GeoLiteCity.dat.gz \
   && ln -s /usr/share/GeoIP/GeoLiteCity.dat /usr/share/GeoIP/GeoIPCity.dat \
-  && echo "[INFO] Add Test PCAP..." \
-  && mv pcap/heartbleed.pcap /pcap/ \
   && echo "[INFO] Cleaning image to reduce size ===================================================" \
   && apt-get purge -y ca-certificates curl unzip \
   && apt-get clean \
@@ -49,6 +47,7 @@ RUN set -x \
 ENV PATH /opt/bro/bin:$PATH
 
 # Add PCAP Test Folder
+ADD https://github.com/blacktop/docker-bro/blob/master/pcap/heartbleed.pcap /pcap/
 VOLUME ["/pcap"]
 WORKDIR /pcap
 
