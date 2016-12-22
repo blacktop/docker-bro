@@ -25,7 +25,7 @@ RUN set -x \
   && echo 'deb http://download.opensuse.org/repositories/network:/bro/Debian_8.0/ /' \
     >> /etc/apt/sources.list.d/bro.list \
   && apt-get update \
-  && apt-get install -y bro-beta \
+  && apt-get install -y bro \
   && echo "[INFO] Add Extras ======================================================================" \
   && curl -sL https://github.com/blacktop/docker-bro/archive/master.zip > /tmp/bro.zip \
   && cd /tmp \
