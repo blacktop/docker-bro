@@ -47,13 +47,11 @@ RUN apk-install -t .build-deps linux-headers \
   && make install \
   && echo "===> Compiling elasticsearch plugin..." \
   # Tweaks to improve elasticsearch plugin's performance in docker
-  && SCRIPTS=/tmp/bro/aux/plugins/elasticsearch/scripts \
-  && sed -i "s/JSON::TS_MILLIS/JSON::TS_ISO8601/g" /tmp/bro/aux/plugins/elasticsearch/src/ElasticSearch.cc \
-  && sed -i "s/127.0.0.1/elasticsearch/g" $SCRIPTS/init.bro \
-  && sed -i "s/2secs/60secs/g" $SCRIPTS/init.bro \
+  && cd /tmp/bro/aux/plugins/elasticsearch/scripts && patch -p1 < /tmp/esplung-init.patch \
+  && cd /tmp/bro/aux/plugins/elasticsearch/src && patch -p1 < /tmp/ElasticSearch.patch \
+  && cd /tmp/bro/aux/plugins/elasticsearch/scripts/Bro/ElasticSearch && patch -p1 < /tmp/logs-to-elasticsearch.patch \
   # Tweaks to improve indexing logs into elasticsearch
   && PROTOS=/usr/local/share/bro/base/protocols \
-  && cp /tmp/logs-to-elasticsearch.bro $SCRIPTS/Bro/ElasticSearch/logs-to-elasticsearch.bro \
   && sed -i "s/version:     count           \&log/socks_version:     count           \&log/g" $PROTOS/socks/main.bro \
   && sed -i "s/\$version=/\$socks_version=/g" $PROTOS/socks/main.bro \
   && sed -i "s/version:          string \&log/ssl_version:     string \&log/g" $PROTOS/ssl/main.bro \

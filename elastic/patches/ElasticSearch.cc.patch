@@ -1,0 +1,8 @@
+66c66
+< 	json = new threading::formatter::JSON(this, threading::formatter::JSON::TS_MILLIS);
+---
+> 	json = new threading::formatter::JSON(this, threading::formatter::JSON::TS_ISO8601);
+146,148d145
+< 	buffer.AddRaw("\"_timestamp\":", 13);
+< 	buffer.Add((uint64) (network_time * 1000));
+< 	buffer.AddRaw(",", 1);

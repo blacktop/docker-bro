@@ -1,0 +1,23 @@
+diff --git 1/logs-to-elasticsearch-orig.bro 2/logs-to-elasticsearch.bro
+index 1888f7a..03f9cd6 100644
+--- 1/logs-to-elasticsearch-orig.bro
++++ 2/logs-to-elasticsearch.bro
+@@ -4,7 +4,7 @@ module LogElasticSearch;
+ 
+ export {
+ 	## An elasticsearch specific rotation interval.
+-	const rotation_interval = 3hr &redef;
++	const rotation_interval = 1hr &redef;
+ 
+ 	## Optionally ignore any :bro:type:`Log::ID` from being sent to
+ 	## ElasticSearch with this script.
+@@ -15,6 +15,9 @@ export {
+ 	## be sent.  The :bro:id:`LogElasticSearch::excluded_log_ids` option
+ 	## will remain in effect as well.
+ 	const send_logs: set[Log::ID] &redef;
++
++	## Set the separator
++	redef Log::default_scope_sep = "_";
+ }
+ 
+ event bro_init() &priority=-5
