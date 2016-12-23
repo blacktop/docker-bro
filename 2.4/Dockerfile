@@ -38,12 +38,6 @@ RUN apk-install -t .build-deps linux-headers \
                           --disable-auxtools --prefix=/usr/local \
   && make \
   && make install \
-  && echo "===> Compiling af_packet plugin..." \
-  && cd /tmp/bro/aux/plugins/af_packet \
-  && make distclean \
-  && CC=clang ./configure --with-kernel=/usr \
-  && make \
-  && make install \
   && echo "===> Shrinking image..." \
   && strip -s /usr/local/bin/bro \
   && rm -rf /tmp/* \
