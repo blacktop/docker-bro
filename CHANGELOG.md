@@ -4,7 +4,7 @@ Change Log
 All notable changes to this project will be documented in this file.
 
 [v2.5] - 2016-12-22
-------------------
+-------------------
 
 ### Fixed
 
@@ -18,7 +18,7 @@ All notable changes to this project will be documented in this file.
 
 ### Changed
 
-- Moving to Alpine
+-	Moving to Alpine
 
 [v2.4.1] - 2016-12-22
 ---------------------
@@ -44,4 +44,4 @@ All notable changes to this project will be documented in this file.
 
 ### Changed
 
-- Moving to Alpine
+-	Moving to Alpine
