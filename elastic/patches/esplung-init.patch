@@ -1,14 +1,12 @@
-diff --git 1/init-orig.bro 2/init.bro
-index 94bbd2f..13a9136 100644
 --- 1/init-orig.bro
 +++ 2/init.bro
 @@ -19,7 +19,7 @@ export {
  	const cluster_name = "elasticsearch" &redef;
- 
+
  	## ES server.
 -	const server_host = "127.0.0.1" &redef;
 +	const server_host = "elasticsearch" &redef;
- 
+
  	## ES port.
  	const server_port = 9200 &redef;
 @@ -43,11 +43,11 @@ export {
@@ -17,11 +15,11 @@ index 94bbd2f..13a9136 100644
  	## 0, which means "no timeout."
 -	const transfer_timeout = 2secs;
 +	const transfer_timeout = 60secs;
- 
+
  	## The batch size is the number of messages that will be queued up before
  	## they are sent to be bulk indexed.
 -	const max_batch_size = 1000 &redef;
 +	const max_batch_size = 500 &redef;
- 
+
  	## The maximum amount of wall-clock time that is allowed to pass without
  	## finishing a bulk log send.  This represents the maximum delay you

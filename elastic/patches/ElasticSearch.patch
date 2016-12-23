@@ -1,19 +1,17 @@
-diff --git 1/ElasticSearch-orig.cc 2/ElasticSearch.cc
-index 4a4dd73..30a7c99 100644
 --- 1/ElasticSearch-orig.cc
 +++ 2/ElasticSearch.cc
 @@ -63,7 +63,7 @@ ElasticSearch::ElasticSearch(WriterFrontend* frontend) : WriterBackend(frontend)
- 
+
  	curl_handle = HTTPSetup();
- 
+
 -	json = new threading::formatter::JSON(this, threading::formatter::JSON::TS_MILLIS);
 +	json = new threading::formatter::JSON(this, threading::formatter::JSON::TS_ISO8601);
  	json->SurroundingBraces(false);
  }
- 
+
 @@ -143,9 +143,9 @@ bool ElasticSearch::DoWrite(int num_fields, const Field* const * fields,
  		buffer.AddRaw("\n", 1);
- 
+
  	buffer.AddRaw("{", 1);
 -	buffer.AddRaw("\"_timestamp\":", 13);
 -	buffer.Add((uint64) (network_time * 1000));
@@ -22,5 +20,5 @@ index 4a4dd73..30a7c99 100644
 +	// buffer.Add((uint64) (network_time * 1000));
 +	// buffer.AddRaw(",", 1);
  	json->Describe(&buffer, num_fields, fields, vals);
- 
+
  	buffer.AddRaw("}\n", 2);
