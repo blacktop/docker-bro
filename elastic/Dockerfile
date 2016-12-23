@@ -5,13 +5,14 @@ MAINTAINER blacktop, https://github.com/blacktop
 ENV BRO_VERSION v2.5
 
 COPY patches /tmp
-RUN apk-install zlib openssl libstdc++ libpcap geoip libgcc tini curl-dev
+RUN apk-install zlib openssl libstdc++ libpcap geoip libgcc tini curl
 RUN apk-install -t .build-deps linux-headers \
                                 openssl-dev \
                                 libpcap-dev \
                                 python-dev \
                                 geoip-dev \
                                 zlib-dev \
+                                curl-dev \
                                 binutils \
                                 fts-dev \
                                 cmake \
@@ -50,7 +51,7 @@ RUN apk-install -t .build-deps linux-headers \
   && cd /tmp/bro/aux/plugins/elasticsearch/scripts && patch -p1 < /tmp/esplung-init.patch \
   && cd /tmp/bro/aux/plugins/elasticsearch/src && patch -p1 < /tmp/ElasticSearch.patch \
   && cd /tmp/bro/aux/plugins/elasticsearch/scripts/Bro/ElasticSearch && patch -p1 < /tmp/logs-to-elasticsearch.patch \
-  # Tweaks to improve indexing logs into elasticsearch
+  # Tweaks protocols to improve indexing logs into elasticsearch
   && PROTOS=/usr/local/share/bro/base/protocols \
   && sed -i "s/version:     count           \&log/socks_version:     count           \&log/g" $PROTOS/socks/main.bro \
   && sed -i "s/\$version=/\$socks_version=/g" $PROTOS/socks/main.bro \
@@ -65,7 +66,7 @@ RUN apk-install -t .build-deps linux-headers \
   && CC=clang ./configure \
   && make \
   && make install \
-  # Stop local logging to prevent filling up the disk on the container with logs
+  # Stop local logging to prevent filling up the container with logs
   && sed -i "s/WRITER_ASCII/WRITER_NONE/g" /usr/local/share/bro/base/frameworks/logging/main.bro \
   && echo "===> Shrinking image..." \
   && strip -s /usr/local/bin/bro \
@@ -78,7 +79,8 @@ VOLUME ["/pcap"]
 WORKDIR /pcap
 
 COPY local.bro /usr/local/share/bro/site/local.bro
+COPY template.json /template.json
+COPY entrypoint.sh /entrypoint.sh
 
-ENTRYPOINT ["/sbin/tini","--","bro"]
-
+ENTRYPOINT ["/entrypoint.sh"]
 CMD [ "-h" ]
