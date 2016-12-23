@@ -5,3 +5,4 @@ build
 my_capture.pcap
 mypackets.trace
 README.md.bu
+elastic/patches/files
