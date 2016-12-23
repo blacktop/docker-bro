@@ -1,4 +1,4 @@
-![bro-logo](https://raw.githubusercontent.com/blacktop/docker-bro/master/logo.png)
+![bro-logo](https://raw.githubusercontent.com/blacktop/docker-bro/master/docs/imgs/logo.png)
 
 Bro IDS Dockerfile
 ==================
@@ -15,13 +15,6 @@ This repository contains a **Dockerfile** of [Bro-IDS](http://www.bro.org/index.
 -	[Getting Started](#getting-started)
 	-	[Using the included heartbleed test pcap](#using-the-included-heartbleed-test-pcap)
 -	[Documentation](#documentation)
-	-	[Usage](#usage)
-		-	[Capture Live Traffic](#capture-live-traffic)
-		-	[Use your own pcap](#use-your-own-pcap)
-	-	[Tips and Tricks](#tips-and-tricks)
-		-	[Create a pcap](#create-a-pcap)
-		-	[Get rid of the `WARNING: No Site::local_nets have been defined.` message.](#get-rid-of-the-warning-no-sitelocal_nets-have-been-defined-message)
-		-	[Use **blacktop/bro** like a host binary](#use-blacktopbro-like-a-host-binary)
 -	[Issues](#issues)
 -	[Todo](#todo)
 -	[CHANGELOG](#changelog)
@@ -91,49 +84,10 @@ Heartbleed::SSL_Heartbeat_Attack_Success
 
 ### Documentation
 
-#### Usage
-
-##### Capture Live Traffic
-
-```bash
-docker run --rm --cap-add=NET_RAW --net=host -v `pwd`:/pcap:rw blacktop/bro -i eth0
-```
-
-##### Use your own pcap
-
-```bash
-$ docker run --rm -v /path/to/pcap:/pcap:rw blacktop/bro -r my.pcap local
-```
-
-#### Tips and Tricks
-
-##### Create a pcap
-
-Capturing packets from an interface and writing them to a file can be done like this:
-
-```bash
-$ sudo tcpdump -i en0 -s 0 -w my_capture.pcap
-```
-
-To capture packets from a VMWare Fusion VM using **vmnet-sniffer** you can do this:
-
-```bash
-sudo /Applications/VMware\ Fusion.app/Contents/Library/vmnet-sniffer -e -w my_capture.pcap vmnet8
-```
-
-##### Get rid of the `WARNING: No Site::local_nets have been defined.` message.
-
-```bash
-bro -r my_capture.pcap local "Site::local_nets += { 1.2.3.0/24, 5.6.7.0/24 }"
-```
-
-##### Use **blacktop/bro** like a host binary
-
-Add the following to your bash or zsh profile
-
-```bash
-alias bro='docker run --rm -v `pwd`:/pcap:rw blacktop/bro $@'
-```
+-	[Usage](docs/usage.md)
+-	[Tips and Tricks](docs/tips-and-tricks.md)
+-	[Integrate with the Elastic Stack](docs/elastic.md)
+-	[Integrate with Kafka](docs/kafka.md)
 
 ### Issues
 
@@ -146,7 +100,7 @@ Find a bug? Want more features? Find something missing in the documentation? Let
 -	[x] Refine my extract-all.bro script
 -	[ ] Start Daemon and watch folder with supervisord
 -	[ ] Have container take a URL as input and download/scan pcap
--	[ ] Add ELK Stack
+-	[x] Add ELK Stack
 
 ### Credits
 
