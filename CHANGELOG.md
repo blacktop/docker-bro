@@ -3,7 +3,7 @@ Change Log
 
 All notable changes to this project will be documented in this file.
 
-[v2.5][unreleased]
+[v2.5] - 2016-12-22
 ------------------
 
 ### Fixed
@@ -12,12 +12,15 @@ All notable changes to this project will be documented in this file.
 
 -	Kafka Plugin  
 -	C++ Actor Framework 0.14.5  
+-	tini for signal processing and zombie killing  
 
 ### Removed
 
 ### Changed
 
-[v2.4.1] - 2016-07-29
+- Moving to Alpine
+
+[v2.4.1] - 2016-12-22
 ---------------------
 
 ### Fixed
@@ -25,6 +28,7 @@ All notable changes to this project will be documented in this file.
 -	Updated geoIP DB
 -	Update scripts  
 -	Shrunk image by 465.2 MB !!!!  
+-	Shrunk image by ANOTHER 181.44 MB !!!!  
 
 ### Added
 
@@ -40,4 +44,4 @@ All notable changes to this project will be documented in this file.
 
 ### Changed
 
--	Using binary package to decrease size of docker image
+- Moving to Alpine

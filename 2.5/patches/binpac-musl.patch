@@ -1,0 +1,10 @@
+--- binpac-orig/lib/binpac.h.in
++++ binpac/lib/binpac.h.in
+@@ -4,6 +4,7 @@
+ #define binpac_h
+ 
+ #include <sys/param.h>
++#include <sys/types.h>
+ 
+ #cmakedefine HOST_BIGENDIAN
+ #ifdef HOST_BIGENDIAN

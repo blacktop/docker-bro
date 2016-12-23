@@ -3,7 +3,7 @@
 Bro IDS Dockerfile
 ==================
 
-[![CircleCI](https://circleci.com/gh/blacktop/docker-bro.png?style=shield)](https://circleci.com/gh/blacktop/docker-bro) [![License](http://img.shields.io/:license-mit-blue.svg)](http://doge.mit-license.org) [![Docker Stars](https://img.shields.io/docker/stars/blacktop/bro.svg)](https://hub.docker.com/r/blacktop/bro/) [![Docker Pulls](https://img.shields.io/docker/pulls/blacktop/bro.svg)](https://hub.docker.com/r/blacktop/bro/) [![Docker Image](https://img.shields.io/badge/docker image-201 MB-blue.svg)](https://hub.docker.com/r/blacktop/bro/)
+[![CircleCI](https://circleci.com/gh/blacktop/docker-bro.png?style=shield)](https://circleci.com/gh/blacktop/docker-bro) [![License](http://img.shields.io/:license-mit-blue.svg)](http://doge.mit-license.org) [![Docker Stars](https://img.shields.io/docker/stars/blacktop/bro.svg)](https://hub.docker.com/r/blacktop/bro/) [![Docker Pulls](https://img.shields.io/docker/pulls/blacktop/bro.svg)](https://hub.docker.com/r/blacktop/bro/) [![Docker Image](https://img.shields.io/badge/docker image-19.56 MB-blue.svg)](https://hub.docker.com/r/blacktop/bro/)
 
 This repository contains a **Dockerfile** of [Bro-IDS](http://www.bro.org/index.html) **blacktop/bro**.
 
@@ -144,6 +144,10 @@ Find a bug? Want more features? Find something missing in the documentation? Let
 -	[ ] Start Daemon and watch folder with supervisord
 -	[ ] Have container take a URL as input and download/scan pcap
 -	[ ] Add ELK Stack
+
+### Credits
+
+Alpine conversion heavily (if not entirely) influenced by https://github.com/nizq/docker-bro
 
 ### CHANGELOG
 

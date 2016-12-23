@@ -8,14 +8,18 @@
 # Apply the default tuning scripts for common tuning settings.
 @load tuning/defaults
 
+# Estimate and log capture loss.
+@load misc/capture-loss
+
+# Enable logging of memory, packet and lag statistics.
+@load misc/stats
+
 # Load the scan detection script.
 @load misc/scan
 
-# Log some information about web applications being used by users
-# on your network.
-@load misc/app-stats
-
-# Detect traceroute being run on the network.
+# Detect traceroute being run on the network. This could possibly cause
+# performance trouble when there are a lot of traceroutes on your network.
+# Enable cautiously.
 @load misc/detect-traceroute
 
 # Generate notices when vulnerable versions of software are discovered.
@@ -84,3 +88,26 @@
 # Uncomment the following line to enable detection of the heartbleed attack. Enabling
 # this might impact performance a bit.
 @load policy/protocols/ssl/heartbleed
+
+# Uncomment the following line to enable logging of connection VLANs. Enabling
+# this adds two VLAN fields to the conn.log file.
+@load policy/protocols/conn/vlan-logging
+
+# Uncomment the following line to enable logging of link-layer addresses. Enabling
+# this adds the link-layer address for each connection endpoint to the conn.log file.
+@load policy/protocols/conn/mac-logging
+
+# Uncomment the following line to enable the SMB analyzer.  The analyzer
+# is currently considered a preview and therefore not loaded by default.
+@load policy/protocols/smb
+
+# ElasticSearch Plugin
+# @load Bro/ElasticSearch/logs-to-elasticsearch.bro
+
+# Kafka Plugin
+# @load Bro/Kafka/logs-to-kafka.bro
+# redef Kafka::logs_to_send = set(Conn::LOG, HTTP::LOG);
+# redef Kafka::kafka_conf = table(
+#     ["metadata.broker.list"] = "kafka:9092"
+# );
+# redef Kafka::topic_name = "bro";
