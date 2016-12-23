@@ -20,6 +20,7 @@ RUN apk-install -t .build-deps linux-headers \
                                 perl \
                                 make \
                                 flex \
+                                curl \
                                 git \
                                 g++ \
                                 fts \
