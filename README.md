@@ -31,7 +31,7 @@ This repository contains a **Dockerfile** of [Bro-IDS](http://www.bro.org/index.
 
 ### Dependencies
 
--	[debian:wheezy (*84.93 MB*\)](https://hub.docker.com/_/debian/)
+-	[gliderlabs/alpine:3.4](https://index.docker.io/_/gliderlabs/alpine/)
 
 ### Image Tags
 
@@ -40,7 +40,7 @@ $ docker images
 
 REPOSITORY          TAG                 SIZE
 blacktop/bro        latest              201 MB
-blacktop/bro        2.5                 201 MB
+blacktop/bro        2.5                 19.56 MB
 blacktop/bro        2.4                 157.3 MB
 blacktop/bro        elastic             640 MB
 blacktop/bro        2.4.1               482.8 MB
@@ -58,22 +58,23 @@ blacktop/bro        2.2                 527.7 MB
 #### Using the included heartbleed test pcap
 
 ```bash
-$ docker run --rm -v `pwd`/pcap:/pcap blacktop/bro -r heartbleed.pcap local "Site::local_nets += { 192.168.11.0/24 }"
+$ wget https://github.com/blacktop/docker-bro/raw/master/pcap/heartbleed.pcap
+$ docker run --rm -v `pwd`:/pcap blacktop/bro -r heartbleed.pcap local "Site::local_nets += { 192.168.11.0/24 }"
 ```
 
 ```bash
 $ ls -l
 
--rw-r--r--  1 blactop  staff   635B Jul 30 12:11 pcap/conn.log
--rw-r--r--  1 blactop  staff   754B Jul 30 12:11 pcap/files.log
--rw-r--r--  1 blactop  staff   384B Jul 30 12:11 pcap/known_certs.log
--rw-r--r--  1 blactop  staff   239B Jul 30 12:11 pcap/known_hosts.log
--rw-r--r--  1 blactop  staff   271B Jul 30 12:11 pcap/known_services.log
--rw-r--r--  1 blactop  staff    17K Jul 30 12:11 pcap/loaded_scripts.log
--rw-r--r--  1 blactop  staff   1.9K Jul 30 12:11 'pcap/notice.log'
--rw-r--r--  1 blactop  staff   253B Jul 30 12:11 pcap/packet_filter.log
--rw-r--r--  1 blactop  staff   1.2K Jul 30 12:11 pcap/ssl.log
--rw-r--r--  1 blactop  staff   901B Jul 30 12:11 pcap/x509.log
+-rw-r--r--  1 blacktop  staff   635B Jul 30 12:11 pcap/conn.log
+-rw-r--r--  1 blacktop  staff   754B Jul 30 12:11 pcap/files.log
+-rw-r--r--  1 blacktop  staff   384B Jul 30 12:11 pcap/known_certs.log
+-rw-r--r--  1 blacktop  staff   239B Jul 30 12:11 pcap/known_hosts.log
+-rw-r--r--  1 blacktop  staff   271B Jul 30 12:11 pcap/known_services.log
+-rw-r--r--  1 blacktop  staff    17K Jul 30 12:11 pcap/loaded_scripts.log
+-rw-r--r--  1 blacktop  staff   1.9K Jul 30 12:11 'pcap/notice.log'
+-rw-r--r--  1 blacktop  staff   253B Jul 30 12:11 pcap/packet_filter.log
+-rw-r--r--  1 blacktop  staff   1.2K Jul 30 12:11 pcap/ssl.log
+-rw-r--r--  1 blacktop  staff   901B Jul 30 12:11 pcap/x509.log
 ```
 
 ```bash
@@ -133,8 +134,6 @@ alias bro='docker run --rm -v `pwd`:/pcap:rw blacktop/bro $@'
 ### Issues
 
 Find a bug? Want more features? Find something missing in the documentation? Let me know! Please don't hesitate to [file an issue](https://github.com/blacktop/docker-bro/issues/new) and I'll get right on it.
-
-> NOTE: I am now using the precompiled bro package to decrease the docker image size, if that caused a loss in functionality you depend on please let me know.
 
 ### Todo
 
