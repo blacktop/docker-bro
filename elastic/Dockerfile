@@ -14,6 +14,7 @@ RUN apk-install -t .build-deps linux-headers \
                                 zlib-dev \
                                 binutils \
                                 fts-dev \
+                                libcurl \
                                 cmake \
                                 clang \
                                 bison \
@@ -48,7 +49,7 @@ RUN apk-install -t .build-deps linux-headers \
   && echo "===> Compiling elasticsearch plugin..." \
   && sed -i "s/JSON::TS_MILLIS/JSON::TS_ISO8601/g" /tmp/bro/aux/plugins/elasticsearch/src/ElasticSearch.cc \
   && sed -i "s/127.0.0.1/elasticsearch/g" /tmp/bro/aux/plugins/elasticsearch/scripts/init.bro \
-  && sed -i "s/2secs/60secs/g" /tmp/bro/aux/plugins/elasticsearch/scripts/init.bro \  
+  && sed -i "s/2secs/60secs/g" /tmp/bro/aux/plugins/elasticsearch/scripts/init.bro \
   && cd /tmp/bro/aux/plugins/elasticsearch \
   && CC=clang ./configure \
   && make \
