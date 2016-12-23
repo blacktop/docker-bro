@@ -1,4 +1,4 @@
-FROM gliderlabs/alpine:3.4
+FROM gliderlabs/alpine:edge
 
 MAINTAINER blacktop, https://github.com/blacktop
 
@@ -6,24 +6,25 @@ ENV BRO_VERSION v2.5
 
 COPY patches /tmp
 RUN apk-install zlib openssl libstdc++ libpcap geoip libgcc tini
-RUN apk-install -t .build-deps linux-headers \
-                                openssl-dev \
-                                libpcap-dev \
-                                python-dev \
-                                geoip-dev \
-                                zlib-dev \
-                                binutils \
-                                fts-dev \
-                                cmake \
-                                clang \
-                                bison \
-                                perl \
-                                make \
-                                flex \
-                                curl \
-                                git \
-                                g++ \
-                                fts \
+RUN apk-install -t .build-deps librdkafka-dev \
+                               linux-headers \
+                               openssl-dev \
+                               libpcap-dev \
+                               python-dev \
+                               geoip-dev \
+                               zlib-dev \
+                               binutils \
+                               fts-dev \
+                               cmake \
+                               clang \
+                               bison \
+                               perl \
+                               make \
+                               flex \
+                               curl \
+                               git \
+                               g++ \
+                               fts \
   && set -x \
   && cd /tmp \
   && git clone --recursive --branch $BRO_VERSION git://git.bro.org/bro \
@@ -47,14 +48,10 @@ RUN apk-install -t .build-deps linux-headers \
   && make \
   && make install \
   && echo "===> Compiling kafka plugin..." \
-  && curl -L https://github.com/edenhill/librdkafka/archive/0.9.2.tar.gz | tar xvz
-  && cd librdkafka-0.9.2/
-  && CC=clang ./configure
-  && make
-  && make install
-  && CC=clang ./configure --bro-dist=/tmp/bro
-  && make
-  && make install
+  && cd /tmp/bro/aux/plugins/kafka \
+  && CC=clang ./configure --bro-dist=/tmp/bro \
+  && make \
+  && make install \
   && echo "===> Shrinking image..." \
   && strip -s /usr/local/bin/bro \
   && rm -rf /tmp/* \
