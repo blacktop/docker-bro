@@ -5,16 +5,16 @@ MAINTAINER blacktop, https://github.com/blacktop
 ENV BRO_VERSION v2.5
 
 COPY patches /tmp
-RUN apk-install zlib openssl libstdc++ libpcap geoip libgcc tini
+RUN apk-install zlib openssl libstdc++ libpcap geoip libgcc tini curl
 RUN apk-install -t .build-deps linux-headers \
                                 openssl-dev \
                                 libpcap-dev \
                                 python-dev \
                                 geoip-dev \
+                                curl-dev \
                                 zlib-dev \
                                 binutils \
                                 fts-dev \
-                                libcurl \
                                 cmake \
                                 clang \
                                 bison \
@@ -39,7 +39,7 @@ RUN apk-install -t .build-deps linux-headers \
                           --disable-broctl --disable-broccoli \
                           --disable-auxtools --prefix=/usr/local \
   && make \
-  && make install \
+  && make install
   && echo "===> Compiling af_packet plugin..." \
   && cd /tmp/bro/aux/plugins/af_packet \
   && make distclean \
