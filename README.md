@@ -40,7 +40,7 @@ $ docker images
 REPOSITORY          TAG                 SIZE
 blacktop/bro        latest              19.57 MB
 blacktop/bro        2.5                 19.56 MB
-blacktop/bro        elastic             640 MB
+blacktop/bro        elastic             22.47 MB
 blacktop/bro        kafka               28.91 MB
 blacktop/bro        2.4.1               16.68 MB
 blacktop/bro        2.4                 16.68 MB
