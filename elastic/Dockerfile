@@ -5,13 +5,12 @@ MAINTAINER blacktop, https://github.com/blacktop
 ENV BRO_VERSION v2.5
 
 COPY patches /tmp
-RUN apk-install zlib openssl libstdc++ libpcap geoip libgcc tini curl
+RUN apk-install zlib openssl libstdc++ libpcap geoip libgcc tini curl-dev
 RUN apk-install -t .build-deps linux-headers \
                                 openssl-dev \
                                 libpcap-dev \
                                 python-dev \
                                 geoip-dev \
-                                curl-dev \
                                 zlib-dev \
                                 binutils \
                                 fts-dev \
@@ -47,13 +46,29 @@ RUN apk-install -t .build-deps linux-headers \
   && make \
   && make install \
   && echo "===> Compiling elasticsearch plugin..." \
+  # Tweaks to improve elasticsearch plugin's performance in docker
+  && SCRIPTS=/tmp/bro/aux/plugins/elasticsearch/scripts \
   && sed -i "s/JSON::TS_MILLIS/JSON::TS_ISO8601/g" /tmp/bro/aux/plugins/elasticsearch/src/ElasticSearch.cc \
-  && sed -i "s/127.0.0.1/elasticsearch/g" /tmp/bro/aux/plugins/elasticsearch/scripts/init.bro \
-  && sed -i "s/2secs/60secs/g" /tmp/bro/aux/plugins/elasticsearch/scripts/init.bro \
+  && sed -i "s/127.0.0.1/elasticsearch/g" $SCRIPTS/init.bro \
+  && sed -i "s/2secs/60secs/g" $SCRIPTS/init.bro \
+  # Tweaks to improve indexing logs into elasticsearch
+  && PROTOS=/usr/local/share/bro/base/protocols \
+  && cp /tmp/logs-to-elasticsearch.bro $SCRIPTS/Bro/ElasticSearch/logs-to-elasticsearch.bro \
+  && sed -i "s/version:     count           \&log/socks_version:     count           \&log/g" $PROTOS/socks/main.bro \
+  && sed -i "s/\$version=/\$socks_version=/g" $PROTOS/socks/main.bro \
+  && sed -i "s/version:          string \&log/ssl_version:     string \&log/g" $PROTOS/ssl/main.bro \
+  && sed -i "s/\$version=/\$ssl_version=/g" $PROTOS/ssl/main.bro \
+  && sed -i "s/version:         count        \&log/ssh_version:         count        \&log/g" $PROTOS/ssh/main.bro \
+  && sed -i "s/\$version =/\$ssh_version =/g" $PROTOS/ssh/main.bro \
+  && sed -i "s/version: string \&log/snmp_version: string \&log/g" $PROTOS/snmp/main.bro \
+  && sed -i "s/\$version=/\$snmp_version=/g" $PROTOS/snmp/main.bro   \
+  # Build elasticsearch plugin
   && cd /tmp/bro/aux/plugins/elasticsearch \
   && CC=clang ./configure \
   && make \
   && make install \
+  # Stop local logging to prevent filling up the disk on the container with logs
+  && sed -i "s/WRITER_ASCII/WRITER_NONE/g" /usr/local/share/bro/base/frameworks/logging/main.bro \
   && echo "===> Shrinking image..." \
   && strip -s /usr/local/bin/bro \
   && rm -rf /tmp/* \

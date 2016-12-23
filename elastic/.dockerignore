@@ -12,3 +12,4 @@ VERSION
 circle.yml
 docker-compose.yml
 logo.png
+patches/logs-to-elasticsearch-orig.bro
