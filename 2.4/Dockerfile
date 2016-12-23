@@ -34,8 +34,7 @@ RUN apk-install -t .build-deps linux-headers \
   && patch -p1 < /tmp/binpac-musl.patch \
   && echo "===> Compiling bro..." \
   && cd /tmp/bro \
-  && CC=clang ./configure --disable-broker \
-                          --disable-broctl --disable-broccoli \
+  && CC=clang ./configure --disable-broctl --disable-broccoli \
                           --disable-auxtools --prefix=/usr/local \
   && make \
   && make install \
