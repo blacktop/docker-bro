@@ -39,7 +39,7 @@ RUN apk-install -t .build-deps linux-headers \
                           --disable-broctl --disable-broccoli \
                           --disable-auxtools --prefix=/usr/local \
   && make \
-  && make install
+  && make install \
   && echo "===> Compiling af_packet plugin..." \
   && cd /tmp/bro/aux/plugins/af_packet \
   && make distclean \
