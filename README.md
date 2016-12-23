@@ -77,7 +77,7 @@ $ ls -l
 ```
 
 ```bash
-$ cat pcap/notice.log | awk '{ print $11 }' | tail -n4
+$ cat notice.log | awk '{ print $11 }' | tail -n4
 
 Heartbleed::SSL_Heartbeat_Attack
 Heartbleed::SSL_Heartbeat_Odd_Length
