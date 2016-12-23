@@ -1,4 +1,4 @@
-FROM gliderlabs/alpine:3.4
+FROM gliderlabs/alpine:edge
 
 MAINTAINER blacktop, https://github.com/blacktop
 
@@ -12,7 +12,6 @@ RUN echo http://nl.alpinelinux.org/alpine/edge/testing >> /etc/apk/repositories 
                                 libpcap-dev \
                                 python-dev \
                                 geoip-dev \
-                                libssl1.0 \
                                 zlib-dev \
                                 binutils \
                                 fts-dev \
