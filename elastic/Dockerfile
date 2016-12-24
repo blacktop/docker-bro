@@ -78,6 +78,9 @@ ENV BROPATH .:/data/config:/usr/local/share/bro:/usr/local/share/bro/policy:/usr
 VOLUME ["/pcap"]
 WORKDIR /pcap
 
+# Add some scripts
+ADD https://github.com/blacktop/docker-bro/raw/master/scripts/log-passwords.bro \
+    /usr/local/share/bro/passwords/log-passwords.bro
 ADD https://github.com/blacktop/docker-bro/raw/master/scripts/conn-add-geodata.bro \
     /usr/local/share/bro/geodata/conn-add-geodata.bro
 
