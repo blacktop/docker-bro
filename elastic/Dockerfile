@@ -5,7 +5,7 @@ MAINTAINER blacktop, https://github.com/blacktop
 ENV BRO_VERSION v2.5
 
 COPY patches /tmp
-RUN apk-install zlib openssl libstdc++ libpcap geoip libgcc tini curl inotify-tools
+RUN apk-install zlib openssl libstdc++ libpcap geoip libgcc tini curl inotify-tools jq
 RUN apk-install -t .build-deps linux-headers \
                                 openssl-dev \
                                 libpcap-dev \
