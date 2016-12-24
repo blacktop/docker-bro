@@ -2,30 +2,7 @@
 
 set -e
 
-# Add bro as command if needed
-if [ "${1:0:1}" = '-' ]; then
-	set -- bro "$@"
-fi
-
-if [ "$1" = 'watch' ]; then
-	CURPATH=`pwd`
-
-	inotifywait -mr --timefmt '%d/%m/%y %H:%M' --format '%T %w %f' -e close_write /tmp/test | \
-	while read date time dir file; do
-
-		FILECHANGE=${dir}${file}
-		# convert absolute path to relative
-		FILECHANGEREL=`echo "$FILECHANGE" | sed 's_'$CURPATH'/__'`
-
-		if [[ $FILECHANGEREL == *.pcap ]]; then
-			>&2 echo "At ${time} on ${date}, pcap $FILECHANGE was analyzed by bro"
-			/sbin/tini bro -r $FILECHANGEREL local
-		fi
-
-	done
-fi
-
-if [ "$1" = 'bro' ]; then
+set_up_elasticsearch() {
 	# wait for elasticsearch to come online
 	until curl -s --output /dev/null -XGET elasticsearch:9200/; do
 	  echo "Elasticsearch is unavailable - sleeping 5s"
@@ -51,8 +28,41 @@ if [ "$1" = 'bro' ]; then
 		curl -s -XPUT "elasticsearch:9200/.kibana/config/$KIBANA" -d '{"defaultIndex" : "bro-*"}'
 		echo -e "\n"
 	fi
+}
 
-	set -- /sbin/tini -- "$@"
+# Add bro as command if needed
+if [ "${1:0:1}" = '-' ]; then
+	set -- bro "$@"
+fi
+
+if [ "$1" = 'bro-watch' ]; then
+
+	set_up_elasticsearch
+
+	CURPATH=`pwd`
+	echo -e "===> Now watching path $CURPATH for new pcap files..."
+	inotifywait -m --timefmt '%d/%m/%y %H:%M' --format '%T %w %f' -e moved_to,create /pcap | \
+	while read date time dir file; do
+
+		FILECHANGE=${dir}${file}
+		# convert absolute path to relative
+		FILECHANGEREL=`echo "$FILECHANGE" | sed 's_'$CURPATH'/__'`
+
+		if [[ $FILECHANGEREL == *.pcap ]]; then
+			echo "At ${time} on ${date}, pcap $FILECHANGE was analyzed by bro"
+			bro -r $FILECHANGEREL local
+			echo "Moving analyzed pcap $FILECHANGE to /tmp"
+			mv $FILECHANGEREL /tmp
+		fi
+		sleep 1
+	done
+fi
+
+if [ "$1" = 'bro' ]; then
+
+	set_up_elasticsearch
+
+	set -- "$@"
 fi
 
 exec "$@"

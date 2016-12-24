@@ -95,5 +95,5 @@ COPY template.json /template.json
 COPY index-pattern.json /index-pattern.json
 COPY entrypoint.sh /entrypoint.sh
 
-ENTRYPOINT ["/entrypoint.sh"]
-CMD [ "-h" ]
+ENTRYPOINT ["/sbin/tini","/entrypoint.sh"]
+CMD ["-h"]
