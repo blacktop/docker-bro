@@ -17,10 +17,10 @@ if [ "$1" = 'watch' ]; then
 	   # convert absolute path to relative
 	   FILECHANGEREL=`echo "$FILECHANGE" | sed 's_'$CURPATH'/__'`
 
-		 if [[ $FILECHANGEREL == *.pcap ]]; then
-		   /sbin/tini bro -r $FILECHANGEREL local \
-		   && echo "At ${time} on ${date}, pcap $FILECHANGE was analyzed by bro"
-	 	 fi
+		if [[ $FILECHANGEREL == *.pcap ]]; then
+			>&2 echo "At ${time} on ${date}, pcap $FILECHANGE was analyzed by bro"
+			/sbin/tini bro -r $FILECHANGEREL local
+		fi
 	done
 fi
 
