@@ -36,8 +36,6 @@ blacktop/bro        elastic             22.47 MB
 blacktop/bro        kafka               28.91 MB
 blacktop/bro        2.4.1               16.68 MB
 blacktop/bro        2.4                 16.68 MB
-blacktop/bro        2.3.2               530.9 MB
-blacktop/bro        2.2                 527.7 MB
 ```
 
 > **NOTE:**
