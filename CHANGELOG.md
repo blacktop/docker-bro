@@ -11,7 +11,7 @@ All notable changes to this project will be documented in this file.
 ### Added
 
 -	Kafka Plugin  
--	C++ Actor Framework 0.14.5  
+-	Elasticsearch Plugin
 -	tini for signal processing and zombie killing  
 
 ### Removed
