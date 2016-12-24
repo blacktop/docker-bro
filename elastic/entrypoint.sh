@@ -33,7 +33,7 @@ if [ "$1" = 'bro' ]; then
 
 	KIBANA=$(curl -s 'elasticsearch:9200/.kibana/config/_search' | jq -r '.hits.hits[] ._id')
 
-	if [ $(curl -s "elasticsearch:9200/.kibana/config/$KIBANA" | jq '._source.defaultIndex') == "bro-*" ] ; then
+	if [ "$(curl -s elasticsearch:9200/.kibana/config/$KIBANA | jq '._source.defaultIndex?')" != "bro-*" ] ; then
 		>&2 echo -e "\nElasticsearch is up"
 		>&2 echo "===> Set bro template..."
 		curl -s -XPUT -H "Content-Type: application/json" --data @/template.json 'elasticsearch:9200/_template/bro'
