@@ -77,7 +77,7 @@ RUN apk-install -t .build-deps linux-headers \
 RUN mkdir -p /usr/share/GeoIP/ \
   && GEOIP=geolite.maxmind.com/download/geoip/database \
   && curl -s http://${GEOIP}/GeoLiteCity.dat.gz | zcat > /usr/share/GeoIP/GeoIPCity.dat \
-  && curl -s http://${GEOIP6}/GeoLiteCityv6-beta/GeoLiteCityv6.dat.gz | zcat > /usr/share/GeoIP/GeoIPCityv6.dat
+  && curl -s http://${GEOIP}/GeoLiteCityv6-beta/GeoLiteCityv6.dat.gz | zcat > /usr/share/GeoIP/GeoIPCityv6.dat
 
 ENV BROPATH .:/data/config:/usr/local/share/bro:/usr/local/share/bro/policy:/usr/local/share/bro/site
 
