@@ -11,9 +11,9 @@ $ docker run --rm -v `pwd`:/pcap --link elstack:elasticsearch \
 $ open http://localhost/app/kibana  
 ```
 
-Configure the Bro index pattern
+<!-- Configure the Bro index pattern
 
-![index](imgs/index.png)
+![index](imgs/index.png) -->
 
 Click the [Discover](http://localhost/app/kibana#/discover) tab and filter to `_type:notice`
 
