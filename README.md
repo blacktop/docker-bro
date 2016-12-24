@@ -80,10 +80,10 @@ Heartbleed::SSL_Heartbeat_Attack_Success
 
 ### Documentation
 
--	[Usage](docs/usage.md)
--	[Tips and Tricks](docs/tips-and-tricks.md)
--	[Integrate with the Elastic Stack](docs/elastic.md)
--	[Integrate with Kafka](docs/kafka.md)
+-	[Usage](https://github.com/blacktop/docker-bro/blob/master/docs/usage.md)
+-	[Tips and Tricks](https://github.com/blacktop/docker-bro/blob/master/docs/tips-and-tricks.md)
+-	[Integrate with the Elastic Stack](https://github.com/blacktop/docker-bro/blob/master/docs/elastic.md)
+-	[Integrate with Kafka](https://github.com/blacktop/docker-bro/blob/master/docs/kafka.md)
 
 ### Issues
 
