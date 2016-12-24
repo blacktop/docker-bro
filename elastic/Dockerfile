@@ -74,12 +74,10 @@ RUN apk-install -t .build-deps linux-headers \
   && apk del --purge .build-deps
 
 # Install the GeoIPLite Database
-RUN set -x \
+RUN mkdir -p /usr/share/GeoIP/ \
   && GEOIP=geolite.maxmind.com/download/geoip/database \
-  && GEOIP6=$GEOIP/GeoLiteCityv6-beta \
-  && mkdir -p /usr/share/GeoIP/ \
   && curl -s http://${GEOIP}/GeoLiteCity.dat.gz | zcat > /usr/share/GeoIP/GeoIPCity.dat \
-  && curl -s http://${GEOIP6}/GeoLiteCityv6.dat.gz | zcat > /usr/share/GeoIP/GeoIPCityv6.dat
+  && curl -s http://${GEOIP6}/GeoLiteCityv6-beta/GeoLiteCityv6.dat.gz | zcat > /usr/share/GeoIP/GeoIPCityv6.dat
 
 ENV BROPATH .:/data/config:/usr/local/share/bro:/usr/local/share/bro/policy:/usr/local/share/bro/site
 
