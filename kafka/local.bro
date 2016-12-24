@@ -20,7 +20,7 @@
 # Detect traceroute being run on the network. This could possibly cause
 # performance trouble when there are a lot of traceroutes on your network.
 # Enable cautiously.
-@load misc/detect-traceroute
+#@load misc/detect-traceroute
 
 # Generate notices when vulnerable versions of software are discovered.
 # The default is to only monitor software found in the address space defined
@@ -100,9 +100,6 @@
 # Uncomment the following line to enable the SMB analyzer.  The analyzer
 # is currently considered a preview and therefore not loaded by default.
 @load policy/protocols/smb
-
-# ElasticSearch Plugin
-# @load Bro/ElasticSearch/logs-to-elasticsearch.bro
 
 # Kafka Plugin
 @load Bro/Kafka/logs-to-kafka.bro

@@ -94,8 +94,7 @@ Find a bug? Want more features? Find something missing in the documentation? Let
 -	[x] Install/Run Bro-IDS
 -	[x] Fix Geolocation feature
 -	[x] Refine my extract-all.bro script
--	[ ] Start Daemon and watch folder with supervisord
--	[ ] Have container take a URL as input and download/scan pcap
+-	[x] Start Daemon and watch folder with `inotify`
 -	[x] Add ELK Stack
 
 ### Credits

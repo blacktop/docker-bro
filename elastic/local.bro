@@ -104,10 +104,5 @@
 # ElasticSearch Plugin
 @load Bro/ElasticSearch/logs-to-elasticsearch.bro
 
-# Kafka Plugin
-# @load Bro/Kafka/logs-to-kafka.bro
-# redef Kafka::logs_to_send = set(Conn::LOG, HTTP::LOG);
-# redef Kafka::kafka_conf = table(
-#     ["metadata.broker.list"] = "kafka:9092"
-# );
-# redef Kafka::topic_name = "bro";
+# Custom conn geoip enrichment
+@load geodata/conn-add-geodata.bro
