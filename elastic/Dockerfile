@@ -86,6 +86,7 @@ ADD https://github.com/blacktop/docker-bro/raw/master/scripts/conn-add-geodata.b
 
 COPY local.bro /usr/local/share/bro/site/local.bro
 COPY template.json /template.json
+COPY index-pattern.json /index-pattern.json
 COPY entrypoint.sh /entrypoint.sh
 
 ENTRYPOINT ["/entrypoint.sh"]

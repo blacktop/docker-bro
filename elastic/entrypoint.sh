@@ -30,9 +30,11 @@ if [ "$1" = 'bro' ]; then
     sleep 5
   done
 
-  >&2 echo "Elasticsearch is up - Set bro mapping"
+  >&2 echo "Elasticsearch is up - Set bro template"
   curl -s -XPUT -H "Content-Type: application/json" --data @/template.json elasticsearch:9200/_template/bro
-
+  >&2 echo "Elasticsearch is up - Set bro index-pattern"
+  curl -s -XPUT -H "Content-Type: application/json" --data @/index-pattern.json 'elasticsearch:9200/.kibana/index-pattern/bro-*'
+	
 	set -- /sbin/tini -- "$@"
 fi
 
