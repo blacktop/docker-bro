@@ -57,16 +57,16 @@ $ docker run --rm -v `pwd`:/pcap blacktop/bro -r heartbleed.pcap local "Site::lo
 ```bash
 $ ls -l
 
--rw-r--r--  1 blacktop  staff   635B Jul 30 12:11 pcap/conn.log
--rw-r--r--  1 blacktop  staff   754B Jul 30 12:11 pcap/files.log
--rw-r--r--  1 blacktop  staff   384B Jul 30 12:11 pcap/known_certs.log
--rw-r--r--  1 blacktop  staff   239B Jul 30 12:11 pcap/known_hosts.log
--rw-r--r--  1 blacktop  staff   271B Jul 30 12:11 pcap/known_services.log
--rw-r--r--  1 blacktop  staff    17K Jul 30 12:11 pcap/loaded_scripts.log
--rw-r--r--  1 blacktop  staff   1.9K Jul 30 12:11 'pcap/notice.log'
--rw-r--r--  1 blacktop  staff   253B Jul 30 12:11 pcap/packet_filter.log
--rw-r--r--  1 blacktop  staff   1.2K Jul 30 12:11 pcap/ssl.log
--rw-r--r--  1 blacktop  staff   901B Jul 30 12:11 pcap/x509.log
+-rw-r--r--  1 blacktop  staff   635B Jul 30 12:11 conn.log
+-rw-r--r--  1 blacktop  staff   754B Jul 30 12:11 files.log
+-rw-r--r--  1 blacktop  staff   384B Jul 30 12:11 known_certs.log
+-rw-r--r--  1 blacktop  staff   239B Jul 30 12:11 known_hosts.log
+-rw-r--r--  1 blacktop  staff   271B Jul 30 12:11 known_services.log
+-rw-r--r--  1 blacktop  staff    17K Jul 30 12:11 loaded_scripts.log
+-rw-r--r--  1 blacktop  staff   1.9K Jul 30 12:11 notice.log <====== NOTICE
+-rw-r--r--  1 blacktop  staff   253B Jul 30 12:11 packet_filter.log
+-rw-r--r--  1 blacktop  staff   1.2K Jul 30 12:11 ssl.log
+-rw-r--r--  1 blacktop  staff   901B Jul 30 12:11 x509.log
 ```
 
 ```bash
