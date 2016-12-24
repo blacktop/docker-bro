@@ -31,7 +31,7 @@ if [ "$1" = 'bro' ]; then
 	  sleep 5
 	done
 
-	>&2 echo "\nElasticsearch is up"
+	>&2 echo -e "\nElasticsearch is up"
 	>&2 echo "===> Set bro template..."
 	curl -s -XPUT -H "Content-Type: application/json" --data @/template.json 'elasticsearch:9200/_template/bro'
 	>&2 echo -e "\n\n===> Set bro index-pattern..."
