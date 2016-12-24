@@ -18,7 +18,7 @@ if [ "$1" = 'watch' ]; then
 			   FILECHANGEREL=`echo "$FILECHANGE" | sed 's_'$CURPATH'/__'`
 
 				 if [[ $FILECHANGEREL == *.pcap ]]; then
-					   /sbin/tini bro -r $FILECHANGEREL \
+					   /sbin/tini bro -r $FILECHANGEREL local \
 					   && echo "At ${time} on ${date}, pcap $FILECHANGE was analyzed by bro"
 			 	 fi
 		done
