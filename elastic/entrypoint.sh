@@ -31,13 +31,13 @@ if [ "$1" = 'bro' ]; then
 	  sleep 5
 	done
 
-	>&2 echo "Elasticsearch is up"
+	>&2 echo "\nElasticsearch is up"
 	>&2 echo "===> Set bro template..."
 	curl -s -XPUT -H "Content-Type: application/json" --data @/template.json 'elasticsearch:9200/_template/bro'
-	>&2 echo "===> Set bro index-pattern..."
+	>&2 echo -e "\n\n===> Set bro index-pattern..."
 	curl -s -XPUT -H "Content-Type: application/json" --data @/index-pattern.json \
 	'elasticsearch:9200/.kibana/index-pattern/bro-*'
-	>&2 echo "===> Set bro-* as kibana default index..."
+	>&2 echo -e "\n\n===> Set bro-* as kibana default index..."
 	KIBANA=$(curl -s 'elasticsearch:9200/.kibana/config/_search' | jq -r '.hits.hits[] ._id')
 	curl -s -XPUT "elasticsearch:9200/.kibana/config/$KIBANA" -d '{"defaultIndex" : "bro-*"}'
 
