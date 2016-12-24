@@ -60,7 +60,7 @@ RUN apk-install -t .build-deps linux-headers \
   && sed -i "s/version:         count        \&log/ssh_version:         count        \&log/g" $PROTOS/ssh/main.bro \
   && sed -i "s/\$version =/\$ssh_version =/g" $PROTOS/ssh/main.bro \
   && sed -i "s/version: string \&log/snmp_version: string \&log/g" $PROTOS/snmp/main.bro \
-  && sed -i "s/\$version=/\$snmp_version=/g" $PROTOS/snmp/main.bro   \
+  && sed -i "s/\$version=/\$snmp_version=/g" $PROTOS/snmp/main.bro \
   # Build elasticsearch plugin
   && cd /tmp/bro/aux/plugins/elasticsearch \
   && CC=clang ./configure \
