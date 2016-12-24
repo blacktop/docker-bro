@@ -14,6 +14,6 @@ Configure the Bro index pattern
 
 Click the [Discover](http://localhost/app/kibana#/discover) tab and filter to `_type:notice`
 
-> Shortcut: http://localhost/app/kibana#/discover?_g=(refreshInterval:(display:Off,pause:!f,value:0),time:(from:'2014-04-10T21:03:16.403Z',mode:absolute,to:'2014-04-10T21:03:16.425Z'))&_a=(columns:!(note,msg),index:'bro-*',interval:auto,query:(query_string:(analyze_wildcard:!t,query:'_type:notice')),sort:!(ts,desc))
+> Shortcut: [https://goo.gl/4Sh9UP](https://goo.gl/4Sh9UP)
 
 ![notice](imgs/notice.png)
