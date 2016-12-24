@@ -32,15 +32,18 @@ $ docker images
 REPOSITORY          TAG                 SIZE
 blacktop/bro        latest              19.57 MB
 blacktop/bro        2.5                 19.56 MB
-blacktop/bro        elastic             22.47 MB
+blacktop/bro        elastic             59.45 MB
+blacktop/bro        geoip               55.97 MB
 blacktop/bro        kafka               28.91 MB
 blacktop/bro        2.4.1               16.68 MB
 blacktop/bro        2.4                 16.68 MB
 ```
 
 > **NOTE:**
- * tag **elastic** is the same as tag **2.5**, but includes the *elasticsearch* plugin.  
+ * tag **elastic** is the same as tag **2.5**, but includes the *elasticsearch* plugin and the GeoIP DB.  
  * tag **kafka** is the same as tag **2.5**, but includes the *kafka* plugin.
+ * tag **geoip** is the same as tag **2.5**, but includes the GeoIP DB.
+ * **all** tags include the *af_packet* plugin.
 
 ### Installation
 

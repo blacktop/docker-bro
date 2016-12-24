@@ -58,14 +58,6 @@ RUN echo http://nl.alpinelinux.org/alpine/edge/testing >> /etc/apk/repositories 
   && rm -rf /tmp/* \
   && apk del --purge .build-deps
 
-# Install the GeoIPLite Database
-RUN apk-install curl \
-  && mkdir -p /usr/share/GeoIP/ \
-  && GEOIP=geolite.maxmind.com/download/geoip/database \
-  && curl -s http://${GEOIP}/GeoLiteCity.dat.gz | zcat > /usr/share/GeoIP/GeoIPCity.dat \
-  && curl -s http://${GEOIP}/GeoLiteCityv6-beta/GeoLiteCityv6.dat.gz | zcat > /usr/share/GeoIP/GeoIPCityv6.dat \
-  && apk del --purge curl
-
 ENV BROPATH .:/data/config:/usr/local/share/bro:/usr/local/share/bro/policy:/usr/local/share/bro/site
 
 VOLUME ["/pcap"]
