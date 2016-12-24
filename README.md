@@ -13,7 +13,6 @@ This repository contains a **Dockerfile** of [Bro-IDS](http://www.bro.org/index.
 -	[Image Tags](#image-tags)
 -	[Installation](#installation)
 -	[Getting Started](#getting-started)
-	-	[Using the included heartbleed test pcap](#using-the-included-heartbleed-test-pcap)
 -	[Documentation](#documentation)
 -	[Issues](#issues)
 -	[Todo](#todo)
@@ -51,8 +50,6 @@ blacktop/bro        2.2                 527.7 MB
 2.	Download [trusted build](https://hub.docker.com/r/blacktop/bro/) from public [Docker Registry](https://hub.docker.com): `docker pull blacktop/bro`
 
 ### Getting Started
-
-#### Using the included heartbleed test pcap
 
 ```bash
 $ wget https://github.com/blacktop/docker-bro/raw/master/pcap/heartbleed.pcap
