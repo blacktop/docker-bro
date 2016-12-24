@@ -51,7 +51,8 @@ blacktop/bro        2.4                 16.68 MB
 
 ```bash
 $ wget https://github.com/blacktop/docker-bro/raw/master/pcap/heartbleed.pcap
-$ docker run --rm -v `pwd`:/pcap blacktop/bro -r heartbleed.pcap local "Site::local_nets += { 192.168.11.0/24 }"
+$ docker run --rm -v `pwd`:/pcap \
+         blacktop/bro -r heartbleed.pcap local "Site::local_nets += { 192.168.11.0/24 }"
 ```
 
 ```bash
