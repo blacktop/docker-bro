@@ -10,17 +10,18 @@ fi
 if [ "$1" = 'watch' ]; then
 	CURPATH=`pwd`
 
-	inotifywait -mr --timefmt '%d/%m/%y %H:%M' --format '%T %w %f' \
-	-e close_write /tmp/test | while read date time dir file; do
+	inotifywait -mr --timefmt '%d/%m/%y %H:%M' --format '%T %w %f' -e close_write /tmp/test | \
+	while read date time dir file; do
 
-	   FILECHANGE=${dir}${file}
-	   # convert absolute path to relative
-	   FILECHANGEREL=`echo "$FILECHANGE" | sed 's_'$CURPATH'/__'`
+		FILECHANGE=${dir}${file}
+		# convert absolute path to relative
+		FILECHANGEREL=`echo "$FILECHANGE" | sed 's_'$CURPATH'/__'`
 
 		if [[ $FILECHANGEREL == *.pcap ]]; then
 			>&2 echo "At ${time} on ${date}, pcap $FILECHANGE was analyzed by bro"
 			/sbin/tini bro -r $FILECHANGEREL local
 		fi
+
 	done
 fi
 
