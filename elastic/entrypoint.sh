@@ -7,8 +7,24 @@ if [ "${1:0:1}" = '-' ]; then
 	set -- bro "$@"
 fi
 
-if [ "$1" = 'bro' ]; then
+if [ "$1" = 'watch' ]; then
+		CURPATH=`pwd`
 
+		inotifywait -mr --timefmt '%d/%m/%y %H:%M' --format '%T %w %f' \
+		-e close_write /tmp/test | while read date time dir file; do
+
+			   FILECHANGE=${dir}${file}
+			   # convert absolute path to relative
+			   FILECHANGEREL=`echo "$FILECHANGE" | sed 's_'$CURPATH'/__'`
+
+				 if [[ $FILECHANGEREL == *.pcap ]]; then
+					   /sbin/tini bro -r $FILECHANGEREL \
+					   && echo "At ${time} on ${date}, pcap $FILECHANGE was analyzed by bro"
+			 	 fi
+		done
+fi
+
+if [ "$1" = 'bro' ]; then
   until curl -s -XGET elasticsearch:9200/; do
     >&2 echo "Failed to configure Elasticsearch, it's unavailable - sleeping 5s"
     sleep 5
