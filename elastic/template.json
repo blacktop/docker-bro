@@ -1,6 +1,16 @@
 {
     "template": "bro-*",
     "mappings": {
+        "_default_": {
+            "properties": {
+                "id_orig_h": {
+                    "type": "ip"
+                },
+                "id_resp_h": {
+                    "type": "ip"
+                }
+            }
+        },
         "http": {
             "properties": {
                 "status_msg": {
@@ -19,6 +29,12 @@
         },
         "conn": {
             "properties": {
+                "id_orig_h": {
+                    "type": "ip"
+                },
+                "id_resp_h": {
+                    "type": "ip"
+                },
                 "orig_location": {
                     "type": "geo_point"
                 },
@@ -29,6 +45,12 @@
         },
         "files": {
             "properties": {
+                "rx_hosts": {
+                    "type": "ip"
+                },
+                "tx_hosts": {
+                    "type": "ip"
+                },
                 "mime_type": {
                     "type": "string",
                     "index": "not_analyzed"
@@ -52,6 +74,12 @@
         },
         "ssl": {
             "properties": {
+                "id_orig_h": {
+                    "type": "ip"
+                },
+                "id_resp_h": {
+                    "type": "ip"
+                },
                 "validation_status": {
                     "type": "string",
                     "index": "not_analyzed"

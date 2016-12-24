@@ -13,3 +13,4 @@ NOTES
 -----
 
  * https://github.com/TravisFSmith/SweetSecurity
+ * https://github.com/505Forensics/tools/tree/master/logstash_dfir
