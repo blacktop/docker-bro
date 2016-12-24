@@ -26,20 +26,25 @@ if [ "$1" = 'watch' ]; then
 fi
 
 if [ "$1" = 'bro' ]; then
-	until curl -s -XGET elasticsearch:9200/; do
+	until curl -s --output /dev/null -XGET elasticsearch:9200/; do
 	  >&2 echo "Elasticsearch is unavailable - sleeping 5s"
 	  sleep 5
 	done
 
-	>&2 echo -e "\nElasticsearch is up"
-	>&2 echo "===> Set bro template..."
-	curl -s -XPUT -H "Content-Type: application/json" --data @/template.json 'elasticsearch:9200/_template/bro'
-	>&2 echo -e "\n\n===> Set bro index-pattern..."
-	curl -s -XPUT -H "Content-Type: application/json" --data @/index-pattern.json \
-	'elasticsearch:9200/.kibana/index-pattern/bro-*'
-	>&2 echo -e "\n\n===> Set bro-* as kibana default index..."
 	KIBANA=$(curl -s 'elasticsearch:9200/.kibana/config/_search' | jq -r '.hits.hits[] ._id')
-	curl -s -XPUT "elasticsearch:9200/.kibana/config/$KIBANA" -d '{"defaultIndex" : "bro-*"}'
+
+	if [ $(curl -s "elasticsearch:9200/.kibana/config/$KIBANA" | jq '._source.defaultIndex') == "bro-*" ] ; then
+		>&2 echo -e "\nElasticsearch is up"
+		>&2 echo "===> Set bro template..."
+		curl -s -XPUT -H "Content-Type: application/json" --data @/template.json 'elasticsearch:9200/_template/bro'
+		>&2 echo -e "\n\n===> Set bro index-pattern..."
+		curl -s -XPUT -H "Content-Type: application/json" --data @/index-pattern.json \
+		'elasticsearch:9200/.kibana/index-pattern/bro-*'
+		sleep 3
+		>&2 echo -e "\n\n===> Set bro-* as kibana default index..."
+		curl -s -XPUT "elasticsearch:9200/.kibana/config/$KIBANA" -d '{"defaultIndex" : "bro-*"}'
+		echo -e "\n"
+fi
 
 	set -- /sbin/tini -- "$@"
 fi
