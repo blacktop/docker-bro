@@ -28,7 +28,8 @@ $ docker run -d --name elstack -p 80:80 -p 9200:9200 blacktop/elastic-stack
 $ docker run -it --rm -v `pwd`:/pcap --link elstack:elasticsearch blacktop/bro:elastic bro-watch
 
 # assuming you are using Docker For Mac.             
-$ open http://localhost/app/kibana  
+$ open http://localhost/app/kibana
+
 # download pcap into the watched folder on your host.  
 $ wget https://github.com/blacktop/docker-bro/raw/master/pcap/heartbleed.pcap
 ```
