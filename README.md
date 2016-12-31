@@ -3,7 +3,7 @@
 Bro IDS Dockerfile
 ==================
 
-[![CircleCI](https://circleci.com/gh/blacktop/docker-bro.png?style=shield)](https://circleci.com/gh/blacktop/docker-bro) [![License](http://img.shields.io/:license-mit-blue.svg)](http://doge.mit-license.org) [![Docker Stars](https://img.shields.io/docker/stars/blacktop/bro.svg)](https://hub.docker.com/r/blacktop/bro/) [![Docker Pulls](https://img.shields.io/docker/pulls/blacktop/bro.svg)](https://hub.docker.com/r/blacktop/bro/) [![Docker Image](https://img.shields.io/badge/docker image-19.56 MB-blue.svg)](https://hub.docker.com/r/blacktop/bro/)
+[![CircleCI](https://circleci.com/gh/blacktop/docker-bro.png?style=shield)](https://circleci.com/gh/blacktop/docker-bro) [![License](http://img.shields.io/:license-mit-blue.svg)](http://doge.mit-license.org) [![Docker Stars](https://img.shields.io/docker/stars/blacktop/bro.svg)](https://hub.docker.com/r/blacktop/bro/) [![Docker Pulls](https://img.shields.io/docker/pulls/blacktop/bro.svg)](https://hub.docker.com/r/blacktop/bro/) [![Docker Image](https://img.shields.io/badge/docker image-19.57 MB-blue.svg)](https://hub.docker.com/r/blacktop/bro/)
 
 This repository contains a **Dockerfile** of [Bro-IDS](http://www.bro.org/index.html) **blacktop/bro**.
 
@@ -31,8 +31,8 @@ $ docker images
 
 REPOSITORY          TAG                 SIZE
 blacktop/bro        master              19.57 MB
-blacktop/bro        latest              19.56 MB
-blacktop/bro        2.5                 19.56 MB
+blacktop/bro        latest              19.57 MB
+blacktop/bro        2.5                 19.57 MB
 blacktop/bro        elastic             59.45 MB
 blacktop/bro        geoip               55.97 MB
 blacktop/bro        kafka               28.91 MB
@@ -44,7 +44,7 @@ blacktop/bro        2.4                 16.68 MB
  * tag **elastic** is the same as tag **2.5**, but includes the **elasticsearch plugin** and the **GeoIP** database
  * tag **kafka** is the same as tag **2.5**, but includes the **kafka plugin**
  * tag **geoip** is the same as tag **2.5**, but includes the **GeoIP** database
- * tag **master** is built from the master bro master branch
+ * tag **master** is built from the bro master branch
  * **all** tags include the **af_packet plugin**
 
 ### Installation
