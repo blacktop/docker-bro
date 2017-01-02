@@ -12,3 +12,13 @@ docker run --rm --cap-add=NET_RAW --net=host -v `pwd`:/pcap:rw blacktop/bro -i e
 ```bash
 $ docker run --rm -v /path/to/pcap:/pcap:rw blacktop/bro -r my.pcap local
 ```
+
+### To use your own `local.bro`
+
+```bash
+$ docker run --rm \
+  -v `pwd`:/pcap \
+  -v `pwd`/local.bro:/usr/local/share/bro/site/local.bro \
+  --link kafka:localhost \
+  blacktop/bro -r my_pcap.pcap local
+```
