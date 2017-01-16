@@ -109,3 +109,6 @@
 
 # Log all plain-text http/ftp passwords
 @load passwords/log-passwords.bro
+
+# Extract the filenames from a zipfile
+# @load zip/zipfilenames.bro
