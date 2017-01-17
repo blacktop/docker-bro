@@ -89,8 +89,8 @@ ADD https://github.com/blacktop/docker-bro/raw/master/scripts/log-passwords.bro 
     /usr/local/share/bro/passwords/log-passwords.bro
 ADD https://github.com/blacktop/docker-bro/raw/master/scripts/conn-add-geodata.bro \
     /usr/local/share/bro/geodata/conn-add-geodata.bro
-ADD https://github.com/moshekaplan/bro_zipfilenames/master/zipfilenames.bro \
-    /usr/local/share/bro/geodata/zipfilenames.bro
+ADD https://github.com/moshekaplan/bro_zipfilenames/raw/master/zipfilenames.bro \
+    /usr/local/share/bro/zip/zipfilenames.bro
 
 COPY local.bro /usr/local/share/bro/site/local.bro
 COPY template.json /template.json
