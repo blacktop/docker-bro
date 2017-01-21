@@ -1,6 +1,6 @@
 FROM gliderlabs/alpine:3.4
 
-MAINTAINER blacktop, https://github.com/blacktop
+LABEL maintainer "https://github.com/blacktop"
 
 COPY patches /tmp
 RUN apk-install zlib openssl libstdc++ libpcap geoip libgcc tini
