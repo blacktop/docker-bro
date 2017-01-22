@@ -11,6 +11,13 @@ $ docker run -it --rm -v `pwd`:/pcap --link elstack:elasticsearch \
 $ open http://localhost/app/kibana  
 ```
 
+> **NOTE:** I have noticed when running **elastic-stack** on a **linux** host you need to increase the memory map areas with the following [command](https://www.elastic.co/guide/en/elasticsearch/reference/current/docker.html#docker-cli-run-prod-mode)
+
+```bash
+echo "vm.max_map_count=262144" | sudo tee -a /etc/sysctl.conf
+sudo sysctl -w vm.max_map_count=262144
+```
+
 <!-- Configure the Bro index pattern
 
 ![index](imgs/index.png) -->
