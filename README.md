@@ -116,4 +116,4 @@ Please update the [CHANGELOG.md](https://github.com/blacktop/docker-bro/blob/mas
 
 ### License
 
-MIT Copyright (c) 2015-2016 **blacktop**
+MIT Copyright (c) 2015-2017 **blacktop**
