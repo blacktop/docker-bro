@@ -18,7 +18,7 @@ All notable changes to this project will be documented in this file.
 
 ### Changed
 
--	Moving to Alpine
+-	Moving to Alpine 3.5
 
 [v2.4.1] - 2016-12-22
 ---------------------

@@ -1,28 +1,28 @@
-FROM gliderlabs/alpine:3.4
+FROM alpine:3.5
 
 LABEL maintainer "https://github.com/blacktop"
 
 ENV BRO_VERSION v2.5
 
 COPY patches /tmp
-RUN apk-install zlib openssl libstdc++ libpcap geoip libgcc tini
-RUN apk-install -t .build-deps linux-headers \
-                                openssl-dev \
-                                libpcap-dev \
-                                python-dev \
-                                geoip-dev \
-                                zlib-dev \
-                                binutils \
-                                fts-dev \
-                                cmake \
-                                clang \
-                                bison \
-                                perl \
-                                make \
-                                flex \
-                                git \
-                                g++ \
-                                fts \
+RUN apk --update add --no-cache zlib openssl libstdc++ libpcap geoip libgcc tini
+RUN apk --update add --no-cache -t  .build-deps linux-headers \
+                                    openssl-dev \
+                                    libpcap-dev \
+                                    python-dev \
+                                    geoip-dev \
+                                    zlib-dev \
+                                    binutils \
+                                    fts-dev \
+                                    cmake \
+                                    clang \
+                                    bison \
+                                    perl \
+                                    make \
+                                    flex \
+                                    git \
+                                    g++ \
+                                    fts \
   && set -x \
   && cd /tmp \
   && git clone --recursive --branch $BRO_VERSION git://git.bro.org/bro \
