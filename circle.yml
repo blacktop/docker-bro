@@ -19,7 +19,7 @@ test:
     - docker images bro:$(cat VERSION)
     - docker run bro:$(cat VERSION) --version
     - wget https://github.com/blacktop/docker-bro/raw/master/pcap/heartbleed.pcap
-    - docker run --rm -v `pwd`:/pcap $(REPO)/$(NAME):$(BUILD) -r heartbleed.pcap local "Site::local_nets += { 192.168.11.0/24 }"
+    - docker run --rm -v `pwd`:/pcap bro:$(cat VERSION) -r heartbleed.pcap local "Site::local_nets += { 192.168.11.0/24 }"
 
 deployment:
   # master:
