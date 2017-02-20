@@ -6,7 +6,7 @@ ENV BRO_VERSION v2.5
 
 COPY patches /tmp
 RUN apk --update add --no-cache zlib openssl libstdc++ libpcap geoip libgcc tini
-RUN apk --update add --no-cache -t  .build-deps linux-headers \
+RUN apk --update add --no-cache -t .build-deps linux-headers \
                                     openssl-dev \
                                     libpcap-dev \
                                     python-dev \
@@ -23,7 +23,6 @@ RUN apk --update add --no-cache -t  .build-deps linux-headers \
                                     git \
                                     g++ \
                                     fts \
-  && set -x \
   && cd /tmp \
   && git clone --recursive --branch $BRO_VERSION git://git.bro.org/bro \
   && echo "===> Applying patches..." \
@@ -58,5 +57,4 @@ WORKDIR /pcap
 COPY local.bro /usr/local/share/bro/site/local.bro
 
 ENTRYPOINT ["/sbin/tini","--","bro"]
-
-CMD [ "-h" ]
+CMD ["-h"]
