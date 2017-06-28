@@ -60,7 +60,7 @@ jobs:
           name: Run tests
           command: |
             set -x
-            curl -L -o pcap/heartbleed.pcap https://github.com/blacktop/docker-bro/raw/master/pcap/heartbleed.pcap
+            curl -L -o heartbleed.pcap https://github.com/blacktop/docker-bro/raw/master/pcap/heartbleed.pcap
             docker-compose -f docker-compose.ci.yml up
       # - deploy:
       #     name: Push application Docker image
