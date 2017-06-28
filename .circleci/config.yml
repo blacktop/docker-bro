@@ -59,7 +59,7 @@ jobs:
       - run:
           name: Run tests
           command: |
-            docker-compose -f docker-compose.ci.yml up -d
+            docker-compose -f docker-compose.ci.yml up
       # - deploy:
       #     name: Push application Docker image
       #     command: |
