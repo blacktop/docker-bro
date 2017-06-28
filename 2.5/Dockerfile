@@ -40,9 +40,9 @@ RUN apk add --no-cache -t .build-deps \
   && make \
   && make install \
   && echo "===> Compiling af_packet plugin..." \
-  && cd /tmp \
+  && cd /tmp/bro/aux/plugins \
   && git clone https://github.com/J-Gras/bro-af_packet-plugin \
-  && cd /tmp/bro-af_packet-plugin \
+  && cd /tmp/bro/aux/plugins/bro-af_packet-plugin \
   && make distclean \
   && CC=clang ./configure --with-kernel=/usr \
   && make \
