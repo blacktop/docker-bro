@@ -22,4 +22,17 @@ test:
 	docker run --rm $(REPO)/$(NAME):$(BUILD) --version
 	docker run --rm -v `pwd`/pcap:/pcap $(REPO)/$(NAME):$(BUILD) -r heartbleed.pcap local "Site::local_nets += { 192.168.11.0/24 }"
 
-.PHONY: build size tags test
+tar:
+	docker save $(REPO)/$(NAME):$(BUILD) -o $(NAME).tar
+
+circle:
+	http https://circleci.com/api/v1.1/project/github/${REPO}/${NAME} | jq '.[0].build_num' > .circleci/build_num
+	http "$(shell http https://circleci.com/api/v1.1/project/github/${REPO}/${NAME}/$(shell cat .circleci/build_num)/artifacts${CIRCLE_TOKEN} | jq '.[].url')" > .circleci/SIZE
+	sed -i.bu 's/docker%20image-.*-blue/docker%20image-$(shell cat .circleci/SIZE)-blue/' README.md
+
+clean:
+	docker-clean stop
+	docker rmi $(REPO)/$(NAME)
+	docker rmi $(REPO)/$(NAME):$(BUILD)
+
+.PHONY: build size tags test tar clean circle

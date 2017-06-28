@@ -5,12 +5,13 @@ LABEL maintainer "https://github.com/blacktop"
 ENV BRO_VERSION v2.5.1
 
 COPY patches /tmp
-RUN apk add --no-cache zlib openssl libstdc++ libpcap geoip libgcc tini
+RUN apk add --no-cache zlib openssl libstdc++ libpcap geoip libgcc tini python2
 RUN apk add --no-cache -t .build-deps \
                           linux-headers \
                           openssl-dev \
                           libpcap-dev \
-                          python-dev \
+                          python2-dev \
+                          py2-pip \
                           geoip-dev \
                           zlib-dev \
                           binutils \
@@ -47,6 +48,11 @@ RUN apk add --no-cache -t .build-deps \
   && CC=clang ./configure --with-kernel=/usr \
   && make \
   && make install \
+  && echo "===> Install Bro Package Manager..." \
+  && export PIP_NO_CACHE_DIR=off \
+  && export PIP_DISABLE_PIP_VERSION_CHECK=on \
+  && pip install --upgrade pip wheel \
+  && pip install git+git://github.com/bro/package-manager@master \
   && echo "===> Shrinking image..." \
   && strip -s /usr/local/bin/bro \
   && rm -rf /tmp/* \
