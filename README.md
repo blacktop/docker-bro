@@ -3,7 +3,7 @@
 Bro IDS Dockerfile
 ==================
 
-[![CircleCI](https://circleci.com/gh/blacktop/docker-bro.png?style=shield)](https://circleci.com/gh/blacktop/docker-bro) [![License](http://img.shields.io/:license-mit-blue.svg)](http://doge.mit-license.org) [![Docker Stars](https://img.shields.io/docker/stars/blacktop/bro.svg)](https://hub.docker.com/r/blacktop/bro/) [![Docker Pulls](https://img.shields.io/docker/pulls/blacktop/bro.svg)](https://hub.docker.com/r/blacktop/bro/) [![Docker Image](https://img.shields.io/badge/docker%20image-21.9%20MB-blue.svg)](https://hub.docker.com/r/blacktop/bro/)
+[![CircleCI](https://circleci.com/gh/blacktop/docker-bro.png?style=shield)](https://circleci.com/gh/blacktop/docker-bro) [![License](http://img.shields.io/:license-mit-blue.svg)](http://doge.mit-license.org) [![Docker Stars](https://img.shields.io/docker/stars/blacktop/bro.svg)](https://hub.docker.com/r/blacktop/bro/) [![Docker Pulls](https://img.shields.io/docker/pulls/blacktop/bro.svg)](https://hub.docker.com/r/blacktop/bro/) [![Docker Image](https://img.shields.io/badge/docker%20image-21.3MB-blue.svg)](https://hub.docker.com/r/blacktop/bro/)
 
 This repository contains a **Dockerfile** of [Bro-IDS](http://www.bro.org/index.html) **blacktop/bro**.
 
@@ -30,14 +30,14 @@ This repository contains a **Dockerfile** of [Bro-IDS](http://www.bro.org/index.
 $ docker images
 
 REPOSITORY          TAG                 SIZE
-blacktop/bro        latest              21.9 MB
-blacktop/bro        2.5                 21.9 MB
-blacktop/bro        pkg                 59.45 MB
-blacktop/bro        elastic             59.45 MB
-blacktop/bro        geoip               55.97 MB
-blacktop/bro        kafka               28.91 MB
-blacktop/bro        2.4.1               16.68 MB
-blacktop/bro        2.4                 16.68 MB
+blacktop/bro        latest              21.3MB
+blacktop/bro        2.5                 21.3MB
+blacktop/bro        pkg                 59.45MB
+blacktop/bro        elastic             59.45MB
+blacktop/bro        geoip               55.97MB
+blacktop/bro        kafka               28.91MB
+blacktop/bro        2.4.1               16.68MB
+blacktop/bro        2.4                 16.68MB
 ```
 
 > **NOTE:**
