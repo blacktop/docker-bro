@@ -22,7 +22,7 @@ This repository contains a **Dockerfile** of [Bro-IDS](http://www.bro.org/index.
 
 ### Dependencies
 
--	[gliderlabs/alpine:3.4](https://index.docker.io/_/gliderlabs/alpine/)
+-	[alpine:3.6](https://hub.docker.com/_/alpine/)
 
 ### Image Tags
 
