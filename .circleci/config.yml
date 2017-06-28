@@ -59,6 +59,7 @@ jobs:
       - run:
           name: Run tests
           command: |
+            wget https://github.com/blacktop/docker-bro/raw/master/pcap/heartbleed.pcap -P pcap
             docker-compose -f docker-compose.ci.yml up
       # - deploy:
       #     name: Push application Docker image
