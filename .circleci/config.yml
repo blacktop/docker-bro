@@ -60,8 +60,8 @@ jobs:
           name: Run tests
           command: |
             set -x
-            curl -L -o heartbleed.pcap https://github.com/blacktop/docker-bro/raw/master/pcap/heartbleed.pcap
             docker-compose -f docker-compose.ci.yml up
+            cat pcap/notice.log | awk '{ print $11 }' | tail -n4
       # - deploy:
       #     name: Push application Docker image
       #     command: |
@@ -71,3 +71,5 @@ jobs:
       #         docker tag app "${ECR_ENDPOINT}/app:${CIRCLE_SHA1}"
       #         docker push "${ECR_ENDPOINT}/app:${CIRCLE_SHA1}"
       #       fi
+
+            # curl -L -o heartbleed.pcap https://github.com/blacktop/docker-bro/raw/master/pcap/heartbleed.pcap

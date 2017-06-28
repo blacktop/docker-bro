@@ -19,8 +19,9 @@ tags:
 	docker images --format "table {{.Repository}}\t{{.Tag}}\t{{.Size}}" $(REPO)/$(NAME)
 
 test:
-	docker run --rm $(REPO)/$(NAME):$(BUILD) --version
-	docker run --rm -v `pwd`/pcap:/pcap $(REPO)/$(NAME):$(BUILD) -r heartbleed.pcap local "Site::local_nets += { 192.168.11.0/24 }"
+	@docker run --rm $(REPO)/$(NAME):$(BUILD) --version
+	@docker run --rm -v `pwd`/pcap:/pcap -v `pwd`/scripts/local.bro:/usr/local/share/bro/site/local.bro $(REPO)/$(NAME):$(BUILD) -r heartbleed.pcap local "Site::local_nets += { 192.168.11.0/24 }"
+	@cat pcap/notice.log | awk '{ print $$11 }' | tail -n4
 
 tar:
 	docker save $(REPO)/$(NAME):$(BUILD) -o $(NAME).tar

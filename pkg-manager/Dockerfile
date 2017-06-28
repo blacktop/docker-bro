@@ -5,7 +5,7 @@ LABEL maintainer "https://github.com/blacktop"
 ENV BRO_VERSION v2.5.1
 
 COPY patches /tmp
-RUN apk add --no-cache zlib openssl libstdc++ libpcap geoip libgcc tini python2
+RUN apk add --no-cache zlib openssl libstdc++ libpcap geoip libgcc tini python2 git cmake
 RUN apk add --no-cache -t .build-deps \
                           linux-headers \
                           openssl-dev \
@@ -16,7 +16,6 @@ RUN apk add --no-cache -t .build-deps \
                           zlib-dev \
                           binutils \
                           fts-dev \
-                          cmake \
                           clang \
                           bison \
                           perl \
@@ -64,6 +63,8 @@ VOLUME ["/pcap"]
 WORKDIR /pcap
 
 COPY local.bro /usr/local/share/bro/site/local.bro
+
+RUN bro-pkg autoconfig
 
 ENTRYPOINT ["/sbin/tini","--","bro"]
 CMD ["-h"]
