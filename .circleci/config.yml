@@ -60,6 +60,7 @@ jobs:
           name: Run tests
           command: |
             set -x
+            pwd
             ls -lah pcap
             ls -lah scripts
             docker run --rm app --version
