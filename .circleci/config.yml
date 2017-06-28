@@ -1,7 +1,7 @@
 version: 2
 jobs:
   build:
-    working_directory: ~/2.5
+    working_directory: /app
     docker:
       - image: docker:17.06.0-ce-git
     steps:
@@ -38,6 +38,7 @@ jobs:
           name: Build application Docker image
           command: |
             docker version
+            cd 2.5
             docker build --cache-from=app -t app .
       - run:
           name: Get Docker image size
