@@ -1,7 +1,7 @@
 version: 2
 jobs:
   build:
-    working_directory: /app
+    working_directory: ~/2.5
     docker:
       - image: docker:17.06.0-ce-git
     steps:
