@@ -60,12 +60,11 @@ jobs:
           name: Run tests
           command: |
             set -x
-            docker create -v /scripts --name scripts alpine:3.6 /bin/true
-            docker cp scripts/local.bro scripts:/scripts
-            docker create -v /pcap --name pcap alpine:3.6 /bin/true
-            docker cp pcap/heartbleed.pcap pcap:/pcap
+            docker create -v /scripts -v /pcap --name stuff alpine:3.6 /bin/true
+            docker cp scripts/local.bro stuff:/scripts
+            docker cp pcap/heartbleed.pcap stuff:/pcap
             docker run --rm app --version
-            docker run --name bro --volumes-from scripts --volumes-from pcap app -r heartbleed.pcap local "Site::local_nets += { 192.168.11.0/24 }"
+            docker run --name bro --volumes-from stuff app -r heartbleed.pcap local "Site::local_nets += { 192.168.11.0/24 }"
             docker cp bro:/pcap/notice.log  pcap/notice.log
             ls -lah pcap
             cat pcap/notice.log | awk '{ print $11 }' | tail -n4
