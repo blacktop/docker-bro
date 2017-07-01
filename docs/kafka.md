@@ -27,6 +27,7 @@ $ kafka-console-consumer --bootstrap-server localhost:9092 --topic bro | jq .
 ### Run Bro with the Kafka plugin and watch the consumer... consume.
 
 ```bash
+$ wget https://github.com/blacktop/docker-bro/raw/master/pcap/heartbleed.pcap
 $ docker run --rm \
          -v `pwd`:/pcap \
          --link kafka:localhost \

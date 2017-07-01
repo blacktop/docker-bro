@@ -19,6 +19,5 @@ $ docker run --rm -v /path/to/pcap:/pcap:rw blacktop/bro -r my.pcap local
 $ docker run --rm \
   -v `pwd`:/pcap \
   -v `pwd`/local.bro:/usr/local/share/bro/site/local.bro \
-  --link kafka:localhost \
   blacktop/bro -r my_pcap.pcap local
 ```
