@@ -64,8 +64,8 @@ jobs:
             docker cp scripts/local.bro stuff:/scripts
             docker cp pcap/heartbleed.pcap stuff:/pcap
             docker run --rm app --version
-            docker run --rm --entrypoint=sh app ls -lah /scripts
-            docker run --rm --entrypoint=sh app cat -lah /scripts/local.bro
+            docker run --rm --entrypoint=sh app -c "ls -lah /scripts"
+            docker run --rm --entrypoint=sh app -c "cat /scripts/local.bro"
             docker run --name bro --volumes-from stuff app -r heartbleed.pcap local "Site::local_nets += { 192.168.11.0/24 }"
       - run:
           name: Review results
