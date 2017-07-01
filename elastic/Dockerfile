@@ -14,6 +14,7 @@ RUN apk add --no-cache -t .build-deps \
                           geoip-dev \
                           zlib-dev \
                           binutils \
+                          curl-dev \
                           fts-dev \
                           cmake \
                           clang \
