@@ -29,8 +29,7 @@ tar:
 circle:
 	http https://circleci.com/api/v1.1/project/github/${REPO}/docker-${NAME} | jq '.[0].build_num' > .circleci/build_num
 	http "$(shell http https://circleci.com/api/v1.1/project/github/${REPO}/docker-${NAME}/$(shell cat .circleci/build_num)/artifacts${CIRCLE_TOKEN} | jq '.[].url')" > .circleci/SIZE
-		sed -i.bu 's/docker%20image-.*-blue/docker%20image-$(shell cat .circleci/SIZE)-blue/' README.md
-	sed -i.bu 's/docker image-.*-blue/docker image-$(shell cat .circleci/SIZE)-blue/' README.md
+	sed -i.bu 's/docker%20image-.*-blue/docker%20image-$(shell cat .circleci/SIZE)-blue/' README.md
 	sed -i.bu '/latest/ s/[0-9.]\{3,5\}MB/$(shell cat .circleci/SIZE)/' README.md
 	sed -i.bu '/$(BUILD)/ s/[0-9.]\{3,5\}MB/$(shell cat .circleci/SIZE)/' README.md
 
