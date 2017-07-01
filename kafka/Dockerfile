@@ -49,7 +49,7 @@ RUN apk add --no-cache -t .build-deps \
   && make \
   && make install \
   && echo "===> Compiling kafka plugin..." \
-  && apk-install librdkafka-dev \
+  && apk add --no-cache librdkafka-dev \
   && cd /tmp/bro/aux/plugins/kafka \
   && CC=clang ./configure --bro-dist=/tmp/bro \
   && make \

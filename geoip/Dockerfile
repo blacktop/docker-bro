@@ -53,7 +53,7 @@ RUN apk add --no-cache -t .build-deps \
   && apk del --purge .build-deps
 
 # Install the GeoIPLite Database
-RUN apk-install curl \
+RUN apk add --no-cache curl \
   && mkdir -p /usr/share/GeoIP/ \
   && GEOIP=geolite.maxmind.com/download/geoip/database \
   && curl -s http://${GEOIP}/GeoLiteCity.dat.gz | zcat > /usr/share/GeoIP/GeoIPCity.dat \
