@@ -65,7 +65,7 @@ jobs:
             docker create -v /pcap --name pcap alpine:3.6 /bin/true
             docker cp pcap/heartbleed.pcap pcap:/pcap
             docker run --rm app --version
-            docker run --rm --volumes-from scripts --volumes-from pcap app -r heartbleed.pcap local "Site::local_nets += { 192.168.11.0/24 }"
+            docker run -d --volumes-from scripts --volumes-from pcap app -r heartbleed.pcap local "Site::local_nets += { 192.168.11.0/24 }"
             docker cp app:/pcap/notice.log  pcap/notice.log
             ls -lah pcap
             cat pcap/notice.log | awk '{ print $11 }' | tail -n4
