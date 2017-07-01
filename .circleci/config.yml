@@ -64,7 +64,12 @@ jobs:
             docker cp scripts/local.bro stuff:/scripts
             docker cp pcap/heartbleed.pcap stuff:/pcap
             docker run --rm app --version
+            docker run --rm --entrypoint=sh app ls -lah /scripts
+            docker run --rm --entrypoint=sh app cat -lah /scripts/local.bro
             docker run --name bro --volumes-from stuff app -r heartbleed.pcap local "Site::local_nets += { 192.168.11.0/24 }"
+      - run:
+          name: Review results
+          command: |
             docker cp bro:/pcap/notice.log  pcap/notice.log
             ls -lah pcap
             cat pcap/notice.log | awk '{ print $11 }' | tail -n4
