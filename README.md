@@ -41,11 +41,11 @@ blacktop/bro        2.4                 16.68MB
 ```
 
 > **NOTE:**
- * tag **elastic** is the same as tag **2.5**, but includes the **elasticsearch plugin** and the **GeoIP** database  
- * tag **kafka** is the same as tag **2.5**, but includes the **kafka plugin**  
- * tag **geoip** is the same as tag **2.5**, but includes the **GeoIP** database  
- * tag **pkg** is the same as tag **2.5**, but includes the **Bro Package Manager**
- * **all** tags include the **af_packet plugin**
+> * tag **elastic** is the same as tag **2.5**, but includes the **elasticsearch plugin** and the **GeoIP** database  
+> * tag **kafka** is the same as tag **2.5**, but includes the **kafka plugin**  
+> * tag **geoip** is the same as tag **2.5**, but includes the **GeoIP** database  
+> * tag **pkg** is the same as tag **2.5**, but includes the **Bro Package Manager**
+> * **all** tags include the **af_packet plugin**
 
 ### Installation
 
