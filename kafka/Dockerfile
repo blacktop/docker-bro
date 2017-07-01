@@ -1,31 +1,30 @@
-FROM gliderlabs/alpine:edge
+FROM alpine:3.6
 
 LABEL maintainer "https://github.com/blacktop"
 
-ENV BRO_VERSION v2.5
+ENV BRO_VERSION v2.5.1
 
 COPY patches /tmp
-RUN apk-install zlib openssl libstdc++ libpcap geoip libgcc tini
-RUN echo http://nl.alpinelinux.org/alpine/edge/testing >> /etc/apk/repositories \
-  && apk-install -t .build-deps linux-headers \
-                                openssl-dev \
-                                libpcap-dev \
-                                python-dev \
-                                geoip-dev \
-                                zlib-dev \
-                                binutils \
-                                fts-dev \
-                                cmake \
-                                clang \
-                                bison \
-                                perl \
-                                make \
-                                flex \
-                                curl \
-                                git \
-                                g++ \
-                                fts \
-  && set -x \
+RUN apk add --no-cache zlib openssl libstdc++ libpcap geoip libgcc tini
+RUN apk add --no-cache -t .build-deps \
+                          linux-headers \
+                          openssl-dev \
+                          libpcap-dev \
+                          python-dev \
+                          geoip-dev \
+                          zlib-dev \
+                          binutils \
+                          fts-dev \
+                          cmake \
+                          clang \
+                          bison \
+                          perl \
+                          make \
+                          flex \
+                          curl \
+                          git \
+                          g++ \
+                          fts \
   && cd /tmp \
   && git clone --recursive --branch $BRO_VERSION git://git.bro.org/bro \
   && echo "===> Applying patches..." \
@@ -42,7 +41,9 @@ RUN echo http://nl.alpinelinux.org/alpine/edge/testing >> /etc/apk/repositories 
   && make \
   && make install \
   && echo "===> Compiling af_packet plugin..." \
-  && cd /tmp/bro/aux/plugins/af_packet \
+  && cd /tmp/bro/aux/plugins \
+  && git clone https://github.com/J-Gras/bro-af_packet-plugin \
+  && cd /tmp/bro/aux/plugins/bro-af_packet-plugin \
   && make distclean \
   && CC=clang ./configure --with-kernel=/usr \
   && make \
