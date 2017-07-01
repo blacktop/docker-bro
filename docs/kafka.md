@@ -9,7 +9,7 @@ $ docker run -d \
            -p 9092:9092 \
            -e KAFKA_ADVERTISED_HOST_NAME=localhost \
            -e KAFKA_CREATE_TOPICS="bro:1:1" \
-           blacktop/kafka:0.10
+           blacktop/kafka:0.11
 ```
 
 ### In a new terminal start a Kafka consumer
