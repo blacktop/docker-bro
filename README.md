@@ -34,6 +34,7 @@ blacktop/bro        latest              21.3MB
 blacktop/bro        2.5                 21.3MB
 blacktop/bro        pkg                 107MB
 blacktop/bro        elastic             65.6MB
+blacktop/bro        redis               65.6MB
 blacktop/bro        geoip               55.97MB
 blacktop/bro        kafka               28.91MB
 blacktop/bro        2.4.1               16.68MB
@@ -43,6 +44,7 @@ blacktop/bro        2.4                 16.68MB
 > **NOTE:**
 > * tag **pkg** is the same as tag **2.5**, but includes the **Bro Package Manager**
 > * tag **elastic** is the same as tag **2.5**, but includes the **elasticsearch plugin** and the **GeoIP** database  
+> * tag **redis** is the same as tag **2.5**, but includes the **redis plugin** and the **GeoIP** database  
 > * tag **geoip** is the same as tag **2.5**, but includes the **GeoIP** database
 > * tag **kafka** is the same as tag **2.5**, but includes the **kafka plugin**  
 > * **all** tags include the **af_packet plugin**
