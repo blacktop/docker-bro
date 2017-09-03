@@ -23,8 +23,8 @@ tags:
 	docker images --format "table {{.Repository}}\t{{.Tag}}\t{{.Size}}" $(ORG)/$(NAME)
 
 test: ## Test docker image
-	@docker run --rm $(REPO)/$(NAME):$(BUILD) --version
-	@docker run --rm -v `pwd`/pcap:/pcap -v `pwd`/scripts/local.bro:/usr/local/share/bro/site/local.bro $(REPO)/$(NAME):$(BUILD) -r heartbleed.pcap local "Site::local_nets += { 192.168.11.0/24 }"
+	@docker run --rm $(ORG)/$(NAME):$(BUILD) --version
+	@docker run --rm -v `pwd`/pcap:/pcap -v `pwd`/scripts/local.bro:/usr/local/share/bro/site/local.bro $(ORG)/$(NAME):$(BUILD) -r heartbleed.pcap local "Site::local_nets += { 192.168.11.0/24 }"
 	@cat pcap/notice.log | awk '{ print $$11 }' | tail -n4
 
 .PHONY: tar
