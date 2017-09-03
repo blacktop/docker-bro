@@ -20,14 +20,13 @@ services:
                        host => "redis"
                        data_type => "list"
                        db => 3
-                       key => "bro"
+                       key => "bro*"
                        codec => "json"
                      }
                    }
                    output {
                      elasticsearch {
                        hosts => "elasticsearch:9200"
-                       index => "bro-%{+YYYY.MM.dd}"
                      }
                    }'
 
@@ -37,7 +36,7 @@ services:
       - "80:5601"
     links:
       - elasticsearch
-  
+
   bro:
     image: blacktop/bro:redis
     links:
