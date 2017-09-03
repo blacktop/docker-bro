@@ -13,7 +13,7 @@ $ docker run --name redis -d redis:alpine
 
 ```bash
 $ docker run -d --name elasticsearch -p 9200:9200 blacktop/elasticsearch:5.5
-$ docker run -d --name logstash -p 5044:5044 --link elasticsearch --link redis blacktop/logstash:5.5 \
+$ docker run -d --name logstash --link elasticsearch --link redis blacktop/logstash:5.5 \
   logstash -e 'input {  
                  redis {
                    host => "redis"
