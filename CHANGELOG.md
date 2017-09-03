@@ -3,13 +3,14 @@ Change Log
 
 All notable changes to this project will be documented in this file.
 
-[v2.5] - 2016-12-22
--------------------
+[v2.5.1] - 2017-09-03
+---------------------
 
 ### Fixed
 
 ### Added
 
+-	Redis Plugin
 -	Kafka Plugin  
 -	Elasticsearch Plugin
 -	tini for signal processing and zombie killing  
@@ -18,7 +19,7 @@ All notable changes to this project will be documented in this file.
 
 ### Changed
 
--	Moving to Alpine 3.5
+-	Moving to Alpine 3.6
 
 [v2.4.1] - 2016-12-22
 ---------------------
