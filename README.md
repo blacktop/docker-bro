@@ -34,7 +34,7 @@ blacktop/bro        latest              21.3MB
 blacktop/bro        2.5                 21.3MB
 blacktop/bro        pkg                 107MB
 blacktop/bro        elastic             65.6MB
-blacktop/bro        redis               65.6MB
+blacktop/bro        redis               24.1MB
 blacktop/bro        geoip               55.97MB
 blacktop/bro        kafka               28.91MB
 blacktop/bro        2.4.1               16.68MB
@@ -93,6 +93,7 @@ Heartbleed::SSL_Heartbeat_Attack_Success
 -	[Usage](https://github.com/blacktop/docker-bro/blob/master/docs/usage.md)
 -	[Integrate with the Elastic Stack](https://github.com/blacktop/docker-bro/blob/master/docs/elastic.md)
 -	[Integrate with Kafka](https://github.com/blacktop/docker-bro/blob/master/docs/kafka.md)
+-	[Integrate with Redis](https://github.com/blacktop/docker-bro/blob/master/docs/redis.md)
 -	[Tips and Tricks](https://github.com/blacktop/docker-bro/blob/master/docs/tips-and-tricks.md)
 
 ### Issues
