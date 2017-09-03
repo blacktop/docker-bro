@@ -62,8 +62,11 @@ RUN apk add --no-cache -t .build-deps \
 # Install the GeoIPLite Database
 RUN mkdir -p /usr/share/GeoIP/ \
   && GEOIP=geolite.maxmind.com/download/geoip/database \
+  && apk add --no-cache curl \
   && curl -s http://${GEOIP}/GeoLiteCity.dat.gz | zcat > /usr/share/GeoIP/GeoIPCity.dat \
-  && curl -s http://${GEOIP}/GeoLiteCityv6-beta/GeoLiteCityv6.dat.gz | zcat > /usr/share/GeoIP/GeoIPCityv6.dat
+  && curl -s http://${GEOIP}/GeoLiteCityv6-beta/GeoLiteCityv6.dat.gz | zcat > /usr/share/GeoIP/GeoIPCityv6.dat \
+  && rm -rf /tmp/* \
+  && apk del --purge curl  
 
 ENV BROPATH .:/data/config:/usr/local/share/bro:/usr/local/share/bro/policy:/usr/local/share/bro/site
 
