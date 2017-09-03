@@ -101,12 +101,8 @@
 # is currently considered a preview and therefore not loaded by default.
 @load policy/protocols/smb
 
-# Kafka Plugin
-@load Bro/Kafka/logs-to-kafka.bro
-redef Kafka::logs_to_send = set(Conn::LOG, HTTP::LOG, SSL::LOG, Files::LOG, DNS::LOG, FTP::LOG, SMTP::LOG, X509::LOG, Notice::LOG);
-redef Kafka::kafka_conf = table(
-    ["metadata.broker.list"] = "localhost:9092"
-);
-redef Kafka::topic_name = "bro";
-redef Kafka::max_wait_on_shutdown = 3000;
-redef Kafka::tag_json = T;
+# Redis Plugin
+@load Bro/Redis/logs-to-redis.bro
+redef Redis::key_prefix = "";
+redef Redis::key_expire = "600";
+redef Redis::flush_period = "10";
