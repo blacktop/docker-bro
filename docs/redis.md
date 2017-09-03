@@ -1,5 +1,7 @@
-Integrate with Redis
+Integrate with Redis :construction:
 --------------------
+
+:warning: This is not working correctly yet.  It is a [WIP] work in progress
 
 ### Start a Redis database
 
@@ -17,7 +19,7 @@ $ docker run -d --name logstash -p 5044:5044 --link elasticsearch --link redis b
                    host => "redis"
                    data_type => "list"
                    db => 3
-                   key => "bro_redis"
+                   key => "bro"
                    codec => "json"
                  }
                }
@@ -37,4 +39,18 @@ $ docker run --rm \
          -v `pwd`:/pcap \
          --link redis \
          blacktop/bro:redis -r heartbleed.pcap local "Site::local_nets += { 192.168.11.0/24 }"
+```
+
+> **NOTE:** To watch the redis ingest you can run the following
+
+```bash
+$ docker exec -it redis redis-cli monitor
+```
+
+=OR=
+
+### You can use `docker-compose`
+
+```bash
+$ docker-compose -f docker-compose.redis.yml up
 ```

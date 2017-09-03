@@ -3,9 +3,9 @@ Integrate with the Elastic Stack
 
 ```bash
 $ wget https://github.com/blacktop/docker-bro/raw/master/pcap/heartbleed.pcap
-$ docker run -d --name elastic -p 9200:9200 blacktop/elasticsearch
-$ docker run -d --name kibana --link elastic:elasticsearch -p 5601:5601 blacktop/kibana
-$ docker run -it --rm -v `pwd`:/pcap --link elastic:elasticsearch \
+$ docker run -d --name elasticsearch -p 9200:9200 blacktop/elasticsearch
+$ docker run -d --name kibana --link elasticsearch -p 5601:5601 blacktop/kibana
+$ docker run -it --rm -v `pwd`:/pcap --link elasticsearch \
              blacktop/bro:elastic -r heartbleed.pcap local "Site::local_nets += { 192.168.11.0/24 }"
 
 # assuming you are using Docker For Mac.             
@@ -33,7 +33,7 @@ Click the [Discover](http://localhost:5601/app/kibana#/discover) tab and filter 
 
 ```bash
 $ docker run -d --name elstack -p 80:80 -p 9200:9200 blacktop/elastic-stack
-$ docker run -it --rm -v `pwd`:/pcap --link elstack:elasticsearch blacktop/bro:elastic bro-watch
+$ docker run -it --rm -v `pwd`:/pcap --link elasticsearch blacktop/bro:elastic bro-watch
 
 # assuming you are using Docker For Mac.             
 $ open http://localhost/app/kibana

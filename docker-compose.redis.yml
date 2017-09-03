@@ -1,0 +1,47 @@
+version: '3'
+services:
+
+  redis:
+    image: redis:alpine
+
+  elasticsearch:
+    image: blacktop/elasticsearch:5.5
+    ports:
+      - "9200:9200"
+
+  logstash:
+    image: blacktop/logstash:5.5
+    links:
+      - redis
+      - elasticsearch
+    command: |
+      logstash -e 'input {
+                     redis {
+                       host => "redis"
+                       data_type => "list"
+                       db => 3
+                       key => "bro"
+                       codec => "json"
+                     }
+                   }
+                   output {
+                     elasticsearch {
+                       hosts => "elasticsearch:9200"
+                       index => "bro-%{+YYYY.MM.dd}"
+                     }
+                   }'
+
+  kibana:
+    image: blacktop/kibana:5.5
+    ports:
+      - "80:5601"
+    links:
+      - elasticsearch
+  
+  bro:
+    image: blacktop/bro:redis
+    links:
+      - redis
+    volumes:
+      - ./pcap:/pcap
+    command: -r heartbleed.pcap local "Site::local_nets += { 192.168.11.0/24 }"

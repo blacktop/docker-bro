@@ -104,7 +104,7 @@
 # Redis Plugin
 @load Bro/Redis/logs-to-redis.bro
 redef Redis::server_host = "redis";
-redef Redis::key_prefix = "bro_redis";
+redef Redis::key_prefix = "bro";
 # redef Redis::json_timestamps = "JSON::TS_ISO8601";
 redef Redis::key_expire = 600;
 redef Redis::flush_period = 10;
