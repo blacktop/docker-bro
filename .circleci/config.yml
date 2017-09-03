@@ -25,8 +25,8 @@ jobs:
       - run:
           name: Build application Docker image
           command: |
+            cd $(cat LATEST)          
             docker version
-            cd 2.5
             docker build --cache-from=app -t app .
       - run:
           name: Get Docker image size
@@ -59,12 +59,3 @@ jobs:
             docker cp bro:/pcap/notice.log  pcap/notice.log
             ls -lah pcap
             cat pcap/notice.log | awk '{ print $11 }' | tail -n4
-      # - deploy:
-      #     name: Push application Docker image
-      #     command: |
-      #       if [ "${CIRCLE_BRANCH}" == "master" ]; then
-      #         login="$(aws ecr get-login)"
-      #         ${login}
-      #         docker tag app "${ECR_ENDPOINT}/app:${CIRCLE_SHA1}"
-      #         docker push "${ECR_ENDPOINT}/app:${CIRCLE_SHA1}"
-      #       fi

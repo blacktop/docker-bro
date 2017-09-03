@@ -1,4 +1,4 @@
-REPO=blacktop/bro
+REPO=blacktop/docker-bro
 ORG=blacktop
 NAME=bro
 BUILD ?=$(shell cat LATEST)
