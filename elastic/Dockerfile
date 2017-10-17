@@ -2,7 +2,7 @@ FROM alpine:3.6
 
 LABEL maintainer "https://github.com/blacktop"
 
-ENV BRO_VERSION v2.5.1
+ENV BRO_VERSION v2.5.2
 
 COPY patches /tmp
 RUN apk add --no-cache zlib openssl libstdc++ libpcap geoip libgcc tini curl inotify-tools jq

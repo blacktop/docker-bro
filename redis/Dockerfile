@@ -2,7 +2,7 @@ FROM alpine:3.6
 
 LABEL maintainer "https://github.com/blacktop"
 
-ENV BRO_VERSION v2.5.1
+ENV BRO_VERSION v2.5.2
 
 COPY patches /tmp
 RUN apk add --no-cache zlib openssl libstdc++ libpcap geoip libgcc tini
@@ -66,7 +66,7 @@ RUN mkdir -p /usr/share/GeoIP/ \
   && curl -s http://${GEOIP}/GeoLiteCity.dat.gz | zcat > /usr/share/GeoIP/GeoIPCity.dat \
   && curl -s http://${GEOIP}/GeoLiteCityv6-beta/GeoLiteCityv6.dat.gz | zcat > /usr/share/GeoIP/GeoIPCityv6.dat \
   && rm -rf /tmp/* \
-  && apk del --purge curl  
+  && apk del --purge curl
 
 ENV BROPATH .:/data/config:/usr/local/share/bro:/usr/local/share/bro/policy:/usr/local/share/bro/site
 
