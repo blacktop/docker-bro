@@ -11,3 +11,4 @@ pcap/test2.pcap
 
 pcap/test.pcap
 .circleci/build_num
+pcap/local.bro
