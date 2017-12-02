@@ -35,7 +35,7 @@ blacktop/bro        pkg           107MB
 blacktop/bro        elastic       62.6MB
 blacktop/bro        redis         63.5MB
 blacktop/bro        geoip         55.97MB
-blacktop/bro        kafka         28.91MB
+blacktop/bro        kafka         30.6MB
 blacktop/bro        2.4.1         16.68MB
 blacktop/bro        2.4           16.68MB
 ```
