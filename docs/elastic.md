@@ -29,7 +29,7 @@ sudo sysctl -w vm.max_map_count=262144
 ## Watch a folder
 
 ```bash
-$ docker run -d --name elstack -p 80:80 -p 9200:9200 blacktop/elastic-stack:5.6
+$ docker run -d --name elasticsearch -p 80:80 -p 9200:9200 blacktop/elastic-stack:5.6
 $ docker run -it --rm -v `pwd`:/pcap --link elasticsearch blacktop/bro:elastic bro-watch
 
 # assuming you are using Docker For Mac.             

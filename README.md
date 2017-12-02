@@ -1,7 +1,6 @@
 ![bro-logo](https://github.com/blacktop/docker-bro/raw/master/docs/imgs/logo.png)
 
-Bro IDS Dockerfile
-==================
+# Bro IDS Dockerfile
 
 [![CircleCI](https://circleci.com/gh/blacktop/docker-bro.png?style=shield)](https://circleci.com/gh/blacktop/docker-bro) [![License](http://img.shields.io/:license-mit-blue.svg)](http://doge.mit-license.org) [![Docker Stars](https://img.shields.io/docker/stars/blacktop/bro.svg)](https://hub.docker.com/r/blacktop/bro/) [![Docker Pulls](https://img.shields.io/docker/pulls/blacktop/bro.svg)](https://hub.docker.com/r/blacktop/bro/) [![Docker Image](https://img.shields.io/badge/docker%20image-21.3MB-blue.svg)](https://hub.docker.com/r/blacktop/bro/)
 
@@ -9,22 +8,22 @@ This repository contains a **Dockerfile** of [Bro-IDS](http://www.bro.org/index.
 
 **Table of Contents**
 
--	[Dependencies](#dependencies)
--	[Image Tags](#image-tags)
--	[Installation](#installation)
--	[Getting Started](#getting-started)
--	[Documentation](#documentation)
--	[Issues](#issues)
--	[Todo](#todo)
--	[CHANGELOG](#changelog)
--	[Contributing](#contributing)
--	[License](#license)
+- [Dependencies](#dependencies)
+- [Image Tags](#image-tags)
+- [Installation](#installation)
+- [Getting Started](#getting-started)
+- [Documentation](#documentation)
+- [Issues](#issues)
+- [Todo](#todo)
+- [CHANGELOG](#changelog)
+- [Contributing](#contributing)
+- [License](#license)
 
-### Dependencies
+## Dependencies
 
--	[alpine:3.6](https://hub.docker.com/_/alpine/)
+- [alpine:3.6](https://hub.docker.com/_/alpine/)
 
-### Image Tags
+## Image Tags
 
 ```bash
 $ docker images
@@ -33,7 +32,7 @@ REPOSITORY          TAG           SIZE
 blacktop/bro        latest        21.3MB
 blacktop/bro        2.5           21.3MB
 blacktop/bro        pkg           107MB
-blacktop/bro        elastic       65.6MB
+blacktop/bro        elastic       62.6MB
 blacktop/bro        redis         63.5MB
 blacktop/bro        geoip         55.97MB
 blacktop/bro        kafka         28.91MB
@@ -42,19 +41,20 @@ blacktop/bro        2.4           16.68MB
 ```
 
 > **NOTE:**
-> * tag **pkg** is the same as tag **2.5**, but includes the **Bro Package Manager**
-> * tag **elastic** is the same as tag **2.5**, but includes the **elasticsearch plugin** and the **GeoIP** database  
-> * tag **redis** is the same as tag **2.5**, but includes the **redis plugin** and the **GeoIP** database  
-> * tag **geoip** is the same as tag **2.5**, but includes the **GeoIP** database
-> * tag **kafka** is the same as tag **2.5**, but includes the **kafka plugin**  
-> * **all** tags include the **af_packet plugin**
 
-### Installation
+> - tag **pkg** is the same as tag **2.5**, but includes the **Bro Package Manager**
+> - tag **elastic** is the same as tag **2.5**, but includes the **elasticsearch plugin** and the **GeoIP** database
+> - tag **redis** is the same as tag **2.5**, but includes the **redis plugin** and the **GeoIP** database
+> - tag **geoip** is the same as tag **2.5**, but includes the **GeoIP** database
+> - tag **kafka** is the same as tag **2.5**, but includes the **kafka plugin**
+> - **all** tags include the **af_packet plugin**
 
-1.	Install [Docker](https://docs.docker.com).
-2.	Download [trusted build](https://hub.docker.com/r/blacktop/bro/) from public [Docker Registry](https://hub.docker.com): `docker pull blacktop/bro`
+## Installation
 
-### Getting Started
+1. Install [Docker](https://docs.docker.com).
+2. Download [trusted build](https://hub.docker.com/r/blacktop/bro/) from public [Docker Registry](https://hub.docker.com): `docker pull blacktop/bro`
+
+## Getting Started
 
 ```bash
 $ wget https://github.com/blacktop/docker-bro/raw/master/pcap/heartbleed.pcap
@@ -88,40 +88,40 @@ Heartbleed::SSL_Heartbeat_Odd_Length
 Heartbleed::SSL_Heartbeat_Attack_Success
 ```
 
-### Documentation
+## Documentation
 
--	[Usage](https://github.com/blacktop/docker-bro/blob/master/docs/usage.md)
--	[Integrate with the Elastic Stack](https://github.com/blacktop/docker-bro/blob/master/docs/elastic.md)
--	[Integrate with Kafka](https://github.com/blacktop/docker-bro/blob/master/docs/kafka.md)
--	[Integrate with Redis](https://github.com/blacktop/docker-bro/blob/master/docs/redis.md)
--	[Tips and Tricks](https://github.com/blacktop/docker-bro/blob/master/docs/tips-and-tricks.md)
+- [Usage](https://github.com/blacktop/docker-bro/blob/master/docs/usage.md)
+- [Integrate with the Elastic Stack](https://github.com/blacktop/docker-bro/blob/master/docs/elastic.md)
+- [Integrate with Kafka](https://github.com/blacktop/docker-bro/blob/master/docs/kafka.md)
+- [Integrate with Redis](https://github.com/blacktop/docker-bro/blob/master/docs/redis.md)
+- [Tips and Tricks](https://github.com/blacktop/docker-bro/blob/master/docs/tips-and-tricks.md)
 
-### Issues
+## Issues
 
 Find a bug? Want more features? Find something missing in the documentation? Let me know! Please don't hesitate to [file an issue](https://github.com/blacktop/docker-bro/issues/new) and I'll get right on it.
 
-### Todo
+## Todo
 
--	[x] Install/Run Bro-IDS
--	[x] Fix Geolocation feature
--	[x] Refine my extract-all.bro script
--	[x] Start Daemon and watch folder with `inotify`
--	[x] Add ELK Stack
+- [x] Install/Run Bro-IDS
+- [x] Fix Geolocation feature
+- [x] Refine my extract-all.bro script
+- [x] Start Daemon and watch folder with `inotify`
+- [x] Add ELK Stack
 
-### Credits
+## Credits
 
-Alpine conversion heavily (if not entirely) influenced by https://github.com/nizq/docker-bro
+Alpine conversion heavily (if not entirely) influenced by <https://github.com/nizq/docker-bro>
 
-### CHANGELOG
+## CHANGELOG
 
 See [`CHANGELOG.md`](https://github.com/blacktop/docker-bro/blob/master/CHANGELOG.md)
 
-### Contributing
+## Contributing
 
 [See all contributors on GitHub](https://github.com/blacktop/docker-bro/graphs/contributors).
 
 Please update the [CHANGELOG.md](https://github.com/blacktop/docker-bro/blob/master/CHANGELOG.md) and submit a [Pull Request on GitHub](https://help.github.com/articles/using-pull-requests/).
 
-### License
+## License
 
 MIT Copyright (c) 2015-2017 **blacktop**
