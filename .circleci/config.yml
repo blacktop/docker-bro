@@ -3,11 +3,11 @@ jobs:
   build:
     working_directory: /app
     docker:
-      - image: docker:17.06.0-ce-git
+      - image: docker:17.09.0-git
     steps:
       - checkout
       - setup_remote_docker:
-          version: 17.06.0-ce
+          version: 17.09.0-git
       - run:
           name: Install dependencies
           command: |
@@ -25,7 +25,7 @@ jobs:
       - run:
           name: Build application Docker image
           command: |
-            cd $(cat LATEST)          
+            cd $(cat LATEST)
             docker version
             docker build --cache-from=app -t app .
       - run:

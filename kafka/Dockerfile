@@ -49,8 +49,10 @@ RUN apk add --no-cache -t .build-deps \
   && make \
   && make install \
   && echo "===> Compiling kafka plugin..." \
+  && cd /tmp/bro/aux/plugins \
+  && git clone https://github.com/apache/metron-bro-plugin-kafka.git \
   && apk add --no-cache librdkafka-dev \
-  && cd /tmp/bro/aux/plugins/kafka \
+  && cd /tmp/bro/aux/plugins/metron-bro-plugin-kafka \
   && CC=clang ./configure --bro-dist=/tmp/bro \
   && make \
   && make install \

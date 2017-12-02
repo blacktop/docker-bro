@@ -49,6 +49,8 @@ RUN apk add --no-cache -t .build-deps \
   && make \
   && make install \
   && echo "===> Compiling elasticsearch plugin..." \
+  && cd /tmp/bro/aux/plugins \
+  && git clone -b release https://github.com/bro/bro-plugins.git \
   # Tweaks to improve elasticsearch plugin's performance in docker
   && cd /tmp/bro/aux/plugins/elasticsearch/scripts && patch -p1 < /tmp/esplung-init.patch \
   && cd /tmp/bro/aux/plugins/elasticsearch/src && patch -p1 < /tmp/ElasticSearch.patch \
