@@ -102,7 +102,7 @@
 @load policy/protocols/smb
 
 # Kafka Plugin
-@load Bro/Kafka/logs-to-kafka.bro
+@load metron-bro-plugin-kafka/Bro/Kafka
 redef Kafka::logs_to_send = set(Conn::LOG, HTTP::LOG, SSL::LOG, Files::LOG, DNS::LOG, FTP::LOG, SMTP::LOG, X509::LOG, Notice::LOG);
 redef Kafka::kafka_conf = table(
     ["metadata.broker.list"] = "localhost:9092"

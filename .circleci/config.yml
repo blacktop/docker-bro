@@ -3,11 +3,11 @@ jobs:
   build:
     working_directory: /app
     docker:
-      - image: docker:17.09.0-git
+      - image: docker:17.09.0-ce-git
     steps:
       - checkout
       - setup_remote_docker:
-          version: 17.09.0-git
+          version: 17.09.0-ce
       - run:
           name: Install dependencies
           command: |
