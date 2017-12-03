@@ -5,7 +5,7 @@ LABEL maintainer "https://github.com/blacktop"
 ENV BRO_VERSION v2.5.1
 
 COPY patches /tmp
-RUN apk add --no-cache zlib openssl libstdc++ libpcap geoip libgcc tini curl inotify-tools jq
+RUN apk add --no-cache zlib openssl libstdc++ libpcap geoip libgcc tini curl inotify-tools jq bind-tools
 RUN apk add --no-cache -t .build-deps \
                           linux-headers \
                           openssl-dev \
