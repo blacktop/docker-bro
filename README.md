@@ -95,11 +95,10 @@ Documentation
 -------------
 
 -	[Usage](https://github.com/blacktop/docker-bro/blob/master/docs/usage.md)
--	[Integrate with the Elastic Stack](https://github.com/blacktop/docker-bro/blob/master/docs/elastic.md)
+-	[Integrate with the Elasticsearch](https://github.com/blacktop/docker-bro/blob/master/docs/elastic.md)
 -	[Integrate with Kafka](https://github.com/blacktop/docker-bro/blob/master/docs/kafka.md)
 -	[Integrate with Redis](https://github.com/blacktop/docker-bro/blob/master/docs/redis.md)
 -	[Tips and Tricks](https://github.com/blacktop/docker-bro/blob/master/docs/tips-and-tricks.md)
-- [Integrate with the Elasticsearch](https://github.com/blacktop/docker-bro/blob/master/docs/elastic.md)
 
 Issues
 ------
