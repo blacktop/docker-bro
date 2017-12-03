@@ -99,6 +99,7 @@ Documentation
 -	[Integrate with Kafka](https://github.com/blacktop/docker-bro/blob/master/docs/kafka.md)
 -	[Integrate with Redis](https://github.com/blacktop/docker-bro/blob/master/docs/redis.md)
 -	[Tips and Tricks](https://github.com/blacktop/docker-bro/blob/master/docs/tips-and-tricks.md)
+- [Integrate with the Elasticsearch](https://github.com/blacktop/docker-bro/blob/master/docs/elastic.md)
 
 Issues
 ------
