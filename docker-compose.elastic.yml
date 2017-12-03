@@ -1,0 +1,24 @@
+version: '3'
+services:
+  elasticsearch:
+    image: blacktop/elasticsearch:5.6
+    ports:
+      - "9200:9200"
+  kibana:
+    depends_on:
+      - elasticsearch
+    image: blacktop/kibana:5.6
+    ports:
+      - "80:5601"
+    links:
+      - elasticsearch
+  bro:
+    depends_on:
+      - kibana
+    build: ./elastic
+    image: blacktop/bro:elastic
+    links:
+      - elasticsearch
+    volumes:
+      - ./pcap:/pcap
+    command: -P -r heartbleed.pcap local "Site::local_nets += { 192.168.11.0/24 }"

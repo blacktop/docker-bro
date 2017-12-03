@@ -26,7 +26,16 @@ sudo sysctl -w vm.max_map_count=262144
 
 ![notice](imgs/notice.png)
 
-## Watch a folder
+=OR=
+
+## You can use [docker-compose](https://docs.docker.com/compose/overview/)
+
+```bash
+$ git clone --depth 1 https://github.com/blacktop/docker-bro.git
+$ docker-compose -f docker-compose.elastic.yml up
+```
+
+## Watch a folder (this time using the **blacktop/elastic-stack** image)
 
 ```bash
 $ docker run -d --name elasticsearch -p 80:80 -p 9200:9200 blacktop/elastic-stack:5.6

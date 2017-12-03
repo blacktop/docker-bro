@@ -5,7 +5,7 @@ LABEL maintainer "https://github.com/blacktop"
 ENV BRO_VERSION v2.5.1
 
 COPY patches /tmp
-RUN apk add --no-cache zlib openssl libstdc++ libpcap geoip libgcc tini curl inotify-tools jq bind-tools
+RUN apk add --no-cache zlib openssl libstdc++ libpcap geoip libgcc tini curl inotify-tools jq
 RUN apk add --no-cache -t .build-deps \
                           linux-headers \
                           openssl-dev \
@@ -51,11 +51,11 @@ RUN apk add --no-cache -t .build-deps \
   && echo "===> Compiling elasticsearch plugin..." \
   && git clone -b release https://github.com/bro/bro-plugins.git /tmp/plugins \
   && mv /tmp/plugins/elasticsearch /tmp/bro/aux/plugins/elasticsearch \
-  # Tweaks to improve elasticsearch plugin's performance in docker
+  && echo "* Tweaks to improve elasticsearch plugin's performance in docker" \
   && cd /tmp/bro/aux/plugins/elasticsearch/scripts && patch -p1 < /tmp/esplung-init.patch \
   && cd /tmp/bro/aux/plugins/elasticsearch/src && patch -p1 < /tmp/ElasticSearch.patch \
   && cd /tmp/bro/aux/plugins/elasticsearch/scripts/Bro/ElasticSearch && patch -p1 < /tmp/logs-to-elasticsearch.patch \
-  # Tweaks protocols to improve indexing logs into elasticsearch
+  && echo "* Tweaks protocols to improve indexing logs into elasticsearch" \
   && PROTOS=/usr/local/share/bro/base/protocols \
   && sed -i "s/version:     count           \&log/socks_version:     count           \&log/g" $PROTOS/socks/main.bro \
   && sed -i "s/\$version=/\$socks_version=/g" $PROTOS/socks/main.bro \
@@ -65,12 +65,12 @@ RUN apk add --no-cache -t .build-deps \
   && sed -i "s/\$version =/\$ssh_version =/g" $PROTOS/ssh/main.bro \
   && sed -i "s/version: string \&log/snmp_version: string \&log/g" $PROTOS/snmp/main.bro \
   && sed -i "s/\$version=/\$snmp_version=/g" $PROTOS/snmp/main.bro \
-  # Build elasticsearch plugin
+  && echo "* Build elasticsearch plugin" \
   && cd /tmp/bro/aux/plugins/elasticsearch \
   && CC=clang ./configure \
   && make \
   && make install \
-  # Stop local logging to prevent filling up the container with logs
+  && echo "* Stop local logging to prevent filling up the container with logs" \
   && sed -i "s/WRITER_ASCII/WRITER_NONE/g" /usr/local/share/bro/base/frameworks/logging/main.bro \
   && echo "===> Shrinking image..." \
   && strip -s /usr/local/bin/bro \
