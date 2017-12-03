@@ -5,7 +5,7 @@ LABEL maintainer "https://github.com/blacktop"
 ENV BRO_VERSION v2.5.2
 
 COPY patches /tmp
-RUN apk add --no-cache zlib openssl libstdc++ libpcap geoip libgcc tini curl inotify-tools jq
+RUN apk add --no-cache zlib openssl libstdc++ libpcap geoip libgcc tini curl inotify-tools jq bind-tools
 RUN apk add --no-cache -t .build-deps \
                           linux-headers \
                           openssl-dev \
@@ -49,7 +49,8 @@ RUN apk add --no-cache -t .build-deps \
   && make \
   && make install \
   && echo "===> Compiling elasticsearch plugin..." \
-  && git clone -b release https://github.com/bro/bro-plugins.git /tmp/bro/aux/plugins \
+  && git clone -b release https://github.com/bro/bro-plugins.git /tmp/plugins \
+  && mv /tmp/plugins/elasticsearch /tmp/bro/aux/plugins/elasticsearch \
   # Tweaks to improve elasticsearch plugin's performance in docker
   && cd /tmp/bro/aux/plugins/elasticsearch/scripts && patch -p1 < /tmp/esplung-init.patch \
   && cd /tmp/bro/aux/plugins/elasticsearch/src && patch -p1 < /tmp/ElasticSearch.patch \
@@ -75,6 +76,8 @@ RUN apk add --no-cache -t .build-deps \
   && strip -s /usr/local/bin/bro \
   && rm -rf /tmp/* \
   && apk del --purge .build-deps
+
+RUN echo "===> Check if elasticsearch plugin installed..." && /usr/local/bin/bro -N Bro::ElasticSearch
 
 # Install the GeoIPLite Database
 RUN mkdir -p /usr/share/GeoIP/ \

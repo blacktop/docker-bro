@@ -42,7 +42,7 @@ run: stop ## Run docker container
 
 .PHONY: ssh
 ssh: ## SSH into docker image
-	@docker run --init -it --rm --entrypoint=bash $(ORG)/$(NAME):$(BUILD)
+	@docker run --init -it --rm --entrypoint=sh $(ORG)/$(NAME):$(BUILD)
 
 .PHONY: stop
 stop: ## Kill running docker containers

@@ -1,9 +1,8 @@
-Integrate with Kafka
---------------------
+# Integrate with Kafka
 
-### Start a Kafka Broker  
+## Start a Kafka Broker
 
-```bash  
+```bash
 $ docker run -d \
            --name kafka \
            -p 9092:9092 \
@@ -12,24 +11,24 @@ $ docker run -d \
            blacktop/kafka:0.11
 ```
 
-### In a new terminal start a Kafka consumer
+## In a new terminal start a Kafka consumer
 
-#### Required
+### Required
 
- - [Golang](https://golang.org/doc/install)
- - [jq](https://stedolan.github.io/jq/)
+- [Golang](https://golang.org/doc/install)
+- [jq](https://stedolan.github.io/jq/)
 
-```bash  
+```bash
 $ go get github.com/Shopify/sarama/tools/kafka-console-consumer
 $ kafka-console-consumer --bootstrap-server localhost:9092 --topic bro | jq .
 ```
 
-### Run Bro with the Kafka plugin and watch the consumer... consume.
+## Run Bro with the Kafka plugin and watch the consumer... consume.
 
 ```bash
 $ wget https://github.com/blacktop/docker-bro/raw/master/pcap/heartbleed.pcap
 $ docker run --rm \
          -v `pwd`:/pcap \
          --link kafka:localhost \
-         blacktop/bro:kafka -r heartbleed.pcap local "Site::local_nets += { 192.168.11.0/24 }"
+         blacktop/bro:kafka -P -r heartbleed.pcap local "Site::local_nets += { 192.168.11.0/24 }"
 ```

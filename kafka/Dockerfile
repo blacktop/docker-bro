@@ -61,6 +61,8 @@ RUN apk add --no-cache -t .build-deps \
   && rm -rf /tmp/* \
   && apk del --purge .build-deps
 
+RUN echo "===> Check if kafka plugin installed..." && /usr/local/bin/bro -N Apache::Kafka
+
 ENV BROPATH .:/data/config:/usr/local/share/bro:/usr/local/share/bro/policy:/usr/local/share/bro/site
 
 VOLUME ["/pcap"]
