@@ -44,7 +44,6 @@ blacktop/bro        2.4           16.68MB
 ```
 
 > **NOTE:**
-
 > - tag **pkg** is the same as tag **2.5**, but includes the **Bro Package Manager**
 > - tag **elastic** is the same as tag **2.5**, but includes the **elasticsearch plugin** and the **GeoIP** database
 > - tag **redis** is the same as tag **2.5**, but includes the **redis plugin** and the **GeoIP** database
