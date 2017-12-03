@@ -1,4 +1,4 @@
-# Integrate with the Elastic Stack
+# Integrate with the Elasticsearch
 
 ```bash
 $ wget https://github.com/blacktop/docker-bro/raw/master/pcap/heartbleed.pcap
@@ -35,7 +35,9 @@ $ git clone --depth 1 https://github.com/blacktop/docker-bro.git
 $ docker-compose -f docker-compose.elastic.yml up
 ```
 
-## Watch a folder (this time using the **blacktop/elastic-stack** image)
+--------------------------------------------------------------------------------
+
+## Watch a folder _(this time using the blacktop/elastic-stack image)_
 
 ```bash
 $ docker run -d --name elasticsearch -p 80:80 -p 9200:9200 blacktop/elastic-stack:5.6
