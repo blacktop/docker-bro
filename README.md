@@ -35,7 +35,7 @@ REPOSITORY          TAG           SIZE
 blacktop/bro        latest        21.3MB
 blacktop/bro        2.5           21.3MB
 blacktop/bro        pkg           107MB
-blacktop/bro        elastic       62.6MB
+blacktop/bro        elastic       67.4MB
 blacktop/bro        redis         60.1MB
 blacktop/bro        geoip         55.97MB
 blacktop/bro        kafka         30.6MB
