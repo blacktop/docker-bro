@@ -27,6 +27,13 @@ test: ## Test docker image
 	@docker run --rm -v `pwd`/pcap:/pcap -v `pwd`/scripts/local.bro:/usr/local/share/bro/site/local.bro $(ORG)/$(NAME):$(BUILD) -r heartbleed.pcap local "Site::local_nets += { 192.168.11.0/24 }"
 	@cat pcap/notice.log | awk '{ print $$11 }' | tail -n4
 
+.PHONY: test-elastic
+test-elastic: stop-all
+	@docker-compose -f docker-compose.elastic.yml up -d kibana
+	@sleep 15; open -a Safari http://localhost
+	@docker-compose -f docker-compose.elastic.yml up --build bro
+	@http localhost:9200/_cat/indices
+
 .PHONY: tar
 tar: ## Export tar of docker image
 	docker save $(ORG)/$(NAME):$(BUILD) -o $(NAME).tar
@@ -47,6 +54,10 @@ ssh: ## SSH into docker image
 .PHONY: stop
 stop: ## Kill running docker containers
 	@docker rm -f $(NAME) || true
+
+.PHONY: stop-all
+stop-all: ## Kill ALL running docker containers
+	@docker-clean stop
 
 .PHONY: circle
 circle: ci-size ## Get docker image size from CircleCI

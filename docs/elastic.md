@@ -32,7 +32,7 @@ sudo sysctl -w vm.max_map_count=262144
 
 ```bash
 $ git clone --depth 1 https://github.com/blacktop/docker-bro.git
-$ docker-compose -f docker-compose.elastic.yml up
+$ docker-compose -f docker-compose.elastic.yml up -d
 ```
 
 --------------------------------------------------------------------------------
