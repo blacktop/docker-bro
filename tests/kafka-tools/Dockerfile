@@ -11,4 +11,4 @@ COPY --from=builder /go/bin/kafka-console-producer /bin/kafka-console-producer
 COPY --from=builder /go/bin/kafka-console-partitionconsumer /bin/kafka-console-partitionconsumer
 COPY --from=builder /go/bin/kafka-console-consumer /bin/kafka-console-consumer
 
-ENTRYPOINT kafka-console-consumer -brokers=localhost:9092 -topic bro -offset=oldest
+ENTRYPOINT kafka-console-consumer -brokers=kafka:9092 -topic bro -offset=oldest

@@ -7,7 +7,7 @@ services:
     networks:
       - kafnet
     environment:
-      - KAFKA_ADVERTISED_HOST_NAME=localhost
+      - KAFKA_ADVERTISED_HOST_NAME=kafka
       - KAFKA_CREATE_TOPICS=bro:1:1
   bro:
     depends_on:
@@ -17,7 +17,7 @@ services:
     networks:
       - kafnet
     links:
-      - "kafka:localhost"
+      - kafka
     volumes:
       - ./pcap:/pcap
     command: -F -r heartbleed.pcap local "Site::local_nets += { 192.168.11.0/24 }"
@@ -29,7 +29,7 @@ services:
     networks:
       - kafnet
     links:
-      - "kafka:localhost"
+      - kafka
 
 networks:
   kafnet:
