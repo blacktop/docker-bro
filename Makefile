@@ -29,8 +29,7 @@ ifeq ($(BUILD),elastic)
 	@http localhost:9200/_cat/indices
 	@open -a Safari https://goo.gl/e5v7Qr
 else ifeq ($(BUILD),kafka)
-	@docker-compose -f docker-compose.kafka.yml up -d	bro
-	# @docker-compose -f docker-compose.kafka.yml up consumer
+	@tests/kafka.sh
 else ifeq ($(BUILD),redis)
 	@docker-compose -f docker-compose.redis.yml up -d logstash
 	@docker-compose -f docker-compose.elastic.yml up bro

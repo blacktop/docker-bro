@@ -1,9 +1,16 @@
 version: '3'
 services:
+  zookeeper:
+    image: blacktop/kafka:0.11
+    ports:
+      - "2181:2181"
+    command: zookeeper-server-start.sh config/zookeeper.properties
   kafka:
     image: blacktop/kafka:0.11
     ports:
       - "9092:9092"
+    links:
+      - zookeeper
     environment:
       - KAFKA_ADVERTISED_HOST_NAME=localhost
       - KAFKA_CREATE_TOPICS=bro:1:1
@@ -17,11 +24,3 @@ services:
     volumes:
       - ./pcap:/pcap
     command: -F -r heartbleed.pcap local "Site::local_nets += { 192.168.11.0/24 }"
-  consumer:
-    depends_on:
-      - kafka
-    image: blacktop/kafka:0.11
-    links:
-      - kafka:localhost
-    command: |
-      kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic bro --from-beginning
