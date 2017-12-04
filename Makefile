@@ -22,17 +22,27 @@ endif
 tags:
 	docker images --format "table {{.Repository}}\t{{.Tag}}\t{{.Size}}" $(ORG)/$(NAME)
 
-test: ## Test docker image
+test: stop-all ## Test docker image
+ifeq ($(BUILD),elastic)
+	@docker-compose -f docker-compose.elastic.yml up -d kibana
+	@docker-compose -f docker-compose.elastic.yml up bro
+	@http localhost:9200/_cat/indices
+	@open -a Safari https://goo.gl/e5v7Qr
+else ifeq ($(BUILD),kafka)
+	@docker-compose -f docker-compose.kafka.yml up -d
+	@go get -u github.com/Shopify/sarama/tools/kafka-console-consumer
+	@go get -u github.com/Shopify/sarama/tools/kafka-console-producer
+	@kafka-console-consumer --bootstrap-server localhost:9092 --topic bro --from-beginning | jq .
+else ifeq ($(BUILD),redis)
+	@docker-compose -f docker-compose.elastic.yml up -d kibana
+	@docker-compose -f docker-compose.elastic.yml up bro
+	@http localhost:9200/_cat/indices
+	@open -a Safari https://goo.gl/e5v7Qr
+else
 	@docker run --rm $(ORG)/$(NAME):$(BUILD) --version
 	@docker run --rm -v `pwd`/pcap:/pcap -v `pwd`/scripts/local.bro:/usr/local/share/bro/site/local.bro $(ORG)/$(NAME):$(BUILD) -r heartbleed.pcap local "Site::local_nets += { 192.168.11.0/24 }"
 	@cat pcap/notice.log | awk '{ print $$11 }' | tail -n4
-
-.PHONY: test-elastic
-test-elastic: stop-all
-	@docker-compose -f docker-compose.elastic.yml up -d kibana
-	@sleep 15; open -a Safari http://localhost
-	@docker-compose -f docker-compose.elastic.yml up --build bro
-	@http localhost:9200/_cat/indices
+endif
 
 .PHONY: tar
 tar: ## Export tar of docker image

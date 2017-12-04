@@ -1,11 +1,12 @@
-# Integrate with the Elasticsearch
+Integrate with the Elasticsearch
+================================
 
 ```bash
 $ wget https://github.com/blacktop/docker-bro/raw/master/pcap/heartbleed.pcap
 $ docker run -d --name elasticsearch -p 9200:9200 blacktop/elasticsearch:5.6
 $ docker run -d --name kibana --link elasticsearch -p 5601:5601 blacktop/kibana:5.6
 $ docker run -it --rm -v `pwd`:/pcap --link elasticsearch \
-             blacktop/bro:elastic -r heartbleed.pcap local "Site::local_nets += { 192.168.11.0/24 }"
+             el2 -r heartbleed.pcap local "Site::local_nets += { 192.168.11.0/24 }"
 
 # assuming you are using Docker For Mac.             
 $ open http://localhost:5601/app/kibana
@@ -20,24 +21,28 @@ sudo sysctl -w vm.max_map_count=262144
 
 <!-- Configure the Bro index pattern ![index](imgs/index.png) -->
 
- Click the [Discover](http://localhost:5601/app/kibana#/discover) tab and filter to `_type:notice`
+Click the [Discover](http://localhost:5601/app/kibana#/discover) tab and filter to `_type:notice`
 
-> Shortcut: <https://goo.gl/e5v7Qr>
+> Shortcut: https://goo.gl/e5v7Qr
 
 ![notice](imgs/notice.png)
 
 =OR=
 
-## You can use [docker-compose](https://docs.docker.com/compose/overview/)
+You can use [docker-compose](https://docs.docker.com/compose/overview/)
+-----------------------------------------------------------------------
 
 ```bash
 $ git clone --depth 1 https://github.com/blacktop/docker-bro.git
-$ docker-compose -f docker-compose.elastic.yml up -d
+$ docker-compose -f docker-compose.elastic.yml up -d kibana
+$ docker-compose -f docker-compose.elastic.yml up bro
+$ open https://goo.gl/e5v7Qr
 ```
 
---------------------------------------------------------------------------------
+---
 
-## Watch a folder _(this time using the blacktop/elastic-stack image)_
+Watch a folder *(this time using the blacktop/elastic-stack image)*
+-------------------------------------------------------------------
 
 ```bash
 $ docker run -d --name elasticsearch -p 80:80 -p 9200:9200 blacktop/elastic-stack:5.6

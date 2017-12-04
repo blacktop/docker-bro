@@ -1,9 +1,12 @@
 version: '3'
 services:
-  elasticsearch:
-    image: blacktop/elasticsearch:5.6
+  kafka:
+    image: blacktop/kafka:1.0
     ports:
-      - "9200:9200"
+      - "9092:9092"
+    environment:
+      - KAFKA_ADVERTISED_HOST_NAME=localhost
+      - KAFKA_CREATE_TOPICS=bro:1:1:compact
   kibana:
     depends_on:
       - elasticsearch
@@ -14,11 +17,11 @@ services:
       - elasticsearch
   bro:
     depends_on:
-      - kibana
-    build: ./elastic
-    image: blacktop/bro:elastic
+      - kafka
+    build: ./kafka
+    image: blacktop/bro:kafka
     links:
-      - elasticsearch
+      - kafka:localhost
     volumes:
       - ./pcap:/pcap
     command: -F -r heartbleed.pcap local "Site::local_nets += { 192.168.11.0/24 }"
