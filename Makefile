@@ -34,7 +34,7 @@ else ifeq ($(BUILD),kafka)
 	@go get -u github.com/Shopify/sarama/tools/kafka-console-producer
 	@kafka-console-consumer --bootstrap-server localhost:9092 --topic bro --from-beginning | jq .
 else ifeq ($(BUILD),redis)
-	@docker-compose -f docker-compose.elastic.yml up -d kibana
+	@docker-compose -f docker-compose.redis.yml up -d logstash
 	@docker-compose -f docker-compose.elastic.yml up bro
 	@http localhost:9200/_cat/indices
 	@open -a Safari https://goo.gl/e5v7Qr

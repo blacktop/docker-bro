@@ -1,16 +1,20 @@
 version: '3'
 services:
-
   redis:
     image: redis:alpine
-
   elasticsearch:
-    image: blacktop/elasticsearch:5.5
+    image: blacktop/elasticsearch:5.6
     ports:
       - "9200:9200"
-
+  kibana:
+    image: blacktop/kibana:5.6
+    ports:
+      - "80:5601"
+    links:
+      - elasticsearch
   logstash:
-    image: blacktop/logstash:5.5
+    depends_on: kibana
+    image: blacktop/logstash:5.6
     links:
       - redis
       - elasticsearch
@@ -29,18 +33,11 @@ services:
                        hosts => "elasticsearch:9200"
                      }
                    }'
-
-  kibana:
-    image: blacktop/kibana:5.5
-    ports:
-      - "80:5601"
-    links:
-      - elasticsearch
-
   bro:
+    build: ./redis
     image: blacktop/bro:redis
     links:
       - redis
     volumes:
       - ./pcap:/pcap
-    command: -r heartbleed.pcap local "Site::local_nets += { 192.168.11.0/24 }"
+    command: -F -r heartbleed.pcap local "Site::local_nets += { 192.168.11.0/24 }"
