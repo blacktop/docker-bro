@@ -18,4 +18,6 @@ docker run -d --rm \
 
 sleep 10
 echo "===> Starting kafka consumer..."
-kafka-console-consumer -brokers=localhost:9092 -topic bro -offset=oldest | grep 'Value:' | cut -d ':' -f 2- | jq 'select(.notice != null) | .notice.note'
+docker run --rm --link kafka:localhost ktools
+
+# cat kafka.out | grep 'Value:' | cut -d ':' -f 2- | jq 'select(.notice != null) | .notice.note'
