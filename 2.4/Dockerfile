@@ -2,7 +2,7 @@ FROM gliderlabs/alpine:3.4
 
 LABEL maintainer "https://github.com/blacktop"
 
-ENV BRO_VERSION v2.4.1
+ENV BRO_VERSION 2.4.1
 
 COPY patches /tmp
 RUN apk-install zlib openssl libstdc++ libpcap geoip libgcc tini
@@ -25,7 +25,7 @@ RUN apk-install -t .build-deps linux-headers \
                                 fts \
   && set -x \
   && cd /tmp \
-  && git clone --recursive --branch $BRO_VERSION git://git.bro.org/bro \
+  && git clone --recursive --branch v$BRO_VERSION git://git.bro.org/bro \
   && echo "===> Applying patches..." \
   && cd /tmp/bro \
   && patch -p1 < /tmp/bro-musl.patch \

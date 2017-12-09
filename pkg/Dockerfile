@@ -2,7 +2,7 @@ FROM alpine:3.7
 
 LABEL maintainer "https://github.com/blacktop"
 
-ENV BRO_VERSION v2.5.2
+ENV BRO_VERSION 2.5.2
 
 COPY patches /tmp
 RUN apk add --no-cache zlib openssl libstdc++ libpcap geoip libgcc tini python2 git cmake
@@ -25,7 +25,7 @@ RUN apk add --no-cache -t .build-deps \
                           g++ \
                           fts \
   && cd /tmp \
-  && git clone --recursive --branch $BRO_VERSION git://git.bro.org/bro \
+  && git clone --recursive --branch v$BRO_VERSION git://git.bro.org/bro \
   && echo "===> Applying patches..." \
   && cd /tmp/bro \
   && patch -p1 < /tmp/bro-musl.patch \
