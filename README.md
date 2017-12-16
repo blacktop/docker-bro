@@ -23,7 +23,7 @@ This repository contains a **Dockerfile** of [Bro-IDS](http://www.bro.org/index.
 Dependencies
 ------------
 
--	[alpine:3.6](https://hub.docker.com/_/alpine/)
+-	[alpine:3.7](https://hub.docker.com/_/alpine/)
 
 Image Tags
 ----------
