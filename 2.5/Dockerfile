@@ -7,23 +7,23 @@ ENV BRO_VERSION 2.5.2
 COPY patches /tmp
 RUN apk add --no-cache zlib openssl libstdc++ libpcap geoip libgcc tini
 RUN apk add --no-cache -t .build-deps \
-                          linux-headers \
-                          openssl-dev \
-                          libpcap-dev \
-                          python-dev \
-                          geoip-dev \
-                          zlib-dev \
-                          binutils \
-                          fts-dev \
-                          cmake \
-                          clang \
-                          bison \
-                          perl \
-                          make \
-                          flex \
-                          git \
-                          g++ \
-                          fts \
+  linux-headers \
+  openssl-dev \
+  libpcap-dev \
+  python-dev \
+  geoip-dev \
+  zlib-dev \
+  binutils \
+  fts-dev \
+  cmake \
+  clang \
+  bison \
+  perl \
+  make \
+  flex \
+  git \
+  g++ \
+  fts \
   && cd /tmp \
   && git clone --recursive --branch v$BRO_VERSION git://git.bro.org/bro \
   && echo "===> Applying patches..." \
@@ -35,8 +35,8 @@ RUN apk add --no-cache -t .build-deps \
   && echo "===> Compiling bro..." \
   && cd /tmp/bro \
   && CC=clang ./configure --disable-broker \
-                          --disable-broctl --disable-broccoli \
-                          --disable-auxtools --prefix=/usr/local \
+  --disable-broctl --disable-broccoli \
+  --disable-auxtools --prefix=/usr/local \
   && make \
   && make install \
   && echo "===> Compiling af_packet plugin..." \
@@ -54,7 +54,6 @@ RUN apk add --no-cache -t .build-deps \
 
 ENV BROPATH .:/data/config:/usr/local/share/bro:/usr/local/share/bro/policy:/usr/local/share/bro/site
 
-VOLUME ["/pcap"]
 WORKDIR /pcap
 
 COPY local.bro /usr/local/share/bro/site/local.bro
