@@ -75,5 +75,4 @@ WORKDIR /pcap
 COPY local.bro /usr/local/share/bro/site/local.bro
 
 ENTRYPOINT ["/sbin/tini","--","bro"]
-
 CMD [ "-h" ]

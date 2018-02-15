@@ -2,7 +2,7 @@ FROM alpine:3.7
 
 LABEL maintainer "https://github.com/blacktop"
 
-ENV BRO_VERSION 2.5.2
+ENV BRO_VERSION 2.5.3
 
 COPY patches /tmp
 RUN apk add --no-cache zlib openssl libstdc++ libpcap geoip libgcc tini
@@ -67,5 +67,4 @@ WORKDIR /pcap
 COPY local.bro /usr/local/share/bro/site/local.bro
 
 ENTRYPOINT ["/sbin/tini","--","bro"]
-
 CMD [ "-h" ]
