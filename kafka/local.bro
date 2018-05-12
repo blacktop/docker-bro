@@ -102,7 +102,7 @@
 @load policy/protocols/smb
 
 # Kafka Plugin
-@load packages/metron-bro-plugin-kafka/Apache/Kafka
+@load Apache/Kafka
 redef Kafka::logs_to_send = set(Conn::LOG, HTTP::LOG, SSL::LOG, Files::LOG, DNS::LOG, FTP::LOG, SMTP::LOG, X509::LOG, Notice::LOG);
 redef Kafka::kafka_conf = table(
     ["metadata.broker.list"] = "kafka:9092"
