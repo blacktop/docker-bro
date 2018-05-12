@@ -56,6 +56,7 @@ RUN apk add --no-cache -t .build-deps \
   && CC=clang ./configure --bro-dist=/tmp/bro \
   && make \
   && make install \
+  && bro -N Apache::Kafka \
   && echo "===> Shrinking image..." \
   && strip -s /usr/local/bin/bro \
   && rm -rf /tmp/* \
