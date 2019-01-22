@@ -1,14 +1,13 @@
-Integrate with the Elasticsearch
-================================
+# Integrate with the Elasticsearch
 
 ```bash
 $ wget https://github.com/blacktop/docker-bro/raw/master/pcap/heartbleed.pcap
 $ docker run -d --name elasticsearch -p 9200:9200 blacktop/elasticsearch:5.6
 $ docker run -d --name kibana --link elasticsearch -p 5601:5601 blacktop/kibana:5.6
 $ docker run -it --rm -v `pwd`:/pcap --link elasticsearch \
-             el2 -r heartbleed.pcap local "Site::local_nets += { 192.168.11.0/24 }"
+             blacktop/bro:elastic -r heartbleed.pcap local "Site::local_nets += { 192.168.11.0/24 }"
 
-# assuming you are using Docker For Mac.             
+# assuming you are using Docker For Mac.
 $ open http://localhost:5601/app/kibana
 ```
 
@@ -29,8 +28,7 @@ Click the [Discover](http://localhost:5601/app/kibana#/discover) tab and filter 
 
 =OR=
 
-You can use [docker-compose](https://docs.docker.com/compose/overview/)
------------------------------------------------------------------------
+## You can use [docker-compose](https://docs.docker.com/compose/overview/)
 
 ```bash
 $ git clone --depth 1 https://github.com/blacktop/docker-bro.git
@@ -41,16 +39,15 @@ $ open https://goo.gl/e5v7Qr
 
 ---
 
-Watch a folder *(this time using the blacktop/elastic-stack image)*
--------------------------------------------------------------------
+## Watch a folder _(this time using the blacktop/elastic-stack image)_
 
 ```bash
 $ docker run -d --name elasticsearch -p 80:80 -p 9200:9200 blacktop/elastic-stack:5.6
 $ docker run -it --rm -v `pwd`:/pcap --link elasticsearch blacktop/bro:elastic bro-watch
 
-# assuming you are using Docker For Mac.             
+# assuming you are using Docker For Mac.
 $ open http://localhost/app/kibana
 
-# download pcap into the watched folder on your host.  
+# download pcap into the watched folder on your host.
 $ wget https://github.com/blacktop/docker-bro/raw/master/pcap/heartbleed.pcap
 ```
