@@ -1,6 +1,6 @@
 ![bro-logo](https://github.com/blacktop/docker-bro/raw/master/docs/imgs/logo.png)
 
-# Bro IDS Dockerfile
+# Bro IDS Dockerfile *(also see :new: [blacktop/docker-zeek](https://github.com/blacktop/docker-zeek))*
 
 [![CircleCI](https://circleci.com/gh/blacktop/docker-bro.png?style=shield)](https://circleci.com/gh/blacktop/docker-bro) [![License](http://img.shields.io/:license-mit-blue.svg)](http://doge.mit-license.org) [![Docker Stars](https://img.shields.io/docker/stars/blacktop/bro.svg)](https://hub.docker.com/r/blacktop/bro/) [![Docker Pulls](https://img.shields.io/docker/pulls/blacktop/bro.svg)](https://hub.docker.com/r/blacktop/bro/) [![Docker Image](https://img.shields.io/badge/docker%20image-22.2MB-blue.svg)](https://hub.docker.com/r/blacktop/bro/)
 
